@@ -60,7 +60,6 @@ export default function (props) {
 				<div className="grid gap-y-4">
 					{/*Email Address Input*/}
 					<InputBox
-						type="email"
 						value={values.email}
 						handleChange={handleChange}
 						handleBlur={handleBlur}
