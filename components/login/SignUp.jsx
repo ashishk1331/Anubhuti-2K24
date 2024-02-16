@@ -1,4 +1,5 @@
 // Libraries
+"use client";
 import { useFormik } from "formik";
 // components
 import Separator from "@/components/ui/Separator.jsx";
@@ -10,14 +11,14 @@ import { useStore } from "@/store/useForm.store.js";
 import Wrapper from "./Wrapper.jsx";
 import { useState } from "react";
 import { ID, account } from "@/Appwrite/appwrite.config.js";
-import { useRouter, useSearchParams } from "next/navigation.js";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function (props) {
   const router = useRouter();
   const [error, setError] = useState("");
   const redirectForm = useStore((state) => state.setForm);
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  // const searchParams = useSearchParams();
+  // const redirect = searchParams.get("redirect");
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
   const {
     values,
@@ -44,7 +45,8 @@ export default function (props) {
         setLoggedInUser(user);
         actions.resetForm();
         setSubmitting(false);
-        if (loggedIn) redirect ? router.push(redirect) : router.push("/");
+        router.push("/");
+        // if (loggedIn) redirect ? router.push(redirect) : router.push("/");
       } catch (error) {
         setError(error.message);
       }

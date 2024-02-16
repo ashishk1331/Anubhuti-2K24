@@ -1,4 +1,5 @@
 // Libraries
+"use client";
 import { useFormik } from "formik";
 
 // Components
@@ -14,8 +15,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 export default function (props) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  // const searchParams = useSearchParams();
+  // const redirect = searchParams.get("redirect");
   const redirectForm = useStore((state) => state.setForm);
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
   const [error, setError] = useState("");
@@ -43,7 +44,8 @@ export default function (props) {
         setLoggedInUser(loggedIn);
         setSubmitting(false);
         actions.resetForm();
-        if (loggedIn) redirect ? router.push(redirect) : router.push("/");
+        router.push("/");
+        // if (loggedIn) redirect ? router.push(redirect) : router.push("/");
       } catch (error) {
         setError(error.message);
       }
