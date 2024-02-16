@@ -1,32 +1,29 @@
 "use client";
+import { account } from "@/Appwrite/appwrite.config";
+import Loader from "@/components/ui/Loader";
 import { useStore } from "@/store/useForm.store";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { account } from "@/Appwrite/appwrite.config";
-import Profile from "@/components/profile/Profile";
-import Wrapper from "@/components/login/Wrapper";
-import Loader from "@/components/ui/Loader";
 
-export default function () {
-  const router = useRouter();
+export default function AdminLayout({ children }) {
   const loggedInUser = useStore((state) => state.loggedInUser);
+  const router = useRouter();
   async function init() {
     try {
-      if (!(await account.get())) router.push("/login?redirect=admin");
+      const loggedIn = await account.get();
+      if (!loggedIn) router.push("/login?redirect=admin");
+      if (!loggedIn.labels.includes("admin")) router.push("/");
     } catch (err) {
-      router.push("/login?redirect=profile");
+      router.push("/login?redirect=admin");
     }
   }
   useEffect(() => {
     init();
   }, []);
-
   return (
     <main className="w-full min-h-screen p-4">
       {loggedInUser ? (
-        <Wrapper>
-          <Profile />
-        </Wrapper>
+        <>{children}</>
       ) : (
         <div className="flex flex-col items-center justify-center w-full min-h-screen gap-4 sm:flex-row">
           <Loader />

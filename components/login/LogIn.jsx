@@ -10,12 +10,13 @@ import { LoginSchema } from "./Login.schema.js";
 import { useStore } from "@/store/useForm.store.js";
 import Wrapper from "./Wrapper.jsx";
 import { account } from "@/Appwrite/appwrite.config.js";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 export default function (props) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const redirectForm = useStore((state) => state.setForm);
-  const loggedInUser = useStore((state) => state.loggedInUser);
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
   const [error, setError] = useState("");
   const {
@@ -41,7 +42,7 @@ export default function (props) {
         setLoggedInUser(loggedIn);
         setSubmitting(false);
         actions.resetForm();
-        if (loggedIn) router.push("/");
+        if (loggedIn) redirect ? router.push(redirect) : router.push("/");
       } catch (error) {
         setError(error.message);
       }
