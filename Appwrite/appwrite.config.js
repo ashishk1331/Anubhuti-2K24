@@ -3,7 +3,7 @@ export const client = new Client();
 
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT);
+  .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECTID);
 
 export const databases = new Databases(client);
 export const account = new Account(client);
