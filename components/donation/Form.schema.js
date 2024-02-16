@@ -6,7 +6,7 @@ export const DonateSchema = Yup.object().shape({
 		.required("Required"),
 
 	// second name rules
-	secondName: Yup.string()
+	lastName: Yup.string()
 		.required("Required"),
 
 	// phone number rules

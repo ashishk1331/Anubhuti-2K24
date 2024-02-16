@@ -20,7 +20,7 @@ export default function (props) {
 	} = useFormik({
 		initialValues: {
 			firstName: "",
-			secondName: "",
+			lastName: "",
 			phoneNumber: "",
 			yearOfPassing: "",
 			branch: "",
@@ -37,7 +37,7 @@ export default function (props) {
 	return (
 		<>
 			{/* Card Section */}
-			<div className="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+			<div id="donateForm" className="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 				{/* Card */}
 				<div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
 					<div className="text-center mb-8">
@@ -65,12 +65,12 @@ export default function (props) {
 								/>
 								<InputBox
 									type="text"
-									name="secondName"
-									value={values.secondName}
+									name="lastName"
+									value={values.lastName}
 									handleChange={handleChange}
 									handleBlur={handleBlur}
-									error={errors.secondName}
-									label="Sur Name"
+									error={errors.lastName}
+									label="Last Name"
 								/>
 								<InputBox
 									type="text"
