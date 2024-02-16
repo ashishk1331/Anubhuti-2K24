@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     init();
   }, []);
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <title>Anubhuti-2k24</title>
       </head>

@@ -29,8 +29,8 @@ export default function (props) {
 			>
 				<div className="flex items-center justify-between">
 					<a
-						className="flex-none text-xl font-semibold dark:text-white"
-						href="#"
+						className="flex-none text-xl text-voilet font-semibold"
+						href="/"
 						aria-label="Brand"
 					>
 						Anubhuti
@@ -73,29 +73,23 @@ export default function (props) {
 				>
 					<div className="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
 						<a
-							className="font-medium text-blue-600 sm:py-6 dark:text-blue-500"
+							className="font-medium text-gray-500 hover:text-voilet sm:py-6"
 							href="/"
 							aria-current="page"
 						>
 							Landing
 						</a>
 						<a
-							className="font-medium text-gray-500 hover:text-gray-400 sm:py-6"
-							href="#"
+							className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+							href="/events"
 						>
 							Events
 						</a>
 						<a
-							className="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-							href="#"
+							className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+							href="/donate"
 						>
-							Work
-						</a>
-						<a
-							className="font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-gray-400 dark:hover:text-gray-500"
-							href="#"
-						>
-							Blog
+							Donate
 						</a>
 						<div>
 							{name ? (
