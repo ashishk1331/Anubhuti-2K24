@@ -30,7 +30,7 @@ export default function () {
           <Profile />
         </Wrapper>
       ) : (
-        <div className="flex flex-col items-center justify-center w-full min-h-screen gap-4 sm:flex-row">
+        <div className="flex flex-col items-center justify-center w-full min-h-[70vh] gap-4 sm:flex-row">
           <Loader />
           <span>Fetching records...</span>
         </div>

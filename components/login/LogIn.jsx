@@ -38,7 +38,8 @@ export default function (props) {
       setError("");
       let { email, password } = values;
       try {
-        const loggedIn = await account.createEmailSession(email, password);
+        const response = await account.createEmailSession(email, password);
+        const loggedIn = await account.get();
         setLoggedInUser(loggedIn);
         setSubmitting(false);
         actions.resetForm();
