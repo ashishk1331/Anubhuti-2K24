@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,7 +8,14 @@ module.exports = {
     "node_modules/preline/dist/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        voilet: "#7148FC",
+        "dark-gray": "#FFFFFF",
+        "light-gray": "#D6D4E8",
+        background: "#FFFFFF",
+      },
+    },
   },
   plugins: [
     require("@tailwindcss/typography"),
