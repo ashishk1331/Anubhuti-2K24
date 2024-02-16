@@ -1,18 +1,15 @@
 "use client";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { useStore } from "@/store/useForm.store";
 import { account } from "@/Appwrite/appwrite.config";
+import { useStore } from "@/store/useForm.store";
 import { useEffect } from "react";
 
-const inter = Inter({ subsets: ["latin"] });
-
-export default function RootLayout({ children }) {
+export default function ({ children }) {
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
   async function init() {
     try {
       const loggedIn = await account.get();
       setLoggedInUser(loggedIn);
+      console.log(loggedIn);
     } catch (err) {
       setLoggedInUser(null);
     }
@@ -20,12 +17,5 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     init();
   }, []);
-  return (
-    <html lang="en">
-      <head>
-        <title>Anubhuti-2k24</title>
-      </head>
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+  return <>{children}</>;
 }

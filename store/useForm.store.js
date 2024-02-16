@@ -9,4 +9,6 @@ export const useStore = create((set) => ({
    */
   form: 1,
   setForm: (form) => set({ form }),
+  loggedInUser: null,
+  setLoggedInUser: (user) => set({ loggedInUser: user }),
 }));
