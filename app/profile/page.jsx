@@ -6,6 +6,7 @@ import { account } from "@/Appwrite/appwrite.config";
 import Profile from "@/components/Profile/Profile";
 import Wrapper from "@/components/login/Wrapper";
 import Loader from "@/components/ui/Loader";
+import Header from "@/components/ui/Header";
 
 export default function () {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function () {
   }, []);
   return (
     <main className="w-full min-h-screen p-4">
+      <Header />
       {loggedInUser ? (
         <Wrapper>
           <Profile />
