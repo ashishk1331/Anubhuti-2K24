@@ -1,24 +1,24 @@
 "use client";
 import { account } from "@/Appwrite/appwrite.config";
+import RegistrationsTable from "@/components/admin/registrations/RegistrationsTable";
 import Pagination from "@/components/admin/ui/Pagination";
-import UsersTable from "@/components/admin/users/UsersTable";
-import { getUsers } from "@/helper/appwrite-helpers";
+import { getRegistrations, getUsers } from "@/helper/appwrite-helpers";
 import { useEffect, useState } from "react";
 export default function () {
-  const [users, setUsers] = useState();
+  const [registrations, setRegistrations] = useState();
   const [page, setPage] = useState(1);
   const [capacity, setCapacity] = useState(20);
   /**
-   * schema users :
+   * schema registrations :
    * {
    *   total: total no of users,
-   *   users:[]
+   *   documents:[]
    * }
    **/
 
   async function init() {
     try {
-      setUsers(await getUsers());
+      setRegistrations(await getRegistrations());
     } catch (error) {
       console.log(error);
     }
@@ -29,18 +29,21 @@ export default function () {
 
   return (
     <>
-      {users && (
-        <div className="p-4 sm:w-[80%] mx-auto">
-          {/* Display Users  */}
-          <UsersTable users={users} page={page} capacity={capacity} />
-
+      {registrations && (
+        <div className="p-4 mx-auto sm:w-[80%]">
+          {/* Display Registrations  */}
+          <RegistrationsTable
+            registrations={registrations}
+            page={page}
+            capacity={capacity}
+          />
           {/* Pagination Logic */}
           <Pagination
             page={page}
             setpage={setPage}
             capacity={capacity}
             setCapacity={setCapacity}
-            total={users.total}
+            total={registrations.total}
           />
         </div>
       )}

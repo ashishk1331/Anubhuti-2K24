@@ -15,7 +15,7 @@ export default function ({ page, setPage, total, capacity, setCapacity }) {
           return (
             <span
               key={i + 1}
-              onClick={() => setPage(i + 1)}
+              onClick={() => pagehandler(i + 1)}
               className={`${
                 page == i + 1 && "bg-gray-200"
               } px-3 py-1 border cursor-pointer hover:bg-gray-300 rounded-md`}
@@ -32,7 +32,7 @@ export default function ({ page, setPage, total, capacity, setCapacity }) {
         </span>
       </div>
       <select
-        className="py-1 px-2 mx-auto text-sm border rounded-md outline-none resize-none w-[170px] "
+        className="py-1 px-2 border-gray-300 mx-auto text-sm border rounded-md outline-none resize-none w-[155px] "
         value={capacity}
         onChange={(e) => setCapacity(Number(e.target.value))}
       >

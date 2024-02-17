@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.0.15",
     "appwrite": "^13.0.1",
     "formik": "^2.4.5",
     "framer-motion": "^11.0.5",

@@ -1,3 +1,5 @@
+import { account, databases } from "@/Appwrite/appwrite.config";
+
 export async function getUsers() {
   try {
     const body = {
@@ -16,6 +18,30 @@ export async function getUsers() {
     return await response.json();
   } catch (error) {
     console.log(error.message);
-    console.log({ total: 0, users: [] });
+    return { total: 0, users: [] };
+  }
+}
+export async function getRegistrations() {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID
+    );
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [] };
+  }
+}
+export async function getTransactions() {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_COLLECTIONID
+    );
+    return response;
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [] };
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 import { account } from "@/Appwrite/appwrite.config";
+import Header from "@/components/admin/ui/Header";
 import Loader from "@/components/ui/Loader";
 import { useStore } from "@/store/useForm.store";
 import { useRouter } from "next/navigation";
@@ -21,9 +22,12 @@ export default function AdminLayout({ children }) {
     init();
   }, []);
   return (
-    <main className="w-full min-h-screen p-4">
+    <main className="w-full min-h-screen">
       {loggedInUser ? (
-        <>{children}</>
+        <div>
+          <Header />
+          {children}
+        </div>
       ) : (
         <div className="flex flex-col items-center justify-center w-full min-h-screen gap-4 sm:flex-row">
           <Loader />

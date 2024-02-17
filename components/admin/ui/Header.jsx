@@ -1,9 +1,9 @@
 "use client";
-import Adminstatus from "./AdminStatus";
 // Libraries
 // Helper
-import RegistrationStatus from "./RegistrationStatus";
-import SessionStatus from "./SessionStatus";
+
+import AdminStatus from "@/components/ui/AdminStatus";
+import SessionStatus from "@/components/ui/SessionStatus";
 
 export default function (props) {
   return (
@@ -59,26 +59,37 @@ export default function (props) {
           <div className="flex flex-col mt-5 gap-y-4 gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
             <a
               className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-              href="/"
+              href="/admin"
               aria-current="page"
             >
-              Landing
+              Admin
             </a>
             <a
               className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-              href="/events"
+              href="/admin/events"
             >
               Events
             </a>
             <a
               className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-              href="/donate"
+              href="/admin/users"
             >
-              Donate
+              Users
             </a>
-            <Adminstatus />
-            <RegistrationStatus />
-            <SessionStatus />
+            <a
+              className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+              href="/admin/registrations"
+            >
+              Registrations
+            </a>
+            <a
+              className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+              href="/admin/transactions"
+            >
+              Transactions
+            </a>
+            {/* <AdminStatus /> */}
+            {/* <SessionStatus /> */}
           </div>
         </div>
       </nav>
