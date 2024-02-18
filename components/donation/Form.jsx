@@ -24,6 +24,7 @@ export default function (props) {
 			phoneNumber: "",
 			yearOfPassing: "",
 			branch: "",
+			amount: 0,
 		},
 		validationSchema: DonateSchema,
 		onSubmit: async function (values, actions) {
@@ -104,6 +105,15 @@ export default function (props) {
 									handleBlur={handleBlur}
 									error={errors.branch}
 									label="Branch"
+								/>
+								<InputBox
+									type="number"
+									name="amount"
+									value={values.amount}
+									handleChange={handleChange}
+									handleBlur={handleBlur}
+									error={errors.amount}
+									label="Amount"
 								/>
 							</div>
 						</div>

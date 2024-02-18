@@ -23,4 +23,9 @@ export const DonateSchema = Yup.object().shape({
 	// branch rules
 	branch: Yup.string()
 		.required("Required"),
+
+	// amount rules
+	amount: Yup.number()
+	.min(100, "Please consider donating atleast 1000 Rs.")
+	.required("Required"),
 });
