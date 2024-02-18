@@ -1,7 +1,6 @@
 import { Toaster } from "react-hot-toast";
 
 // Components
-
 import LoginLogout from "@/components/ui/Login.Logout";
 import Header from "@/components/ui/Header";
 
