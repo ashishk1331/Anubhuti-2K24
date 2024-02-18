@@ -1,17 +1,23 @@
 import { Toaster } from "react-hot-toast";
-
+import {HeroSection} from "@/components/landing/HeroSection.jsx";
+import Events from "@/components/landing/Events.jsx";
+import { EventsData } from '@/components/landing/EventsData.jsx';
+import { Gallery } from '@/components/landing/Gallery.jsx';
+import { CoreTeam } from '@/components/landing/CoreTeam.jsx';
 // Components
-import LoginLogout from "@/components/ui/Login.Logout";
+
 import Header from "@/components/ui/Header";
 
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="flex flex-col items-center justify-between min-h-[90vh] p-24">
         <Toaster position="top-left" />
-        <h1>Hello</h1>
-      </main>
+        <div className='w-100vw'>
+          <HeroSection></HeroSection>
+          <Events EventsData={EventsData}></Events>
+          <Gallery></Gallery>
+          <CoreTeam></CoreTeam>
+      </div>
     </>
   );
 }
