@@ -18,7 +18,7 @@ export const EventCard = (props) => {
         </div>
 
         <div className='bg-white relative h-[200px]'>
-            <p className='p-4 text-2xl'>
+            <p className='p-4 text-xl'>
             {
                 description.length >100 ? 
                 (description.substr(0,100)+".....") : (description+".....")
@@ -26,7 +26,7 @@ export const EventCard = (props) => {
             </p>
 
             <div>
-            <button className='absolute bottom-0 right-0 p-4 text-red-800 font-bold text-2xl'>Read More</button>
+            <button className='absolute bottom-0 right-0 p-4 text-red-800 font-bold text-xl'>Read More</button>
             </div>
         </div>
 

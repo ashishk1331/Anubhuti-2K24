@@ -1,15 +1,16 @@
 export default function (props) {
 	return (
-		<footer className="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
+		<footer className="w-full">
+			<div className="w-full h-8 bg-gradient-to-b from-[#000f1e] to-[#451952]" />
 			{/* Grid */}
-			<div className="text-center">
-				<div>
+			<div className="text-center bg-gradient-to-b from-[#451952] to-[#451952]">
+				<div  >
 					<a
-						className="flex-none text-xl font-semibold text-black dark:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+						className="flex-none text-3xl font-semibold text-[#efc36a]  "
 						href="#"
 						aria-label="Brand"
 					>
-						Anubhuti
+						Anubhuti'24
 					</a>
 				</div>
 				{/* End Col */}
@@ -18,14 +19,14 @@ export default function (props) {
 						We're part of the{" "}
 						<a
 							className="font-semibold text-blue-600 hover:text-blue-700 dark:text-blue-500 dark:hover:text-blue-400"
-							href="https://knit.ac.in/"
+							href="#"
 						>
-							KNIT
+							Anubhuti'24
 						</a>{" "}
-						family.
+						Technical Team.
 					</p>
 					<p className="text-gray-500">
-						© Anubhuti. 2024 KNIT. All rights reserved.
+						©Anubhuti 2024.  All rights reserved.
 					</p>
 				</div>
 				{/* Social Brands */}
