@@ -1,5 +1,6 @@
 // Libraries
 import { useFormik } from "formik";
+import QRCode from "react-qr-code";
 
 // Components
 import Separator from "@/components/ui/Separator.jsx";
@@ -9,6 +10,7 @@ import InputBox from "@/components/ui/InputBox.jsx";
 import { DonateSchema } from "./Form.schema.js";
 
 export default function (props) {
+	const UPI_ID = "90876543@okicici";
 	const {
 		values,
 		errors,
@@ -24,6 +26,8 @@ export default function (props) {
 			phoneNumber: "",
 			yearOfPassing: "",
 			branch: "",
+			amount: 0,
+			transactionID: "",
 		},
 		validationSchema: DonateSchema,
 		onSubmit: async function (values, actions) {
@@ -37,19 +41,33 @@ export default function (props) {
 	return (
 		<>
 			{/* Card Section */}
-			<div id="donateForm" className="max-w-2xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+			<div
+				id="donateForm"
+				className="max-w-2xl w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto"
+			>
 				{/* Card */}
 				<div className="bg-white rounded-xl shadow p-4 sm:p-7 dark:bg-slate-900">
 					<div className="text-center mb-8">
 						<h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
-							Donation
+							Step 1
 						</h2>
-						<p className="mt-5 text-sm text-gray-600 dark:text-gray-400">
-							Have a smile on your face, knowing that you are
-							making a difference
+						<p className="mt-5 text-md text-gray-600 dark:text-gray-400">
+							Scan the QR code to make a donation
 						</p>
 					</div>
-					<Separator />
+
+					<div className="w-full flex justify-around">
+						<QRCode value={UPI_ID} />
+					</div>
+					<Separator marginY={5} />
+					<div className="text-center mb-8">
+						<h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
+							Step 2
+						</h2>
+						<p className="mt-5 text-sm text-gray-600 dark:text-gray-400">
+							Fill out the form with your transaction details.
+						</p>
+					</div>
 					<form onSubmit={handleSubmit}>
 						{/* Section */}
 						<div className="py-6 first:pt-0 last:pb-0 border-t first:border-transparent border-gray-200 dark:border-gray-700 dark:first:border-transparent">
@@ -62,6 +80,7 @@ export default function (props) {
 									handleBlur={handleBlur}
 									error={errors.firstName}
 									label="First Name"
+									placeholder="Maria"
 								/>
 								<InputBox
 									type="text"
@@ -71,6 +90,7 @@ export default function (props) {
 									handleBlur={handleBlur}
 									error={errors.lastName}
 									label="Last Name"
+									placeholder="Boone"
 								/>
 								<InputBox
 									type="text"
@@ -80,6 +100,7 @@ export default function (props) {
 									handleBlur={handleBlur}
 									error={errors.phoneNumber}
 									label="Phone Number"
+									placeholder="05362240454"
 								/>
 							</div>
 						</div>
@@ -95,6 +116,7 @@ export default function (props) {
 									handleBlur={handleBlur}
 									error={errors.yearOfPassing}
 									label="Year of Passing"
+									placeholder="2021"
 								/>
 								<InputBox
 									type="text"
@@ -104,6 +126,26 @@ export default function (props) {
 									handleBlur={handleBlur}
 									error={errors.branch}
 									label="Branch"
+									placeholder="Computer Science and Engineering"
+								/>
+								<InputBox
+									type="number"
+									name="amount"
+									value={values.amount}
+									handleChange={handleChange}
+									handleBlur={handleBlur}
+									error={errors.amount}
+									label="Amount"
+								/>
+								<InputBox
+									type="text"
+									name="transactionID"
+									value={values.transactionID}
+									handleChange={handleChange}
+									handleBlur={handleBlur}
+									error={errors.transactionID}
+									label="Transaction ID"
+									placeholder="txn_1234567890"
 								/>
 							</div>
 						</div>

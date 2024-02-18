@@ -7,6 +7,8 @@ import { CoreTeam } from '@/components/landing/CoreTeam.jsx';
 import LandingFooter from "@/components/landing/landing-footer";
 // Components
 
+import Header from "@/components/ui/Header";
+
 export default function Home() {
   return (
     <>

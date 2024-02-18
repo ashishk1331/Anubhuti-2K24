@@ -1,5 +1,5 @@
 export default function (props) {
-  let { value, handleChange, error, type, label, handleBlur, name } = props;
+  let { value, handleChange, error, type, label, handleBlur, name, placeholder } = props;
 
   return (
     <div>
@@ -17,6 +17,7 @@ export default function (props) {
           className="block w-full px-4 py-3 text-sm rounded-lg bg-dark-gray border-light-gray focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
           required=""
           aria-describedby="email-error"
+          placeholder={placeholder}
         />
         {error && (
           <div className="absolute inset-y-0 pointer-events-none end-0 pe-3">
