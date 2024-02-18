@@ -7,13 +7,15 @@ import Profile from "@/components/profile/Profile";
 import Wrapper from "@/components/login/Wrapper";
 import Loader from "@/components/ui/Loader";
 import Header from "@/components/ui/Header";
+import RegistrationsData from "@/components/profile/RegistrationsData";
 
 export default function () {
   const router = useRouter();
   const loggedInUser = useStore((state) => state.loggedInUser);
+
   async function init() {
     try {
-      if (!(await account.get())) router.push("/login?redirect=admin");
+      if (!(await account.get())) router.push("/login?redirect=profile");
     } catch (err) {
       router.push("/login?redirect=profile");
     }
@@ -28,6 +30,7 @@ export default function () {
       {loggedInUser ? (
         <Wrapper>
           <Profile />
+          <RegistrationsData />
         </Wrapper>
       ) : (
         <div className="flex flex-col items-center justify-center w-full min-h-[70vh] gap-4 sm:flex-row">
