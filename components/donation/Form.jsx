@@ -10,7 +10,7 @@ import InputBox from "@/components/ui/InputBox.jsx";
 import { DonateSchema } from "./Form.schema.js";
 
 export default function (props) {
-	const UPI_ID = "90876543@okicici";
+	const UPI_ID = "upi://pay?pa=anubh96906@barodampay&pn=ANUBHUTI &mc=&tn=Verified Merchant&am=&cu=INR&url=&mode=02&orgid=159012&mid=&msid=&mtid=&sign=MEQCICbTwCfifTlKt+tp9bwqgqjVPzySa54L6CCmjZeeoYpLAiBz7bAIao/tys/3gNhvFTsaIT9LeeaFhTFdrZ893p1tcw==";
 	const {
 		values,
 		errors,
