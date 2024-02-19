@@ -22,7 +22,7 @@ export const DonateSchema = Yup.object().shape({
 
   // amount rules
   amount: Yup.number()
-    .min(100, "Please consider donating atleast 1000 Rs.")
+    .min(1000, "Please consider donating atleast 1000 Rs.")
     .required("Required"),
 
   // branch rules
