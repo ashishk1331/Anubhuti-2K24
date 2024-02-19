@@ -11,7 +11,7 @@ import Header from "@/components/ui/Header";
 
 // Helper
 import { useStore } from "@/store/useForm.store.js";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { account } from "@/Appwrite/appwrite.config";
 import { useRouter } from "next/navigation";
 
@@ -32,7 +32,11 @@ export default function Home() {
       <main className="w-full max-w-md p-6 mx-auto">
         <div className="border shadow-sm mt-7 bg-background border-light-gray rounded-xl">
           <div className="p-4 sm:p-7">
-            <AnimatePresence>{correctForm(formNumber)}</AnimatePresence>
+            <AnimatePresence>
+              <React.Suspense fallback={<div>Loading...</div>}>
+                {correctForm(formNumber)}
+              </React.Suspense>
+            </AnimatePresence>
           </div>
         </div>
       </main>

@@ -17,8 +17,8 @@ export default function (props) {
   const router = useRouter();
   const [error, setError] = useState("");
   const redirectForm = useStore((state) => state.setForm);
-  // const searchParams = useSearchParams();
-  // const redirect = searchParams.get("redirect");
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
   const {
     values,
@@ -42,11 +42,12 @@ export default function (props) {
         let { email, password, confirmPassword } = values;
         const promise = await account.create(ID.unique(), email, password);
         const user = await account.createEmailSession(email, password);
-        setLoggedInUser(user);
+        const loggedIn = await account.get();
+        setLoggedInUser(loggedIn);
         actions.resetForm();
         setSubmitting(false);
-        router.push("/");
-        // if (loggedIn) redirect ? router.push(redirect) : router.push("/");
+        // router.push("/");
+        if (loggedIn) redirect ? router.push(redirect) : router.push("/");
       } catch (error) {
         setError(error.message);
       }

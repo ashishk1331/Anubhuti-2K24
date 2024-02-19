@@ -7,10 +7,13 @@ export default function () {
     <div>
       {registered ? (
         <div className="flex flex-col sm:flex-row">
-          <button className="flex text-sm font-medium text-gray-500 gap-x-1 text-start">
+          <a
+            href="/register"
+            className="flex text-sm font-medium text-gray-500 gap-x-1 text-start"
+          >
             Registered
-            <Check size={16} weight="bold" />
-          </button>
+            <Check className="mt-0.5" size={15} weight="bold" />
+          </a>
         </div>
       ) : (
         <a
