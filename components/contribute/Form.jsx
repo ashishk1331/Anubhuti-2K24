@@ -9,7 +9,7 @@ import InputBox from "@/components/ui/InputBox.jsx";
 
 // Helper
 import { DonateSchema } from "./Form.schema.js";
-import { ID, databases } from "@/Appwrite/appwrite.config.js";
+import { ID, databases, storage } from "@/Appwrite/appwrite.config.js";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -17,6 +17,7 @@ export default function (props) {
   const UPI_ID =
     "upi://pay?pa=anubh96906@barodampay&pn=ANUBHUTI &mc=&tn=Verified Merchant&am=&cu=INR&url=&mode=02&orgid=159012&mid=&msid=&mtid=&sign=MEQCICbTwCfifTlKt+tp9bwqgqjVPzySa54L6CCmjZeeoYpLAiBz7bAIao/tys/3gNhvFTsaIT9LeeaFhTFdrZ893p1tcw==";
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const {
     values,
@@ -36,26 +37,57 @@ export default function (props) {
     },
     validationSchema: DonateSchema,
     onSubmit: async function (values, actions) {
+      setLoading(true);
       try {
         setError("");
-        const data = {
-          name: [values.firstName, values.lastName].join(" "),
-          pno: values.phoneNumber,
-          email: values.email,
-          amount: values.amount,
-          branch: values.branch,
-          transactionId: values.transactionID,
-          year: values.yearOfPassing,
-        };
-        const promise = await databases.createDocument(
-          process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
-          process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_COLLECTIONID,
+        const promise = storage.createFile(
+          process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_BUCKETID,
           ID.unique(),
-          data,
+          file
         );
-        toast.success("Transaction Submitted Successfully");
-        actions.resetForm();
+        promise.then(
+          function (response) {
+            console.log("Image Uploaded Successfully");
+            const data = {
+              name: [values.firstName, values.lastName].join(" "),
+              email: values.email,
+              branch: values.branch,
+              year: values.yearOfPassing,
+              imageId: response.$id,
+            };
+            const promise2 = databases.createDocument(
+              process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+              process.env
+                .NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_COLLECTIONID,
+              ID.unique(),
+              data
+            );
+            promise2.then(
+              function (response) {
+                setError("");
+                actions.resetForm();
+                setFile(null);
+                toast.success("Submitted Successfully");
+                setLoading(false);
+              },
+              function (error) {
+                setError(error.message);
+                console.log(error);
+                toast.error("Error submitting form");
+                setLoading(false);
+              }
+            );
+          },
+          function (error) {
+            setError(error.message);
+            setLoading(false);
+            toast.error("Error submitting form");
+            console.log("Error uploading Image", error);
+          }
+        );
       } catch (error) {
+        setLoading(false);
+        toast.error("Error submitting form");
         setError(error.message);
       }
     },
@@ -66,7 +98,7 @@ export default function (props) {
       {/* Card Section */}
       <Toaster position="top-right" reverseOrder />
       <div
-        id="donateForm"
+        id="contribute"
         className="w-full max-w-2xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14"
       >
         {/* Card */}
@@ -76,14 +108,19 @@ export default function (props) {
               Step 1
             </h2>
             <p className="mt-5 text-gray-600 text-md dark:text-gray-400">
-              Scan the QR code to make a donation
+              Scan the QR code to make a Contribution
             </p>
           </div>
 
           <div className="flex flex-col items-center justify-around w-full">
             <QRCode value={UPI_ID} />
-            <h1 className="text-center text-xl font-bold mt-8">ANUBHUTI</h1>
-            <p>vpa: <span className="font-medium text-voilet">anubh96906@barodampay</span></p>
+            <h1 className="mt-8 text-xl font-bold text-center">ANUBHUTI</h1>
+            <p>
+              vpa:{" "}
+              <span className="font-medium text-voilet">
+                anubh96906@barodampay
+              </span>
+            </p>
           </div>
           <Separator marginY={5} />
           <div className="mb-8 text-center">
@@ -164,16 +201,16 @@ export default function (props) {
               >
                 Upload screenshot of the transaction
               </label>
-              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+              <div className="flex justify-center px-6 py-10 mt-2 border border-dashed rounded-lg border-gray-900/25">
                 <div className="text-center">
                   <Image
-                    className="mx-auto h-12 w-12 text-gray-300"
+                    className="w-12 h-12 mx-auto text-gray-300"
                     aria-hidden="true"
                   />
-                  <div className="mt-4 flex text-sm leading-6 text-gray-600 justify-around">
+                  <div className="flex justify-around mt-4 text-sm leading-6 text-gray-600">
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                      className="relative font-semibold text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                     >
                       <span>Upload a file</span>
                       <input
@@ -182,6 +219,7 @@ export default function (props) {
                         name="file"
                         type="file"
                         className="sr-only"
+                        required
                       />
                     </label>
                   </div>
@@ -191,26 +229,32 @@ export default function (props) {
                 </div>
               </div>
               {file && (
-                <span className="p-2 px-3 ps-0 flex items-center gap-2">
-                  <CheckCircle weight="fill" size={18} className="fill-voilet" />
+                <span className="flex items-center gap-2 p-2 px-3 ps-0">
+                  <CheckCircle
+                    weight="fill"
+                    size={18}
+                    className="fill-voilet"
+                  />
                   {file.name}
                 </span>
               )}
-              {file && (
-                <span className="p-2 px-3 ps-0 flex items-center gap-2">
+              {/* {!file && (
+                <span className="flex items-center gap-2 p-2 px-3 ps-0">
                   <Info weight="fill" size={18} className="fill-red-500" />
                   error occured.
                 </span>
-              )}
+              )} */}
             </div>
 
             <div className="flex justify-end mt-12 gap-x-2">
               <button
                 type="submit"
-                disabled={isSubmitting}
-                className="inline-flex items-center px-3 py-2 text-sm tracking-wider text-white border border-transparent rounded-lg gap-x-2 bg-voilet hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                disabled={loading}
+                className={`inline-flex ${
+                  loading ? "bg-blue-400" : "bg-voilet"
+                } items-center px-3 py-2 text-sm tracking-wider text-white border border-transparent rounded-lg gap-x-2 bg-voilet hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none`}
               >
-                Proceed
+                {loading ? "Submitting" : "Submit"}
               </button>
             </div>
           </form>
