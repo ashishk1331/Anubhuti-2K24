@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <title>Anubhuti-2k24</title>
+        <title>Anubhuti 2024</title>
         <style
           dangerouslySetInnerHTML={{
             __html:

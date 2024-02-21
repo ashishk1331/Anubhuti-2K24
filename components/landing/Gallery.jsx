@@ -1,106 +1,64 @@
-import React from "react";
+// Libraries
+import Image from "next/image";
 
-export const Gallery = () => {
+// Helper
+import imageOne from "/public/gallery/gallery1.png";
+import imageTwo from "/public/gallery/gallery10.png";
+import imageThree from "/public/gallery/gallery3.png";
+import imageFour from "/public/gallery/gallery4.png";
+import imageFive from "/public/gallery/gallery11.png";
+import imageSix from "/public/gallery/gallery12.png";
+import imageSeven from "/public/gallery/gallery15.png";
+import imageEight from "/public/gallery/gallery8.png";
+import imageNine from "/public/gallery/gallery9.png";
+
+export default function (props) {
+  const images = [
+    imageOne,
+    imageTwo,
+    imageThree,
+    imageFour,
+    imageFive,
+    imageSix,
+    imageSeven,
+    imageEight,
+    imageNine,
+  ];
+
   return (
-    <>
-      <div className="w-full h-24 bg-sky-500 bg-gradient-to-b from-[#000f1e] to-[#451952]" />
-      <div
-        className="w-100vw flex flex-col items-center justify-center max-h-full bg-gradient-to-b from-[#451952] to-[#2b124c] "
-        id="Gallery"
-      >
-        <div className="w-5/6 flex flex-col items-center justify-center max-h-full mb-[4rem]">
-          <div className="mt-[5rem] mb-[5rem]">
-            <h1 className="text-7xl font-bold text-[#efc36a] ">Gallery</h1>
-          </div>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            <div className="grid gap-4">
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery14.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105 "
-                  src="/gallery/gallery5.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery13.png"
-                  alt="gallery-photo"
-                />
-              </div>
-            </div>
-            <div className="grid gap-4">
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery7.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-center h-auto max-w-full transition duration-500 bg-cover rounded-lg hover:scale-105 "
-                  src="/gallery/gallery3.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105 "
-                  src="/gallery/gallery1.png"
-                  alt="gallery-photo"
-                />
-              </div>
-            </div>
-            <div className="grid gap-4">
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery15.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105 "
-                  src="/gallery/gallery4.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery8.png"
-                  alt="gallery-photo"
-                />
-              </div>
-            </div>
-            <div className="grid gap-4">
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery9.png"
-                  alt="gallery-photo"
-                />
-              </div>
-              <div>
-                <img
-                  className="object-cover object-center h-auto max-w-full transition duration-500 rounded-lg hover:scale-105"
-                  src="/gallery/gallery10.png"
-                  alt="gallery-photo"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="w-full min-h-screen flex flex-col justify-around bg-[#101010] text-white p-4 sm:p-8">
+      <div className="flex flex-col items-center gap-4 text-center my-8 sm:my-16 xl:my-28">
+        <p>Moments Captured</p>
+        <h1 className="text-6xl xl:text-8xl uppercase font-black text-voilet my-4">
+          Gallery
+        </h1>
+        <p>
+          Capture the essence of our college fest in our gallery. Browse through
+          <br />
+          snapshots of joy, creativity, and camaraderie that encapsulate the spirit of our event.
+        </p>
       </div>
-    </>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-0 mt-8 sm:mt-16">
+        {images.map((url, index) => (
+          <Card url={url} key={index}/>
+        ))}
+      </div>
+    </div>
   );
-};
+}
+
+function Card(props) {
+  const { url } = props;
+  return (
+    <div className="relative w-full h-96 aspect-square bg-gray-800 overflow-hidden">
+      <Image
+        src={url}
+        alt="gallery"
+        layout="fill"
+        objectFit="cover"
+        className="xl:grayscale hover:grayscale-0 transition-all duration-900 z-0"
+      />
+    </div>
+  );
+}
