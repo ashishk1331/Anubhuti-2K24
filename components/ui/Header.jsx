@@ -1,11 +1,16 @@
 "use client";
-import Adminstatus from "./AdminStatus";
 // Libraries
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
 // Helper
+import Adminstatus from "./AdminStatus";
 import RegistrationStatus from "./RegistrationStatus";
 import SessionStatus from "./SessionStatus";
 
 export default function (props) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header className="z-50 flex flex-wrap w-full py-3 text-sm bg-white border-b border-gray-200 sm:justify-start sm:flex-nowrap sm:py-0 dark:bg-gray-800 dark:border-gray-700">
       <nav
@@ -27,6 +32,7 @@ export default function (props) {
               data-hs-collapse="#navbar-collapse-with-animation"
               aria-controls="navbar-collapse-with-animation"
               aria-label="Toggle navigation"
+              onClick={(e) => setIsOpen(!isOpen)}
             >
               <svg
                 className="hs-collapse-open:hidden size-4"
@@ -52,6 +58,42 @@ export default function (props) {
             </button>
           </div>
         </div>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              id="navbar-collapse-with-animation"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:hidden"
+            >
+              <div className="flex flex-col mt-5 gap-y-4 gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
+                <a
+                  className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+                  href="/"
+                  aria-current="page"
+                >
+                  Landing
+                </a>
+                <a
+                  className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+                  href="/events"
+                >
+                  Events
+                </a>
+                <a
+                  className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+                  href="/donate"
+                >
+                  Donate
+                </a>
+                <Adminstatus />
+                <RegistrationStatus />
+                <SessionStatus />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div
           id="navbar-collapse-with-animation"
           className="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:block"

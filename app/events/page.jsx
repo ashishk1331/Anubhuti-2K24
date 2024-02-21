@@ -4,6 +4,9 @@
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 
+// Helper
+import events from "/public/events/events.json";
+
 export default function (props) {
 	return (
 		<>
@@ -20,8 +23,8 @@ export default function (props) {
 				</div>
 				{/* Grid */}
 				<div className="grid lg:grid-cols-2 gap-6">
-					{Array.from({ length: 7 }).map((_, i) => (
-						<Card key={i} />
+					{events.map(event => (
+						<Card key={event.id} {...event} />
 					))}
 				</div>
 				{/* End Grid */}
@@ -32,10 +35,17 @@ export default function (props) {
 }
 
 function Card(props) {
+	const { eventName, summary, id } = props;
+
+	let refinedName = eventName;
+	if(refinedName.indexOf("(") > -1){
+		refinedName = refinedName.substr(0, refinedName.indexOf("("));
+	}
+
 	return (
 		<a
 			className="group relative block rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-			href="#"
+			href={`/events/${id}`}
 		>
 			<div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
 				<img
@@ -68,10 +78,10 @@ function Card(props) {
 			<div className="absolute bottom-0 inset-x-0 z-10">
 				<div className="flex flex-col h-full p-4 sm:p-6">
 					<h3 className="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/[.8]">
-						Classical Show-Off
+						{refinedName}
 					</h3>
 					<p className="mt-2 text-white/[.8]">
-						An intense battle of breathtaking classical dance.
+						{summary}
 					</p>
 				</div>
 			</div>
