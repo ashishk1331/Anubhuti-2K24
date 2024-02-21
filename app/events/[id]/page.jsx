@@ -19,24 +19,24 @@ export default function ({ params: { id } }) {
     <>
       <Header />
       {/* Blog Article */}
-      <div className="max-w-3xl px-4 pt-6 lg:pt-10 pb-12 sm:px-6 lg:px-8 mx-auto marker:text-voilet">
+      <div className="max-w-3xl px-4 pt-6 pb-12 mx-auto lg:pt-10 sm:px-6 lg:px-8 marker:text-voilet">
         <div className="max-w-2xl">
           {/* Avatar Media */}
-          <div className="flex justify-between items-center mb-12">
+          <div className="flex items-center justify-between mb-12">
             <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
               <div className="flex-shrink-0">
                 <img
-                  className="size-12 rounded-full"
+                  className="rounded-full size-12"
                   src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
                   alt="Image Description"
                 />
               </div>
               <div className="grow">
-                <div className="flex justify-between items-center gap-x-2">
+                <div className="flex items-center justify-between gap-x-2">
                   <div>
                     {/* Tooltip */}
                     <div className="hs-tooltip inline-block [--trigger:hover] [--placement:bottom]">
-                      <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
+                      <div className="block cursor-pointer hs-tooltip-toggle sm:mb-1 text-start">
                         <span className="font-semibold text-gray-800 dark:text-gray-200">
                           Leyla Ludic
                         </span>
@@ -44,10 +44,10 @@ export default function ({ params: { id } }) {
                     </div>
                     {/* End Tooltip */}
                     <ul className="text-xs text-gray-500">
-                      <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
+                      <li className="relative inline-block pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
                         Jan 18
                       </li>
-                      <li className="inline-block relative pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
+                      <li className="relative inline-block pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
                         8 min read
                       </li>
                     </ul>
@@ -70,7 +70,7 @@ export default function ({ params: { id } }) {
 
             <figure>
               <img
-                className="w-full object-cover rounded-xl"
+                className="object-cover w-full rounded-xl"
                 src="https://images.unsplash.com/photo-1670272498380-eb330b61f3cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
                 alt="Image Description"
               />
@@ -84,7 +84,7 @@ export default function ({ params: { id } }) {
                 <h2 className="text-2xl font-semibold dark:text-white">
                   Rounds:
                 </h2>
-                <ul className="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-gray-200">
+                <ul className="space-y-5 text-lg text-gray-800 list-disc list-outside ps-5 dark:text-gray-200">
                   {data.rounds.map((round, index) => {
                     return (
                       <li key={index}>
@@ -94,13 +94,15 @@ export default function ({ params: { id } }) {
                         <p className="text-gray-800 dark:text-gray-200">
                           {round.description}
                         </p>
-                        <ul className="mt-2">
-                          {round.rules.map((rule, index) => (
-                            <li key={index} className="ps-2">
-                              {rule}
-                            </li>
-                          ))}
-                        </ul>
+                        {round.rules && (
+                          <ul className="mt-2">
+                            {round.rules.map((rule, index) => (
+                              <li key={index} className="ps-2">
+                                {rule}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     );
                   })}
@@ -113,7 +115,7 @@ export default function ({ params: { id } }) {
                 <h2 className="text-2xl font-semibold dark:text-white">
                   Rules:
                 </h2>
-                <ul className="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-gray-200">
+                <ul className="space-y-5 text-lg text-gray-800 list-disc list-outside ps-5 dark:text-gray-200">
                   {data.rules.map((criterion, index) => (
                     <li key={index}>{criterion}</li>
                   ))}
@@ -126,7 +128,7 @@ export default function ({ params: { id } }) {
                 <h2 className="text-2xl font-semibold dark:text-white">
                   Judging Criteria:
                 </h2>
-                <ul className="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-gray-200">
+                <ul className="space-y-5 text-lg text-gray-800 list-disc list-outside ps-5 dark:text-gray-200">
                   {data.judgingCriteria.map((criterion, index) => (
                     <li key={index}>{criterion}</li>
                   ))}
@@ -135,7 +137,7 @@ export default function ({ params: { id } }) {
             )}
 
             <h2 className="text-2xl font-semibold dark:text-white">Details:</h2>
-            <ul className="list-disc list-outside space-y-5 ps-5 text-lg text-gray-800 dark:text-gray-200">
+            <ul className="space-y-5 text-lg text-gray-800 list-disc list-outside ps-5 dark:text-gray-200">
               {data.timeLimit && (
                 <li className="ps-2">
                   Time Limit:{" "}
