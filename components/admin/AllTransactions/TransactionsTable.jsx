@@ -1,3 +1,5 @@
+import { downloadImage } from "@/helper/appwrite-helpers";
+
 export default function ({ transactions, page, capacity }) {
   const formatTimestamp = (timestamp) => {
     const options = {
@@ -25,6 +27,7 @@ export default function ({ transactions, page, capacity }) {
             <th className="p-2 border-b text-start">TransactionId</th>
             <th className="p-2 border-b text-start">Timestamp</th>
             <th className="p-2 border-b text-start">Verified</th>
+            <th className="p-2 border-b text-start">Reciept</th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +50,12 @@ export default function ({ transactions, page, capacity }) {
                 </td>
                 <td className="p-2 border-b text-start">
                   {item.verified === false ? "Not Verified" : "Verified"}
+                </td>
+                <td
+                  onClick={() => downloadImage(item.imageId)}
+                  className="p-2 bg-blue-200 border-b cursor-pointer hover:bg-blue-500 text-start"
+                >
+                  Download Reciept
                 </td>
               </tr>
             ))}

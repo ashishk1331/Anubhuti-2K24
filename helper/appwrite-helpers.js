@@ -41,15 +41,15 @@ export async function getAllTransactions(page, capacity) {
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_COLLECTIONID,
       [Query.limit(capacity), Query.offset(page * capacity - capacity)]
     );
-    let data = [];
-    response.documents.map((item) => {
-      const result = storage.getFilePreview(
-        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_BUCKETID,
-        item.imageId
-      );
-      data.push({ ...item, href: result.href });
-    });
-    return { total: response.total, documents: data };
+    // let data = [];
+    // response.documents.map((item) => {
+    //   const result = storage.getFilePreview(
+    //     process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_BUCKETID,
+    //     item.imageId
+    //   );
+    //   data.push({ ...item, href: result.href });
+    // });
+    return response;
   } catch (error) {
     console.log(error.message);
     return { total: 0, documents: [] };
