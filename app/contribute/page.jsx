@@ -1,7 +1,7 @@
 "use client";
 
 // Components
-import Form from "@/components/donation/Form";
+import Form from "@/components/contribute/Form";
 import Footer from "@/components/ui/Footer";
 import Header from "@/components/ui/Header";
 
