@@ -90,11 +90,6 @@ function Card({ item }) {
               Download Image
             </button>
             <Form item={item} />
-            {item.verified === true && (
-              <span className="text-blue-500 underlines">
-                Verified by {item.verifiedBy}
-              </span>
-            )}
           </div>
         </div>
       )}
@@ -141,7 +136,7 @@ const Form = ({ item }) => {
 
   return (
     <>
-      {verified === false && (
+      {verified === false ? (
         <form onSubmit={handleSubmit} className="p-4 mt-4 mb-2 bg-white">
           <Toaster position="top-right" reverseOrder />
           <div className="mb-4">
@@ -188,6 +183,10 @@ const Form = ({ item }) => {
             {loading ? "Verifying" : "Verify"}
           </button>
         </form>
+      ) : (
+        <span className="text-blue-500 underlines">
+          Verified by {loggedInUser.email}
+        </span>
       )}
       {error && <div className="text-red-500">{error}</div>}
     </>
