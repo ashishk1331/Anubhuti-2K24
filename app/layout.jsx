@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
         const promise = await databases.listDocuments(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
-          [Query.equal("userId", loggedIn.$id)],
+          [Query.equal("userId", loggedIn.$id)]
         );
         if (promise.total > 0) {
           setRegistration(true);
@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
           }}
         />
       </head>
-      <body className={inter.className + " bg-[#101010]"}>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
