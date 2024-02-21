@@ -9,6 +9,7 @@ import LandingFooter from "@/components/landing/Landing-footer";
 // Components
 import Register from "@/components/landing/Register";
 import Header from "@/components/landing/Header";
+import About from "@/components/landing/About";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       <Toaster position="top-left" />
       <div className="w-full">
         <Header />
-        {/*<Events eventsData={eventsData} />*/}
+        <Events eventsData={eventsData} />
         <Gallery />
         <Register />
         <LandingFooter />

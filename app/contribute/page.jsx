@@ -27,9 +27,9 @@ export default function (props) {
               <div className="grid w-full gap-3 mt-7 sm:inline-flex">
                 <a
                   className="inline-flex items-center justify-center px-4 py-3 text-sm font-semibold text-white border border-transparent rounded-lg gap-x-2 bg-voilet hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                  href="#donateForm"
+                  href="#contribute"
                 >
-                  Donate
+                  Contribute
                   <svg
                     className="flex-shrink-0 size-4"
                     xmlns="http://www.w3.org/2000/svg"
