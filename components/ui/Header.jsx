@@ -83,9 +83,9 @@ export default function (props) {
                 </a>
                 <a
                   className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-                  href="/donate"
+                  href="/contribute"
                 >
-                  Donate
+                  Contribute
                 </a>
                 <Adminstatus />
                 <RegistrationStatus />
@@ -114,9 +114,9 @@ export default function (props) {
             </a>
             <a
               className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-              href="/donate"
+              href="/contribute"
             >
-              Donate
+              Contribute
             </a>
             <Adminstatus />
             <RegistrationStatus />

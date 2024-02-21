@@ -52,7 +52,7 @@ export default function (props) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
-              className="flex flex-col items-center gap-4 p-4 py-8 border-white sm:hidden backdrop-blur-md border-y-2"
+              className="flex flex-col items-center gap-4 p-4 py-8 border-white sm:hidden backdrop-blur-md border-y-2 z-3"
             >
               <NavItems />
             </motion.ul>
@@ -60,8 +60,15 @@ export default function (props) {
         </AnimatePresence>
       </header>
 
-      <div className="m-auto z-[3] flex flex-col items-center text-center mix-blend-difference">
-        <h1 className="text-5xl sm:text-8xl md:text-[9rem] xl:text-[12rem] font-black text-center pt-20 text-voilet hover:text-white transition-all duration-[1500ms]">
+      <div className="m-auto z-[2] flex flex-col items-center text-center mix-blend-difference">
+        <h1 className="sm:hidden text-9xl font-black text-center text-voilet">
+          ANU
+          <br />
+          BHU
+          <br />
+          TI '24
+        </h1>
+        <h1 className="hidden sm:block text-5xl sm:text-8xl md:text-[9rem] xl:text-[12rem] font-black text-center pt-20 text-voilet hover:text-white transition-all duration-[1500ms]">
           ANUBHUTI '24
         </h1>
       </div>
