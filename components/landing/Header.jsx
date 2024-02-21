@@ -43,30 +43,7 @@ export default function (props) {
 						)}
 					</button>
 					<ul className="sm:flex items-center gap-12 hidden">
-						<li>
-							<a
-								href="/events"
-								className="hover:underline transition-all"
-							>
-								Events
-							</a>
-						</li>
-						<li>
-							<a
-								href="/gallery"
-								className="hover:underline transition-all"
-							>
-								Gallery
-							</a>
-						</li>
-						<li>
-							<a
-								href="/contribute"
-								className="hover:underline transition-all"
-							>
-								Contribute
-							</a>
-						</li>
+						<NavItems />
 					</ul>
 				</nav>
 				<AnimatePresence>
@@ -77,30 +54,7 @@ export default function (props) {
 							exit={{ opacity: 0, y: 10 }}
 							className="flex flex-col items-center gap-4 sm:hidden p-4 py-8 backdrop-blur-md border-y-2 border-white"
 						>
-							<li>
-								<a
-									href="/events"
-									className="hover:underline transition-all"
-								>
-									Events
-								</a>
-							</li>
-							<li>
-								<a
-									href="/gallery"
-									className="hover:underline transition-all"
-								>
-									Gallery
-								</a>
-							</li>
-							<li>
-								<a
-									href="/contribute"
-									className="hover:underline transition-all"
-								>
-									Contribute
-								</a>
-							</li>
+							<NavItems />
 						</motion.ul>
 					)}
 				</AnimatePresence>
@@ -116,5 +70,35 @@ export default function (props) {
 				<CaretDown size={24} className="text-white animate-bounce" />
 			</div>
 		</div>
+	);
+}
+
+function NavItems() {
+	return (
+		<>
+			<li>
+				<a href="#events" className="hover:underline transition-all">
+					Events
+				</a>
+			</li>
+			<li>
+				<a href="#gallery" className="hover:underline transition-all">
+					Gallery
+				</a>
+			</li>
+			<li>
+				<a href="#register" className="hover:underline transition-all">
+					Register
+				</a>
+			</li>
+			<li>
+				<a
+					href="/contribute"
+					className="hover:underline transition-all"
+				>
+					Contribute
+				</a>
+			</li>
+		</>
 	);
 }

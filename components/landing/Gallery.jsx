@@ -26,7 +26,7 @@ export default function (props) {
   ];
 
   return (
-    <div className="w-full min-h-screen flex flex-col justify-around bg-[#101010] text-white p-4 sm:p-8">
+    <div id="gallery" className="w-full min-h-screen flex flex-col justify-around bg-[#101010] text-white p-4 sm:p-8">
       <div className="flex flex-col items-center gap-4 text-center my-8 sm:my-16 xl:my-28">
         <p>Moments Captured</p>
         <h1 className="text-6xl xl:text-8xl uppercase font-black text-voilet my-4">
@@ -39,7 +39,7 @@ export default function (props) {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-0 mt-8 sm:mt-16">
+      <div className="grid sm:w-[90%] mx-auto md:grid-cols-2 lg:grid-cols-3">
         {images.map((url, index) => (
           <Card url={url} key={index}/>
         ))}
