@@ -15,7 +15,7 @@ export default function Home() {
       <Toaster position="top-left" />
       <div className="w-full">
         <HeroSection />
-        <Events eventsData={eventsData} />
+        {/* <Events eventsData={eventsData} /> */}
         <Gallery />
         <CoreTeam />
         <LandingFooter />
