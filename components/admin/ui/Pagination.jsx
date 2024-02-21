@@ -36,9 +36,9 @@ export default function ({ page, setPage, total, capacity, setCapacity }) {
         value={capacity}
         onChange={(e) => setCapacity(Number(e.target.value))}
       >
+        <option value={10}>10 entries/page</option>
         <option value={20}>20 entries/page</option>
         <option value={30}>30 entries/page</option>
-        <option value={50}>50 entries/page</option>
       </select>
     </div>
   );

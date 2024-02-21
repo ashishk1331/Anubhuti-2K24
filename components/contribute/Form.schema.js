@@ -11,9 +11,8 @@ export const DonateSchema = Yup.object().shape({
     .required("Required"),
 
   // year of passing rules
-  yearOfPassing: Yup.number().positive().integer().required("Required"),
+  yearOfPassing: Yup.number().positive().integer(),
 
   // branch rules
-  branch: Yup.string().required("Required"),
-
+  branch: Yup.string(),
 });

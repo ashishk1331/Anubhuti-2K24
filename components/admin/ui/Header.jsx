@@ -84,7 +84,7 @@ export default function (props) {
             </a>
             <a
               className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-              href="/admin/transactions"
+              href="/admin/all-transactions"
             >
               Transactions
             </a>

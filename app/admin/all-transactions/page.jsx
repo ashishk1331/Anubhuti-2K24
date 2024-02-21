@@ -1,11 +1,11 @@
 "use client";
 import { account } from "@/Appwrite/appwrite.config";
-import RegistrationsTable from "@/components/admin/registrations/RegistrationsTable";
-import TransactionsTable from "@/components/admin/transactions/TransactionsTable";
+import TransactionsTable from "@/components/admin/AllTransactions/TransactionsTable";
+
 import Pagination from "@/components/admin/ui/Pagination";
 import {
   getRegistrations,
-  getTransactions,
+  getAllTransactions,
   getUsers,
 } from "@/helper/appwrite-helpers";
 import { useEffect, useState } from "react";
@@ -23,14 +23,14 @@ export default function () {
 
   async function init() {
     try {
-      setTransactions(await getTransactions());
+      setTransactions(await getAllTransactions(page, capacity));
     } catch (error) {
       console.log(error);
     }
   }
   useEffect(() => {
     init();
-  }, []);
+  }, [page, capacity]);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function () {
           {/* Pagination Logic */}
           <Pagination
             page={page}
-            setpage={setPage}
+            setPage={setPage}
             capacity={capacity}
             setCapacity={setCapacity}
             total={transactions.total}

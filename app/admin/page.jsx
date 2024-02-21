@@ -11,7 +11,8 @@ export default function () {
         <a href="/admin/events">Events</a>
         <a href="/admin/add-event">Add Event</a>
         <a href="/admin/registrations">Registrations</a>
-        <a href="/admin/transactions">Transactions</a>
+        <a href="/admin/all-transactions">All Transactions</a>
+        <a href="/admin/verify-transactions">Verify Transactions</a>
       </div>
     </div>
   );
