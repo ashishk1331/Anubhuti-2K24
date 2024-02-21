@@ -9,10 +9,6 @@ export const DonateSchema = Yup.object().shape({
   email: Yup.string()
     .email("Please include a valid email address")
     .required("Required"),
-  // phone number rules
-  phoneNumber: Yup.string()
-    .length(10, "phone number should be atleast 10 digits long")
-    .required("Required"),
 
   // year of passing rules
   yearOfPassing: Yup.number().positive().integer().required("Required"),
@@ -20,11 +16,4 @@ export const DonateSchema = Yup.object().shape({
   // branch rules
   branch: Yup.string().required("Required"),
 
-  // amount rules
-  amount: Yup.number()
-    .min(1000, "Please consider donating atleast 1000 Rs.")
-    .required("Required"),
-
-  // branch rules
-  transactionID: Yup.string().required("Required"),
 });

@@ -1,6 +1,7 @@
 // Libraries
 import { useFormik } from "formik";
 import QRCode from "react-qr-code";
+import { Info, Image, CheckCircle } from "@phosphor-icons/react";
 
 // Components
 import Separator from "@/components/ui/Separator.jsx";
@@ -16,6 +17,7 @@ export default function (props) {
   const UPI_ID =
     "upi://pay?pa=anubh96906@barodampay&pn=ANUBHUTI &mc=&tn=Verified Merchant&am=&cu=INR&url=&mode=02&orgid=159012&mid=&msid=&mtid=&sign=MEQCICbTwCfifTlKt+tp9bwqgqjVPzySa54L6CCmjZeeoYpLAiBz7bAIao/tys/3gNhvFTsaIT9LeeaFhTFdrZ893p1tcw==";
   const [error, setError] = useState("");
+  const [file, setFile] = useState(null);
   const {
     values,
     errors,
@@ -28,11 +30,8 @@ export default function (props) {
     initialValues: {
       firstName: "",
       lastName: "",
-      phoneNumber: "",
       yearOfPassing: "",
       branch: "",
-      amount: 0,
-      transactionID: "",
       email: "",
     },
     validationSchema: DonateSchema,
@@ -81,8 +80,10 @@ export default function (props) {
             </p>
           </div>
 
-          <div className="flex justify-around w-full">
+          <div className="flex flex-col items-center justify-around w-full">
             <QRCode value={UPI_ID} />
+            <h1 className="text-center text-xl font-bold mt-8">ANUBHUTI</h1>
+            <p>vpa: <span className="font-medium text-voilet">anubh96906@barodampay</span></p>
           </div>
           <Separator marginY={5} />
           <div className="mb-8 text-center">
@@ -127,16 +128,6 @@ export default function (props) {
                   label="Email"
                   placeholder="mariaboone@gmail.com"
                 />
-                <InputBox
-                  type="text"
-                  name="phoneNumber"
-                  value={values.phoneNumber}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  error={errors.phoneNumber}
-                  label="Phone Number"
-                  placeholder="05362240454"
-                />
               </div>
             </div>
             {/* End Section */}
@@ -163,28 +154,56 @@ export default function (props) {
                   label="Branch"
                   placeholder="Computer Science and Engineering"
                 />
-                <InputBox
-                  type="number"
-                  name="amount"
-                  value={values.amount}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  error={errors.amount}
-                  label="Amount"
-                />
-                <InputBox
-                  type="text"
-                  name="transactionID"
-                  value={values.transactionID}
-                  handleChange={handleChange}
-                  handleBlur={handleBlur}
-                  error={errors.transactionID}
-                  label="Transaction ID"
-                  placeholder="txn_1234567890"
-                />
               </div>
             </div>
             {/* End Section */}
+            <div className="col-span-full">
+              <label
+                htmlFor="cover-photo"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Upload screenshot of the transaction
+              </label>
+              <div className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div className="text-center">
+                  <Image
+                    className="mx-auto h-12 w-12 text-gray-300"
+                    aria-hidden="true"
+                  />
+                  <div className="mt-4 flex text-sm leading-6 text-gray-600 justify-around">
+                    <label
+                      htmlFor="file-upload"
+                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                    >
+                      <span>Upload a file</span>
+                      <input
+                        onChange={(e) => setFile(e.target.files[0])}
+                        id="file-upload"
+                        name="file"
+                        type="file"
+                        className="sr-only"
+                      />
+                    </label>
+                  </div>
+                  <p className="text-xs leading-5 text-gray-600">
+                    PNG, JPG, GIF up to 10MB
+                  </p>
+                </div>
+              </div>
+              {file && (
+                <span className="p-2 px-3 ps-0 flex items-center gap-2">
+                  <CheckCircle weight="fill" size={18} className="fill-voilet" />
+                  {file.name}
+                </span>
+              )}
+              {file && (
+                <span className="p-2 px-3 ps-0 flex items-center gap-2">
+                  <Info weight="fill" size={18} className="fill-red-500" />
+                  error occured.
+                </span>
+              )}
+            </div>
+
             <div className="flex justify-end mt-12 gap-x-2">
               <button
                 type="submit"
