@@ -1,13 +1,15 @@
-import { events } from "@/data/events";
+import { events } from "@/data/landing-event";
 
-export default function (props) {
+export default function ({ eventsData }) {
   return (
-    <div id="events" className="w-full px-4 py-10 mx-auto bg-[#101010] sm:px-6 lg:px-8 lg:py-14">
-      <div className="max-w-2xl mx-auto mb-10 text-center lg:mb-14 text-white flex flex-col items-center gap-4">
-
-        <div className="flex flex-col items-center gap-4 text-center my-8 sm:my-16 xl:my-28">
+    <div
+      id="events"
+      className="w-full px-4 py-10 mx-auto bg-[#101010] sm:px-6 lg:px-8 lg:py-14"
+    >
+      <div className="flex flex-col items-center max-w-2xl gap-4 mx-auto mb-10 text-center text-white lg:mb-14">
+        <div className="flex flex-col items-center gap-4 my-8 text-center sm:my-16 xl:my-28">
           <p>Moments Captured</p>
-          <h1 className="text-6xl xl:text-8xl uppercase font-black text-voilet my-4">
+          <h1 className="my-4 text-6xl font-black uppercase xl:text-8xl text-voilet">
             events
           </h1>
           <p>
@@ -27,10 +29,10 @@ export default function (props) {
         ))}
       </div>
 
-      <div className="w-fit mt-16 mx-auto">
+      <div className="mx-auto mt-16 w-fit">
         <a
           href="/events"
-          className="p-4 px-8 text-xl rounded-full bg-voilet text-black font-medium m-4"
+          className="p-4 px-8 m-4 text-xl font-medium text-black rounded-full bg-voilet"
         >
           Check all events
         </a>
@@ -40,18 +42,10 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { eventName, summary, id, image } = props;
-
-  let refinedName = eventName;
-  if (refinedName.indexOf("(") > -1) {
-    refinedName = refinedName.substr(0, refinedName.indexOf("("));
-  }
+  const { id, name, image } = props;
 
   return (
-    <a
-      className="relative block bg-gray-900 group dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-      href={`/events/${id}`}
-    >
+    <div className="relative block bg-gray-900 cursor-pointer group dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
       <div className="flex-shrink-0 relative  overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
         <img
           className="absolute top-0 object-cover transition-all duration-500 aspect-square size-full sm:grayscale group-hover:grayscale-0 start-0"
@@ -65,13 +59,13 @@ function Card(props) {
           <div className="flex items-center">
             <div className="ms-2.5 sm:ms-4">
               <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-yellow-500">
-                {refinedName}
+                {name}
               </h3>
             </div>
           </div>
           {/* End Avatar */}
         </div>
       </div>
-    </a>
+    </div>
   );
 }

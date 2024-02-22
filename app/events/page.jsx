@@ -3,9 +3,9 @@
 // Components
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import { events } from "@/data/events";
 
 // Helper
-import events from "/public/events/events.json";
 
 export default function (props) {
   return (
@@ -35,7 +35,7 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { eventName, summary, id } = props;
+  const { eventName, summary, id, image } = props;
 
   let refinedName = eventName;
   if (refinedName.indexOf("(") > -1) {
@@ -50,13 +50,13 @@ function Card(props) {
       <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
         <img
           className="absolute top-0 object-cover size-full start-0"
-          src="https://images.unsplash.com/photo-1479813183133-f2e9b38ed6c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1062&q=80"
+          src={image.src}
           alt="Image Description"
         />
       </div>
-      <div className="absolute inset-x-0 top-0 z-10">
+      {/* Avatar Starts */}
+      {/* <div className="absolute inset-x-0 top-0 z-10">
         <div className="flex flex-col h-full p-4 sm:p-6">
-          {/* Avatar */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <img
@@ -70,9 +70,9 @@ function Card(props) {
               <p className="text-xs text-white/[.8]">May 30, 2021</p>
             </div>
           </div>
-          {/* End Avatar */}
         </div>
-      </div>
+      </div> */}
+      {/* Avatar Ends */}
       <div className="absolute inset-x-0 bottom-0 z-10">
         <div className="flex flex-col h-full p-4 sm:p-6">
           <h3 className="text-lg sm:text-3xl font-semibold text-white group-hover:text-white/[.8]">

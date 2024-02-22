@@ -88,13 +88,15 @@ export function downloadImage(id) {
       id
     );
     download(result.href);
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function download(src) {
   const link = document.createElement("a");
   link.href = src;
-  link.download = "image.jpg"; // You can set the desired filename
+  link.download = "image.jpg";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);

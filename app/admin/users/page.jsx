@@ -37,7 +37,7 @@ export default function () {
           {/* Pagination Logic */}
           <Pagination
             page={page}
-            setpage={setPage}
+            setPage={setPage}
             capacity={capacity}
             setCapacity={setCapacity}
             total={users.total}

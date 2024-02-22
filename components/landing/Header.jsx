@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 // Helper
 import background from "/public/landing/crowd.jpg";
+import SessionStatus from "./SessionStatus";
 
 export default function (props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +62,7 @@ export default function (props) {
       </header>
 
       <div className="m-auto z-[2] flex flex-col items-center text-center mix-blend-difference">
-        <h1 className="sm:hidden text-9xl font-black text-center text-voilet">
+        <h1 className="font-black text-center sm:hidden text-9xl text-voilet">
           ANU
           <br />
           BHU
@@ -98,10 +99,14 @@ function NavItems() {
           Register
         </a>
       </li>
+
       <li>
         <a href="/contribute" className="transition-all hover:underline">
           Contribute
         </a>
+      </li>
+      <li>
+        <SessionStatus />
       </li>
     </>
   );
