@@ -76,6 +76,12 @@ export default function (props) {
 
       <div className="flex flex-col items-center gap-4 absolute bottom-0 left-1/2 -translate-x-1/2 z-[3] mb-4">
         <CaretDown size={24} className="text-white animate-bounce" />
+        <a
+          href="/register"
+          className="p-2 px-6 mt-2 text-xl font-medium text-black rounded-full bg-voilet"
+        >
+          Register Now
+        </a>
       </div>
     </div>
   );
@@ -95,7 +101,7 @@ function NavItems() {
         </a>
       </li>
       <li>
-        <a href="#register" className="transition-all hover:underline">
+        <a href="/register" className="transition-all hover:underline">
           Register
         </a>
       </li>

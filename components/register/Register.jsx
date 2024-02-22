@@ -1,6 +1,6 @@
 // Libraries
 import { useFormik } from "formik";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // Components
 import Separator from "@/components/ui/Separator.jsx";
@@ -16,10 +16,20 @@ import toast, { ToastBar, Toaster } from "react-hot-toast";
 export default function (props) {
   const router = useRouter();
   const loggedInUser = useStore((state) => state.loggedInUser);
-  const [firstName, setFirstName] = useState("Maria");
-  const [secondName, setSecondName] = useState("Boone");
+  const [firstName, setFirstName] = useState("");
+  const [secondName, setSecondName] = useState("");
   const [email, setEmail] = useState("maira@xyz.com");
   const [error, setError] = useState("");
+  const resetButtonRef = useRef(null);
+  const branches = [
+    "Computer Science and Engineering",
+    "Information Technology",
+    "Electical Engineering",
+    "Electronics Engineering",
+    "Mechanical Engineering",
+    "Civil Engineering",
+    "MCA",
+  ];
   useEffect(() => {
     if (loggedInUser) {
       if (loggedInUser.name) {
@@ -44,8 +54,8 @@ export default function (props) {
     initialValues: {
       phoneNumber: "",
       gender: "",
-      event: [],
       type: "",
+      branch: branches[0],
     },
     validationSchema: RegisterFormSchema,
     onSubmit: async function (values, actions) {
@@ -58,7 +68,7 @@ export default function (props) {
           pno: values.phoneNumber,
           gender: values.gender,
           type: values.type,
-          event: values.event,
+          branch: values.branch.toString(),
         };
         const promise = await databases.createDocument(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
@@ -66,8 +76,11 @@ export default function (props) {
           ID.unique(),
           data
         );
-        toast.success("Registration Successfull");
+        if (resetButtonRef.current) {
+          resetButtonRef.current.click();
+        }
         actions.resetForm();
+        toast.success("Registration Successfull");
       } catch (error) {
         setError(error.message);
       }
@@ -89,7 +102,7 @@ export default function (props) {
               Fill out the form to participate in events.
             </p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form id="registrationForm" onSubmit={handleSubmit}>
             {/* Grid */}
             <div className="grid gap-2 sm:grid-cols-12 sm:gap-6">
               <div className="sm:col-span-3">
@@ -106,12 +119,14 @@ export default function (props) {
                   <input
                     id="af-account-full-name"
                     type="text"
+                    required
                     className="relative block w-full px-3 py-2 -mt-px text-sm border-gray-200 shadow-sm pe-11 -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   <input
                     type="text"
+                    required
                     className="relative block w-full px-3 py-2 -mt-px text-sm border-gray-200 shadow-sm pe-11 -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                     value={secondName}
                     onChange={(e) => setSecondName(e.target.value)}
@@ -235,7 +250,6 @@ export default function (props) {
                 </div>
               </div>
               {/* End Col */}
-
               {/* End Col */}
               <div className="sm:col-span-3">
                 <label
@@ -286,83 +300,33 @@ export default function (props) {
                 </div>
               </div>
               {/* End Col */}
+              {/* End Col */}
               <div className="sm:col-span-3">
                 <label
-                  htmlFor="af-account-full-name"
+                  htmlFor="branch"
                   className="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200"
                 >
-                  Events
+                  Branch
                 </label>
               </div>
-              {/* End Col */}
               <div className="sm:col-span-9">
-                <div className="w-full sm:flex">
-                  <ul className="flex flex-col w-full max-w-sm">
-                    <li className="inline-flex items-center px-4 py-3 -mt-px text-sm font-medium text-gray-800 bg-white border gap-x-2 first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                      <div className="relative flex items-start w-full">
-                        <div className="flex items-center h-5">
-                          <input
-                            id="hs-list-group-item-checkbox-1"
-                            name="event"
-                            type="checkbox"
-                            className="border-gray-200 rounded disabled:opacity-50 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                            defaultChecked=""
-                            value="dance"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                        </div>
-                        <label
-                          htmlFor="hs-list-group-item-checkbox-1"
-                          className="ms-3.5 block w-full text-sm text-gray-600 dark:text-gray-500"
-                        >
-                          Dance
-                        </label>
-                      </div>
-                    </li>
-                    <li className="inline-flex items-center px-4 py-3 -mt-px text-sm font-medium text-gray-800 bg-white border gap-x-2 first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                      <div className="relative flex items-start w-full">
-                        <div className="flex items-center h-5">
-                          <input
-                            id="hs-list-group-item-checkbox-2"
-                            name="event"
-                            type="checkbox"
-                            className="border-gray-200 rounded disabled:opacity-50 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                            value="sing"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                        </div>
-                        <label
-                          htmlFor="hs-list-group-item-checkbox-2"
-                          className="ms-3.5 block w-full text-sm text-gray-600 dark:text-gray-500"
-                        >
-                          Sing
-                        </label>
-                      </div>
-                    </li>
-                    <li className="inline-flex items-center px-4 py-3 -mt-px text-sm font-medium text-gray-800 bg-white border gap-x-2 first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                      <div className="relative flex items-start w-full">
-                        <div className="flex items-center h-5">
-                          <input
-                            id="hs-list-group-item-checkbox-3"
-                            name="event"
-                            type="checkbox"
-                            className="border-gray-200 rounded disabled:opacity-50 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                            value="dj"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                          />
-                        </div>
-                        <label
-                          htmlFor="hs-list-group-item-checkbox-3"
-                          className="ms-3.5 block w-full text-sm text-gray-600 dark:text-gray-500"
-                        >
-                          DJ
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
+                <div className="sm:flex">
+                  <div>
+                    <select
+                      id="branch"
+                      name="branch"
+                      value={values.branch}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="text-sm font-normal text-gray-500 border border-gray-200 rounded-lg shadow-sm"
+                    >
+                      {branches.map((branch) => (
+                        <option key={branch} value={branch}>
+                          {branch}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -370,6 +334,7 @@ export default function (props) {
             <div className="flex justify-end mt-5 gap-x-2">
               <button
                 type="reset"
+                ref={resetButtonRef}
                 className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
               >
                 Reset
