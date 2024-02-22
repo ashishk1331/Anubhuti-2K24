@@ -56,6 +56,7 @@ export default function (props) {
       gender: "",
       type: "",
       branch: branches[0],
+      year: "",
     },
     validationSchema: RegisterFormSchema,
     onSubmit: async function (values, actions) {
@@ -69,6 +70,7 @@ export default function (props) {
           gender: values.gender,
           type: values.type,
           branch: values.branch.toString(),
+          year: values.year,
         };
         const promise = await databases.createDocument(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
@@ -301,6 +303,33 @@ export default function (props) {
               </div>
               {/* End Col */}
               {/* End Col */}
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="year"
+                  className="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200"
+                >
+                  Year of Passing
+                </label>
+              </div>
+              <div className="sm:col-span-9">
+                <div className="sm:flex">
+                  <input
+                    id="af-account-year"
+                    type="number"
+                    name="year"
+                    className="relative block w-full px-3 py-2 -mt-px text-sm border-gray-200 shadow-sm pe-11 -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    placeholder="2025"
+                    value={values.year}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+                {errors.year && (
+                  <p className="mt-2 text-xs text-red-500" id="email-error">
+                    {errors.year}
+                  </p>
+                )}
+              </div>
               <div className="sm:col-span-3">
                 <label
                   htmlFor="branch"
