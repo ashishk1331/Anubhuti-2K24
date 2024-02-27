@@ -1,7 +1,7 @@
 import dutino from "../public/events/dance/dutino.jpg";
 import nrityarang from "../public/events/dance/nityarang.jpg";
 import odoru_era from "../public/events/dance/odoru_era.jpg";
-import odoru_era2 from "../public/events/dance/obstructdoru_era2.jpg";
+import odoru_era2 from "../public/events/dance/odoru_era2.jpg";
 import solo from "../public/events/dance/solo.jpg";
 import troupe_jive from "../public/events/dance/troupe_jive.jpg";
 export const danceEvents = [
