@@ -1,4 +1,4 @@
-import dutino from "../public/events/dance/Dutino.jpg";
+import dutino from "../public/events/dance/dutino.jpg";
 import nrityarang from "../public/events/dance/Nityarang.jpg";
 import odoru_era from "../public/events/dance/Odoru_era.jpg";
 import odoru_era2 from "../public/events/dance/Odoru_era2.jpg";
