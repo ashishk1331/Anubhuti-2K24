@@ -7,7 +7,7 @@ import rap from "../public/events/music/rap.png";
 import solo from "../public/events/music/solo.png";
 import ghazal from "../public/events/music/ghazal.jpg";
 import kawwali from "../public/events/music/kawwali.jpg";
-export const events = [
+export const musicevents = [
   {
     organizingCouncil: "Cultural Council",
     addedOn: "26 Feb",

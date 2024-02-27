@@ -4,7 +4,7 @@
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import Form from "@/components/events/EventForm.jsx";
-import { events } from "@/data/events";
+import { musicevents } from "@/data/music-events";
 import Rules from "@/components/events/Rules";
 import JudgingCriteria from "@/components/events/JudgingCriteria";
 import Rounds from "@/components/events/Rounds";
@@ -15,7 +15,7 @@ import Details from "@/components/events/Details";
 // Helper
 
 function getEventById(id) {
-  return events.find((event) => event.id === id);
+  return musicevents.find((event) => event.id === id);
 }
 
 export default function ({ params: { id } }) {
