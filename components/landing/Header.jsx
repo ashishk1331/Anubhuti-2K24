@@ -76,9 +76,9 @@ export default function (props) {
           <br />
           TI '24
         </h1>
-        <h1 className="hidden sm:justify-center sm:items-center sm:flex text-5xl sm:text-6xl md:text-[7rem] xl:text-[11rem] font-black text-center pt-20 text-voilet hover:text-white transition-all duration-[1500ms]">
+        <h1 className="hidden sm:justify-center sm:items-center sm:flex text-5xl sm:text-6xl md:text-[6rem] xl:text-[11rem] font-black text-center pt-20 text-voilet hover:text-white transition-all duration-[1500ms]">
           <img
-            className="w-56 h-56"
+            className="w-40 h-40 xl:w-56 xl:h-56"
             src="/anubhuti_logo.png"
             alt="Anubhuti logo"
           />
