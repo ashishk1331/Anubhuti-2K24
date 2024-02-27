@@ -4,6 +4,8 @@
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import { events } from "@/data/events";
+import { dramaticsEvents } from "@/data/dramatic-events";
+import { danceEvents } from "@/data/dance-events";
 
 // Helper
 
@@ -21,13 +23,22 @@ export default function (props) {
             dancing to singing, we have it all.
           </p>
         </div>
-        {/* Grid */}
+
         <div className="grid gap-6 lg:grid-cols-2">
           {events.map((event) => (
-            <Card key={event.id} {...event} />
+            <Card type="music" key={event.id} {...event} />
           ))}
         </div>
-        {/* End Grid */}
+        <div className="grid gap-6 mt-4 lg:grid-cols-2">
+          {dramaticsEvents.map((event) => (
+            <Card type="drama" key={event.id} {...event} />
+          ))}
+        </div>
+        <div className="grid gap-6 mt-4 lg:grid-cols-2">
+          {danceEvents.map((event) => (
+            <Card type="dance" key={event.id} {...event} />
+          ))}
+        </div>
       </div>
       <Footer />
     </>
@@ -35,17 +46,19 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { eventName, summary, id, image } = props;
-
+  const { eventName, summary, id, image, type } = props;
   let refinedName = eventName;
   if (refinedName.indexOf("(") > -1) {
     refinedName = refinedName.substr(0, refinedName.indexOf("("));
+  }
+  if (refinedName.indexOf(":") > -1) {
+    refinedName = refinedName.substr(0, refinedName.indexOf(":"));
   }
 
   return (
     <a
       className="relative block group rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-      href={`/events/${id}`}
+      href={`/events/${type}/${id}`}
     >
       <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
         <img

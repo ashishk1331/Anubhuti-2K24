@@ -1,33 +1,29 @@
-import gallery1 from "../public/gallery/gallery1.png";
-import gallery2 from "../public/gallery/gallery2.png";
-import gallery3 from "../public/gallery/gallery3.png";
 import gallery4 from "../public/gallery/gallery4.png";
-import gallery5 from "../public/gallery/gallery5.png";
-import gallery6 from "../public/gallery/gallery6.png";
-import gallery7 from "../public/gallery/gallery7.png";
-import gallery8 from "../public/gallery/gallery8.png";
-import gallery9 from "../public/gallery/gallery9.png";
 import gallery10 from "../public/gallery/gallery10.png";
-import gallery11 from "../public/gallery/gallery11.png";
-import gallery12 from "../public/gallery/gallery12.png";
-import gallery13 from "../public/gallery/gallery13.png";
-// import gallery14 from "../public/gallery/gallery14.png";
-// import gallery15 from "../public/gallery/gallery15.png";
+import band from "../public/events/music/band.png";
+import duet from "../public/events/music/duet.jpg";
+import group from "../public/events/music/group.png";
+import rap from "../public/events/music/rap.png";
+import solo from "../public/events/music/solo.png";
+import ghazal from "../public/events/music/ghazal.jpg";
+import kawwali from "../public/events/music/kawwali.jpg";
 export const events = [
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "NKLSb7mKS64XLdK6I1tqE",
     eventName: "BollyFare",
-    image: gallery1,
+    image: solo,
     description:
       "Get ready to shine at BollyFare, where your Bollywood talent takes the spotlight. This is a solo performance in 2 rounds.",
     rounds: [
       {
-        name: "Round1: Freestyle",
+        name: "Round 1: Freestyle",
         description: "Sing any song of your own choice.",
         rules: ["Sing any song of your own choice."],
       },
       {
-        name: "Round2: BollywoodBeats",
+        name: "Round 2: BollywoodBeats",
         description:
           "Selected performers will get a chance to sing any Bollywood song.",
         rules: ["Choose any Bollywood song of your own choice and perform it."],
@@ -40,14 +36,16 @@ export const events = [
       "Rhythmic interpretation",
     ],
     timeLimit: "4 minutes",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary:
       "Shine with your Bollywood talent in a solo performance with 2 rounds.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "ryj47Bqv1GVv0vHz73Muo",
     eventName: "CARVAAN(DUET)",
-    image: gallery10,
+    image: duet,
     description:
       "Get ready to show your love for the retro songs. This is a duet event with two rounds.",
     rounds: [
@@ -73,14 +71,16 @@ export const events = [
       "Creativity",
     ],
     timeLimit: "6 minutes",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary:
       "Express your love for retro songs in this duet event with two rounds.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "5H9Pg2H1AKoN8uc2ZIvyI",
     eventName: "SANGAM(GROUP)",
-    image: gallery3,
+    image: group,
     description:
       "Sangam Singing Group Event celebrates the harmony of diverse musical styles. It features two rounds - Freestyle and Classical/Western.",
     rounds: [
@@ -104,10 +104,12 @@ export const events = [
       "Creativity",
     ],
     timeLimit: "8 minutes",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary: "Celebrate musical harmony with diverse styles in two rounds.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "07BVQqDLnQxeX0xUzMv2P",
     eventName: "TARANG(Instrumental)",
     image: gallery4,
@@ -115,22 +117,26 @@ export const events = [
       "An instrumental event where contestants can perform in groups. No limit in the number of members.",
     rules: ["Contestants can perform in groups."],
     timeLimit: "10-15 minutes",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary: "Showcase instrumental prowess in a group performance.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "6_5qokW-i_XKUSxFYCPlP",
     eventName: "GHAZALNIGHT(KAWALI)",
-    image: gallery9,
+    image: ghazal,
     description:
       "Celebrate a night filled with rich culture, bringing people together through contemporary music and rich poetry.",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary: "Immerse in rich culture through contemporary music and poetry.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "iD4BbX8k35NGgnrodlxDo",
     eventName: "Vodka Volume (Rap Battle)",
-    image: gallery8,
+    image: rap,
     description:
       "The most intense rap battle showdown of the year! Fiercest wordsmiths and lyricists compete in a high-energy clash of rhymes.",
     rules: [
@@ -140,13 +146,15 @@ export const events = [
     ],
     judgingCriteria: ["Delivery", "Lyrical content", "Flow", "Crowd reaction"],
     timeLimit: "TBD",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary: "Engage in intense rap battles with designated rules.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "LBAX5rim0YETfrDys-ysu",
     eventName: "PitchClash (Vocal Battle)",
-    image: gallery7,
+    image: rap,
     description:
       "Vocalists go head-to-head in a battle of melodies, harmonies, and raw vocal talent. Solo and Battle rounds.",
     rules: [
@@ -161,37 +169,43 @@ export const events = [
       "Audience engagement",
       "Vocal dynamics",
     ],
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary: "Vocalists compete head-to-head in solo and battle rounds.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "Xldeqnx8csc91Rry6anDA",
     eventName: "BandHustle",
-    image: gallery8,
+    image: band,
     description:
       "Bands compete in the ultimate musical showdown. Showcase your unique sound and wow the audience in this thrilling 30-minute competition.",
     time: "1/2 hr",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary:
       "Bands compete to showcase their unique sound in a thrilling 30-minute showdown.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "jXluIZqICSZKAXIUYntl6",
     eventName: "Throatbass Singing Event",
-    image: gallery9,
+    image: solo,
     description:
       "Celebrate the captivating art of throatbass singing. Contestants demonstrate talent, creativity, and vocal prowess.",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary:
       "Demonstrate talent, creativity, and vocal prowess in throatbass singing.",
   },
   {
+    organizingCouncil: "Cultural Council",
+    addedOn: "26 Feb",
     id: "Z0LmGXznwhg8mjIRFV3F2",
     eventName: "ANTAKSHARI BATTLE",
     image: gallery10,
     description:
       "Reminisce the good old days with this spoken parlor game. Contestants sing verses based on the Hindi alphabet.",
-    venue: "Specify Venue",
+    venue: "KNIT Sports Ground",
     summary:
       "Reminisce with this spoken parlor game singing verses based on the Hindi alphabet.",
   },
