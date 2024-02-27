@@ -1,9 +1,9 @@
 import dutino from "../public/events/dance/dutino.jpg";
-import nrityarang from "../public/events/dance/Nityarang.jpg";
-import odoru_era from "../public/events/dance/Odoru_era.jpg";
-import odoru_era2 from "../public/events/dance/Odoru_era2.jpg";
+import nrityarang from "../public/events/dance/nityarang.jpg";
+import odoru_era from "../public/events/dance/odoru_era.jpg";
+import odoru_era2 from "../public/events/dance/obstructdoru_era2.jpg";
 import solo from "../public/events/dance/solo.jpg";
-import troupe_jive from "../public/events/dance/Troupe_jive.jpg";
+import troupe_jive from "../public/events/dance/troupe_jive.jpg";
 export const danceEvents = [
   {
     organizingCouncil: "Cultural Council",
