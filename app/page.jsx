@@ -10,6 +10,7 @@ import LandingFooter from "@/components/landing/Landing-footer";
 import Register from "@/components/landing/Register";
 import Header from "@/components/landing/Header";
 import About from "@/components/landing/About";
+import Logger from "@/components/ui/Logger";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <Gallery />
         <Register />
         <LandingFooter />
+        <Logger />
       </div>
     </>
   );
