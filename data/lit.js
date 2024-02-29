@@ -1,4 +1,22 @@
 import dutino from "../public/events/dance/dutino.jpg";
+import fun1 from "../public/events/lit/fun1.jpg";
+import fun2 from "../public/events/lit/fun2.jpg";
+import fun3 from "../public/events/lit/fun3.jpg";
+import fun4 from "../public/events/lit/fun4.jpg";
+import fun5 from "../public/events/lit/fun5.jpg";
+import poetry1 from "../public/events/lit/poetry1.jpg";
+import poetry2 from "../public/events/lit/poetry2.jpg";
+import poetry3 from "../public/events/lit/poetry3.jpg";
+import poetry4 from "../public/events/lit/poetry4.jpg";
+import poetry5 from "../public/events/lit/poetry5.jpg";
+import poetry6 from "../public/events/lit/poetry6.jpg";
+import shayri from "../public/events/lit/shayri.jpg";
+import debate1 from "../public/events/lit/debate1.jpg";
+import debate2 from "../public/events/lit/debate2.jpg";
+import debate3 from "../public/events/lit/debate3.jpg";
+import debate4 from "../public/events/lit/debate4.jpg";
+import debate5 from "../public/events/lit/debate5.jpg";
+
 export const litevents = [
   {
     id: 1,
@@ -10,7 +28,7 @@ export const litevents = [
         so that every person can simply understand the event and enjoy it. The event will 
         consist of a speaker, ruling side and an opposition."
         language: "Bilingual`,
-    image: dutino,
+    image: debate1,
     details: {
       scope: "Major",
       estimatedDays: "2 or 3",
@@ -28,7 +46,7 @@ export const litevents = [
       event will take place in two stages. The first will be the introductory round,
       consisting of the group discussion. The top-performing candidates will move to
       the next round, which will be a panel discussion. `,
-    image: dutino,
+    image: debate2,
     details: {
       language: "Hindi",
       scope: "Major",
@@ -43,7 +61,7 @@ export const litevents = [
     type: "debate",
     addedOn: "29 Feb",
     eventName: "Against the For",
-    image: dutino,
+    image: debate3,
     description: `This will be a non-conventional debate where teams will be assigned a topic and
         tasked with speaking in favor of it, within a time frame of 4-5 minutes to present
         their thoughts. At the end of this time, the next team will have to speak in favor
@@ -64,7 +82,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "debate",
     addedOn: "29 Feb",
-    image: dutino,
+    image: debate4,
     eventName: "Battle of Rhetoricians",
     description: `This will be a ladder event in which each individual participant will be paired
         with another participant on the day of the event (the pairing will be random). Each
@@ -89,7 +107,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "debate",
     addedOn: "29 Feb",
-    image: dutino,
+    image: debate5,
     eventName: "Debate-o-Maina",
     description: `This is a debating event wherein participating candidates will be grouped into
       teams for favor and against a given topic. Each team member will deliver a speech
@@ -111,7 +129,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "poetry",
     addedOn: "29 Feb",
-    image: dutino,
+    image: poetry6,
     eventName: "KavyaSarita (Hindi Poem)",
     description: "Recite self-written poem in Hindi (no Urdu words).",
     venue: "Bsc Ground",
@@ -131,7 +149,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "poetry",
     addedOn: "29 Feb",
-    image: dutino,
+    image: poetry3,
     eventName: "Poetry Slam (English Poem)",
     description: "Recite self-written poem in English.",
     venue: "CSA Hall",
@@ -154,7 +172,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "poetry",
     addedOn: "29 Feb",
-    image: dutino,
+    image: shayri,
     eventName: "Bait Baazi (Shayari Competition)",
     description:
       "Teams compete, reciting sher starting with last letter of previous sher.",
@@ -169,7 +187,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "poetry",
     addedOn: "29 Feb",
-    image: dutino,
+    image: poetry4,
     eventName: "Kissagoi (Storytelling)",
     description:
       "Tell self-written short stories or part of life in English/Hindi.",
@@ -193,7 +211,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "poetry",
     addedOn: "29 Feb",
-    image: dutino,
+    image: poetry5,
     eventName: "Two liners",
     description:
       "Create two-line snippet using simile, personification, or metaphor.",
@@ -213,7 +231,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "poetry",
     addedOn: "29 Feb",
-    image: dutino,
+    image: poetry6,
     eventName: "Kaviroop (Writing poem)",
     description:
       "Teams write and recite poem based on given first line of well-known poem (Hindi).",
@@ -227,7 +245,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun2,
     eventName: "Khud ki Khoz (Character’s Play)",
     description:
       "Candidates portray roles within limited set of zones with predefined list of names. Points awarded based on portrayal accuracy.",
@@ -244,7 +262,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun1,
     eventName: "2 stage Charades",
     description:
       "Two-stage event where candidates answer clue-based puzzles in the first stage. In the second stage, they play charades on provided answers with points awarded or deducted.",
@@ -262,7 +280,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun3,
     eventName: "Turn the Quote + Just a Minute",
     description:
       "Two-staged event with 'Turn the Quote' followed by 'Just a Minute' round. Conducted in teams of two.",
@@ -280,7 +298,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun4,
     eventName: "WHAT IF",
     description:
       "Situation-based event where participants provide a positive ending to familiar anecdotes/incidents/scenarios.",
@@ -297,7 +315,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun5,
     eventName: "Card + Screen Word",
     description:
       "Participants write a philosophical POV in 50 words based on a given scene, submit through QR code, and the top entries proceed to a screen-based round with word prompts.",
@@ -314,7 +332,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun2,
     eventName: "Word and Voice Based",
     description:
       "Candidates solve hints/riddles leading to the next round. The second stage is a voice-based round conducted in a buzzer manner with winners decided by points.",
@@ -332,7 +350,7 @@ export const litevents = [
     organizingCouncil: "Literary Council",
     type: "funtoosh",
     addedOn: "29 Feb",
-    image: dutino,
+    image: fun1,
     eventName: "Treasure Hunt",
     description:
       "Participants solve riddles or clues to reach locations, gather words, and arrange them to form a sentence. Winners decided based on time taken.",

@@ -193,26 +193,16 @@ export const dramaticsEvents = [
         name: "ROUND 2",
         description:
           "Calling all dynamic duos of comedy! It's time to team up and bring your comedic synergy to the stage at our Stand-Up Comedy Duo Battle. Whether you're partners in crime or comedic kindred spirits, this is your chance to showcase your unique creativity and comedic chemistry as a duo. Prepare to dazzle the audience with your hilarious banter, clever routines, and double the laughter.",
-        subRounds: [
-          {
-            id: "149b41c2-d3df-459b-bb24-7f2db7b17f06",
-            name: "Duo Comedy Battle",
-            description:
-              "Out of the shortlisted participants for this round, two participants will get the same topic simultaneously. Each pair will be given 5 minutes for thinking up. After 5 minutes, the two will take the stage to perform their comedy as a comic duo, i.e., humor battle.",
-            timeLimit: "5 minutes (for both)",
-            penalty:
-              "2% for every minute exceeded up to 5 minutes then 5% for each minute.",
-          },
-        ],
-        judgingCriteria: [
-          "50% of the marks will be given by judges based on the following:",
-          "a) Originality and creativity of the comedy routine.",
-          "b) Voice clarity",
-          "c) Quality of the delivery, including timing, pacing and stage presence.",
-          "d) Audience Engagement and evoke laughter.",
-          "e) Overall impact of the performance.",
-          "The rest 50% will be decided by the Audience Votes.",
-        ],
+
+        judgingCriteria: {
+          a: "50% of the marks will be given by judges based on the following:",
+          b: "a) Originality and creativity of the comedy routine.",
+          c: "b) Voice clarity",
+          d: "c) Quality of the delivery, including timing, pacing and stage presence.",
+          e: "d) Audience Engagement and evoke laughter.",
+          f: "e) Overall impact of the performance.",
+          g: "The rest 50% will be decided by the Audience Votes.",
+        },
       },
     ],
   },

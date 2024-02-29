@@ -42,9 +42,6 @@ export default function (props) {
                 {events.documents.map((event) => (
                   <Card key={event.$id} {...event} />
                 ))}
-                {litevents.map((event, index) => (
-                  <PfacCard key={index} {...event} />
-                ))}
               </div>
             </>
           ) : (
