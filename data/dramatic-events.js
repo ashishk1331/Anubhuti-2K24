@@ -6,6 +6,7 @@ import standup from "../public/events/dramatics/standup.jpeg";
 export const dramaticsEvents = [
   {
     organizingCouncil: "Cultural Council",
+    type: "drama",
     addedOn: "26 Feb",
     id: "8d3154bf-93c8-4313-8683-2d17ff07fe6e",
     eventName: "Street Saga (Nukkad Natak)",
@@ -47,6 +48,7 @@ export const dramaticsEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "drama",
     addedOn: "26 Feb",
     id: "af2bc2c7-60f5-4a42-8152-d2baa7dd703f",
     eventName: "Theatrical Tempest (Stage Play)",
@@ -83,6 +85,7 @@ export const dramaticsEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "drama",
     addedOn: "26 Feb",
     id: "e9c9b163-6729-49c5-b54f-0cc299eab07f",
     eventName: "Antarman (Mime)",
@@ -111,6 +114,7 @@ export const dramaticsEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "drama",
     addedOn: "26 Feb",
     id: "bae218f5-4a67-4f67-929e-3a03e50e0b6f",
     eventName: "Advitiya (Mono Act)",
@@ -160,6 +164,7 @@ export const dramaticsEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "drama",
     addedOn: "26 Feb",
     id: "0e6a2bfc-0118-4d05-83df-271f5d76c42b",
     eventName: "GIGGLE GALA (Stand-Up Comedy)",

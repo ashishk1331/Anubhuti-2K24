@@ -3,14 +3,23 @@
 // Components
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
-import { musicevents } from "@/data/music-events";
-import { dramaticsEvents } from "@/data/dramatic-events";
-import { danceEvents } from "@/data/dance-events";
-import { pfacevents } from "@/data/pfac-events";
+import { useEffect, useState } from "react";
+import { getEvents } from "@/helper/appwrite-helpers";
+import Loader from "@/components/ui/Loader";
+import Pagination from "@/components/admin/ui/Pagination";
 
 // Helper
 
 export default function (props) {
+  const [events, setEvents] = useState({ total: 0, documents: [] });
+  const [page, setPage] = useState(1);
+  const [capacity, setCapacity] = useState(25);
+  async function init() {
+    setEvents(await getEvents());
+  }
+  useEffect(() => {
+    init();
+  }, [page, capacity]);
   return (
     <>
       <Header />
@@ -25,20 +34,29 @@ export default function (props) {
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          {musicevents.map((event) => (
-            <Card type="music" key={event.id} {...event} />
-          ))}
-          {pfacevents.map((event) => (
-            <PfacCard type="pfac" key={event.id} {...event} />
-          ))}
-          {dramaticsEvents.map((event) => (
-            <Card type="drama" key={event.id} {...event} />
-          ))}
-          {danceEvents.map((event) => (
-            <Card type="dance" key={event.id} {...event} />
-          ))}
+        <div>
+          {events.documents.length > 0 ? (
+            <>
+              <div className="grid gap-6 lg:grid-cols-2">
+                {events.documents.map((event) => (
+                  <Card key={event.$id} {...event} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="flex flex-col w-full items-center justify-center h-[40vh] gap-4 sm:flex-row">
+              <Loader />
+              <span>Fetching Events...</span>
+            </div>
+          )}
         </div>
+        {/* <Pagination
+          page={page}
+          setPage={setPage}
+          capacity={capacity}
+          setCapacity={setCapacity}
+          total={events.total}
+        /> */}
       </div>
       <Footer />
     </>
@@ -46,8 +64,9 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { eventName, summary, id, image, type, organizingCouncil, addedOn } =
-    props;
+  const { data, image, $id } = props;
+  const { eventName, summary, id, type, organizingCouncil, addedOn } =
+    JSON.parse(data);
   let refinedName = eventName;
   if (refinedName.indexOf("(") > -1) {
     refinedName = refinedName.substr(0, refinedName.indexOf("("));
@@ -59,12 +78,12 @@ function Card(props) {
   return (
     <a
       className="relative block group rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-      href={`/events/${type}/${id}`}
+      href={`/events/${$id}`}
     >
       <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
         <img
           className="absolute top-0 object-cover size-full start-0"
-          src={image.src}
+          src={image}
           alt="Image Description"
         />
       </div>

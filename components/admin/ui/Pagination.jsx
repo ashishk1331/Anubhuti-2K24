@@ -38,6 +38,7 @@ export default function ({ page, setPage, total, capacity, setCapacity }) {
       >
         <option value={10}>10 entries/page</option>
         <option value={20}>20 entries/page</option>
+        <option value={25}>25 entries/page</option>
         <option value={30}>30 entries/page</option>
       </select>
     </div>

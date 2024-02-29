@@ -10,6 +10,7 @@ import kawwali from "../public/events/music/kawwali.jpg";
 export const musicevents = [
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "NKLSb7mKS64XLdK6I1tqE",
     eventName: "BollyFare",
@@ -42,6 +43,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "ryj47Bqv1GVv0vHz73Muo",
     eventName: "CARVAAN(DUET)",
@@ -77,6 +79,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "5H9Pg2H1AKoN8uc2ZIvyI",
     eventName: "SANGAM(GROUP)",
@@ -109,6 +112,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "07BVQqDLnQxeX0xUzMv2P",
     eventName: "TARANG(Instrumental)",
@@ -122,6 +126,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "6_5qokW-i_XKUSxFYCPlP",
     eventName: "GHAZALNIGHT(KAWALI)",
@@ -133,6 +138,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "iD4BbX8k35NGgnrodlxDo",
     eventName: "Vodka Volume (Rap Battle)",
@@ -151,6 +157,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "LBAX5rim0YETfrDys-ysu",
     eventName: "PitchClash (Vocal Battle)",
@@ -174,6 +181,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "Xldeqnx8csc91Rry6anDA",
     eventName: "BandHustle",
@@ -187,6 +195,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "jXluIZqICSZKAXIUYntl6",
     eventName: "Throatbass Singing Event",
@@ -199,6 +208,7 @@ export const musicevents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "music",
     addedOn: "26 Feb",
     id: "Z0LmGXznwhg8mjIRFV3F2",
     eventName: "ANTAKSHARI BATTLE",

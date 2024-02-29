@@ -28,10 +28,45 @@ export async function getRegistrations() {
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID
     );
-    return response;
+    console.log(response.documents);
+    return response.documents;
   } catch (error) {
     console.log(error.message);
     return { total: 0, documents: [] };
+  }
+}
+export async function getEventRegistrations(userId, registrationId, eventId) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTREGISTRATIONS_COLLECTIONID,
+      [
+        Query.equal("userId", userId),
+        Query.equal("registrationId", registrationId),
+        Query.equal("eventId", eventId),
+      ]
+    );
+    return response;
+  } catch (error) {
+    console.log(error);
+    return { total: 0, documents: [] };
+  }
+}
+export async function getUserEventRegistrations(userId, registrationId) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTREGISTRATIONS_COLLECTIONID,
+      [
+        Query.equal("userId", userId),
+        Query.equal("registrationId", registrationId),
+      ]
+    );
+
+    return response.documents;
+  } catch (error) {
+    console.log(error);
+    return [];
   }
 }
 export async function getAllTransactions(page, capacity) {
@@ -100,4 +135,48 @@ function download(src) {
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+}
+
+export async function getEvents() {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
+      [Query.limit(50), Query.offset(0)]
+    );
+    let data = [];
+    response.documents.map((item) => {
+      const result = storage.getFilePreview(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
+        item.imageId
+      );
+      data.push({ ...item, image: result.href });
+    });
+    return { total: response.total, documents: data };
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [] };
+  }
+}
+export async function getEvent(id) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
+      [Query.equal("$id", id)]
+    );
+    let data = [];
+    response.documents.map((item) => {
+      const result = storage.getFilePreview(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
+        item.imageId
+      );
+      data.push({ ...item, image: result.href });
+    });
+
+    return { total: response.total, documents: data };
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [] };
+  }
 }

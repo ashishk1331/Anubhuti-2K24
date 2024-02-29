@@ -12,7 +12,9 @@ export const useStore = create((set) => ({
   loggedInUser: null,
   setLoggedInUser: (user) => set({ loggedInUser: user }),
   registered: false,
-  registrations: [],
+  registrations: null,
+  eventRegistrations: [],
   setRegistration: (value) => set({ registered: value }),
   setRegistrationsData: (value) => set({ registrations: value }),
+  setEventRegistrationsData: (value) => set({ eventRegistrations: value }),
 }));

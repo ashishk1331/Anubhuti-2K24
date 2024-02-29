@@ -11,39 +11,57 @@ import Rounds from "@/components/events/Rounds";
 import Avatar from "@/components/events/Avatar";
 import EventDescription from "@/components/events/EventDescription";
 import Details from "@/components/events/Details";
+import { useEffect, useState } from "react";
+import { getEvent } from "@/helper/appwrite-helpers";
+import Loader from "@/components/ui/Loader";
 
 // Helper
 
-function getEventById(id) {
-  return musicevents.find((event) => event.id === id);
-}
-
 export default function ({ params: { id } }) {
-  const data = getEventById(id);
-
+  const [event, setEvent] = useState({ total: 0, documents: [] });
+  async function init() {
+    setEvent(await getEvent(id));
+  }
+  useEffect(() => {
+    init();
+  }, []);
   return (
     <>
       <Header />
-      {data && (
+      {event.total > 0 ? (
         <>
-          <div className="max-w-3xl px-4 pt-6 pb-12 mx-auto lg:pt-10 sm:px-6 lg:px-8 marker:text-voilet">
-            <div className="max-w-2xl">
-              <Avatar data={data} />
-              <div className="space-y-6 md:space-y-8">
-                <EventDescription data={data} />
-                {data.rounds && <Rounds rounds={data.rounds} />}
-                {data.rules && <Rules rules={data.rules} />}
-                {data.judgingCriteria && (
-                  <JudgingCriteria criteria={data.judgingCriteria} />
-                )}
-                <Details data={data} />
-              </div>
-            </div>
-          </div>
-          <Form eventName={data.eventName} />
+          <div className="max-w-3xl px-4 pt-2 pb-12 mx-auto lg:pt-5 sm:px-6 lg:px-8 marker:text-voilet"></div>
+          <Display event={event.documents[0]} />
+          {/* <Form eventName={data.eventName} /> */}
         </>
+      ) : (
+        <div className="flex flex-col mx-auto items-center justify-center w-full h-[40vh] gap-4 sm:flex-row">
+          <Loader />
+          <span>fetching event...</span>
+        </div>
       )}
       <Footer />
     </>
+  );
+}
+
+function Display({ event }) {
+  const { $id, image } = event;
+
+  var data = JSON.parse(event.data);
+  data = { ...data, image: image };
+  return (
+    <div className="max-w-2xl px-4 mx-auto">
+      <Avatar data={data} />
+      <div className="space-y-6 md:space-y-8">
+        <EventDescription data={data} />
+        {data.rounds && <Rounds rounds={data.rounds} />}
+        {data.rules && <Rules rules={data.rules} />}
+        {data.judgingCriteria && (
+          <JudgingCriteria criteria={data.judgingCriteria} />
+        )}
+        <Details data={data} />
+      </div>
+    </div>
   );
 }

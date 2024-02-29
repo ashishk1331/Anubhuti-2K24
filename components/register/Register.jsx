@@ -16,6 +16,10 @@ import toast, { ToastBar, Toaster } from "react-hot-toast";
 export default function (props) {
   const router = useRouter();
   const loggedInUser = useStore((state) => state.loggedInUser);
+  const registered = useStore((state) => state.registered);
+  const registrations = useStore((state) => state.registrations);
+  const setRegistration = useStore((state) => state.setRegistration);
+  const setRegistrationsData = useStore((state) => state.setRegistrationsData);
   const [firstName, setFirstName] = useState("");
   const [secondName, setSecondName] = useState("");
   const [email, setEmail] = useState("maira@xyz.com");
@@ -30,6 +34,14 @@ export default function (props) {
     "Civil Engineering",
     "MCA",
   ];
+  const [initialValues, setInitialValues] = useState({
+    phoneNumber: "",
+    gender: "",
+    type: "",
+    branch: branches[0],
+    year: "",
+  });
+
   useEffect(() => {
     if (loggedInUser) {
       if (loggedInUser.name) {
@@ -40,8 +52,17 @@ export default function (props) {
       if (loggedInUser.email) {
         setEmail(loggedInUser.email);
       }
+      if (registrations) {
+        setInitialValues({
+          gender: registrations.gender,
+          phoneNumber: registrations.pno,
+          year: registrations.year,
+          type: registrations.type,
+          branch: registrations.branch,
+        });
+      }
     }
-  }, [loggedInUser]);
+  }, [loggedInUser, registrations]);
   const {
     values,
     errors,
@@ -51,13 +72,7 @@ export default function (props) {
     handleSubmit,
     isSubmitting,
   } = useFormik({
-    initialValues: {
-      phoneNumber: "",
-      gender: "",
-      type: "",
-      branch: branches[0],
-      year: "",
-    },
+    initialValues: initialValues,
     validationSchema: RegisterFormSchema,
     onSubmit: async function (values, actions) {
       try {
@@ -69,6 +84,7 @@ export default function (props) {
           pno: values.phoneNumber,
           gender: values.gender,
           type: values.type,
+          payment: values.type === "knitian" ? true : false,
           branch: values.branch.toString(),
           year: values.year,
         };
@@ -78,6 +94,8 @@ export default function (props) {
           ID.unique(),
           data
         );
+        setRegistration(true);
+        setRegistrationsData(promise);
         if (resetButtonRef.current) {
           resetButtonRef.current.click();
         }
@@ -97,8 +115,8 @@ export default function (props) {
         {/* Card */}
         <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
           <div className="mb-8">
-            <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">
-              Register
+            <h2 className="text-4xl font-bold text-gray-700 dark:text-gray-200">
+              {registered ? "Already Registered" : "Register"}
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400">
               Fill out the form to participate in events.
@@ -124,11 +142,13 @@ export default function (props) {
                     required
                     className="relative block w-full px-3 py-2 -mt-px text-sm border-gray-200 shadow-sm pe-11 -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                     value={firstName}
+                    readOnly={registered}
                     onChange={(e) => setFirstName(e.target.value)}
                   />
                   <input
                     type="text"
                     required
+                    readOnly={registered}
                     className="relative block w-full px-3 py-2 -mt-px text-sm border-gray-200 shadow-sm pe-11 -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                     value={secondName}
                     onChange={(e) => setSecondName(e.target.value)}
@@ -169,6 +189,7 @@ export default function (props) {
               <div className="sm:col-span-9">
                 <div className="sm:flex">
                   <input
+                    readOnly={registered}
                     id="af-account-phone"
                     type="text"
                     name="phoneNumber"
@@ -204,6 +225,7 @@ export default function (props) {
                     <input
                       type="radio"
                       name="gender"
+                      readOnly={registered}
                       className="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                       id="af-account-gender-checkbox"
                       defaultChecked=""
@@ -222,6 +244,7 @@ export default function (props) {
                     <input
                       type="radio"
                       name="gender"
+                      readOnly={registered}
                       className="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
                       id="af-account-gender-checkbox-female"
                       value="female"
@@ -269,6 +292,7 @@ export default function (props) {
                     className="relative flex w-full px-3 py-2 -mt-px text-sm border border-gray-200 shadow-sm -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                   >
                     <input
+                      readOnly={registered}
                       type="radio"
                       name="type"
                       className="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
@@ -287,6 +311,7 @@ export default function (props) {
                     className="relative flex w-full px-3 py-2 -mt-px text-sm border border-gray-200 shadow-sm -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                   >
                     <input
+                      readOnly={registered}
                       type="radio"
                       name="type"
                       className="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
@@ -314,6 +339,7 @@ export default function (props) {
               <div className="sm:col-span-9">
                 <div className="sm:flex">
                   <input
+                    readOnly={registered}
                     id="af-account-year"
                     type="number"
                     name="year"
@@ -361,20 +387,24 @@ export default function (props) {
             </div>
             {/* End Grid */}
             <div className="flex justify-end mt-5 gap-x-2">
-              <button
-                type="reset"
-                ref={resetButtonRef}
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              >
-                Reset
-              </button>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-              >
-                Proceed
-              </button>
+              {!registered && (
+                <>
+                  <button
+                    type="reset"
+                    ref={resetButtonRef}
+                    className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                  >
+                    Reset
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-blue-600 border border-transparent rounded-lg gap-x-2 hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                  >
+                    Proceed
+                  </button>
+                </>
+              )}
             </div>
           </form>
           {error && (

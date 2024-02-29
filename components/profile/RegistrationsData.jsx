@@ -7,25 +7,20 @@ export default function () {
   return (
     <div className="max-w-4xl px-4 py-10 mx-auto text-gray-800 sm:px-6 lg:px-8 lg:py-14">
       <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
-        <h2 className="text-xl font-semibold">Registrations</h2>
+        <h2 className="text-xl font-semibold">My Registration</h2>
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Manage your registrations.
         </p>
         {registered ? (
           <div className="flex flex-col mt-4">
-            {registrations.map((registration) => (
-              <RegistrationCard
-                key={registration.$id}
-                registration={registration}
-              />
-            ))}
+            <RegistrationCard registration={registrations} />
           </div>
         ) : (
-          <div className="flex flex-col mt-4">
+          <div className="flex flex-col mt-4 text-sm text-gray-700">
             <span>You have not Registered for the event.</span>
             <span>Register by filling out the registration form.</span>
             <a className="text-blue-600" href="/register">
-              Register Now -{">"}
+              Register Now
             </a>
           </div>
         )}

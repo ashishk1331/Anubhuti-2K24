@@ -12,6 +12,7 @@ import origami from "../public/events/pfac/origami.jpeg";
 export const pfacevents = [
   {
     id: "NKLSb7sDS64XLdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Doodle Art",
@@ -19,6 +20,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS34XLdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Pop Art",
@@ -26,6 +28,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS64SDt56I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Geometric Art",
@@ -33,6 +36,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS64XLdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Mandala Art",
@@ -40,6 +44,7 @@ export const pfacevents = [
   },
   {
     id: "NKLfg4sDS64XLdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Costume Designing",
@@ -47,6 +52,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS23RDdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Anime Art",
@@ -54,6 +60,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS64XLdK6I1dfW",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Phone Cover Art",
@@ -61,6 +68,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS64XLdK6RT3dE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Lippan Art",
@@ -68,6 +76,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sDS64Xfg46I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Caricature Art",
@@ -75,6 +84,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sSJ74XLdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Face Painting",
@@ -82,6 +92,7 @@ export const pfacevents = [
   },
   {
     id: "NKLSb7sZA23XLdK6I1wqE",
+    type: "pfac",
     organizingCouncil: "PFAC",
     addedOn: "28 Feb, 2024",
     eventName: "Origami",

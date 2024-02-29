@@ -7,6 +7,7 @@ import troupe_jive from "../public/events/dance/troupe_jive.jpg";
 export const danceEvents = [
   {
     organizingCouncil: "Cultural Council",
+    type: "dance",
     addedOn: "26 Feb",
     id: "1c60a7c4-8a98-4b3f-b321-57b08b2997a7",
     eventName: "Odoru Era: Duet - Time Travel",
@@ -51,6 +52,7 @@ export const danceEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "dance",
     addedOn: "26 Feb",
     id: "85858520-0a5b-4d62-bf0a-5659deade222",
     eventName: "Duettino: A Duet Dance Extravaganza",
@@ -91,6 +93,7 @@ export const danceEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "dance",
     addedOn: "26 Feb",
     id: "1e5acbc3-5f49-4d9b-a45c-4e93c1411334",
     eventName: "Nrityarang: A Classical Dance Showcase",
@@ -115,6 +118,7 @@ export const danceEvents = [
   {
     organizingCouncil: "Cultural Council",
     addedOn: "26 Feb",
+    type: "dance",
     id: "9bc6b519-f416-4a29-b6ef-8746b0413e2b",
     eventName: "Jig Tales: Storytelling Group Dance",
     image: odoru_era2,
@@ -137,6 +141,7 @@ export const danceEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "dance",
     addedOn: "26 Feb",
     id: "ff2bdca5-43ef-4467-9d5f-2871101f0c2e",
     eventName: "Flamenco: A Solo Dance Experience",
@@ -185,6 +190,7 @@ export const danceEvents = [
   },
   {
     organizingCouncil: "Cultural Council",
+    type: "dance",
     addedOn: "26 Feb",
     id: "ab3e4f68-4e21-4d24-8d94-8b1037da3d2d",
     eventName: "Troupe Jive",

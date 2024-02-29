@@ -8,6 +8,7 @@ import Wrapper from "@/components/login/Wrapper";
 import Loader from "@/components/ui/Loader";
 import Header from "@/components/ui/Header";
 import RegistrationsData from "@/components/profile/RegistrationsData";
+import EventRegistrations from "@/components/profile/EventRegistrations";
 
 export default function () {
   const router = useRouter();
@@ -31,6 +32,7 @@ export default function () {
         <Wrapper>
           <Profile />
           <RegistrationsData />
+          <EventRegistrations />
         </Wrapper>
       ) : (
         <div className="flex flex-col items-center justify-center w-full min-h-[70vh] gap-4 sm:flex-row">

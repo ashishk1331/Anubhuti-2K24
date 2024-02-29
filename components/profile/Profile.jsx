@@ -6,6 +6,7 @@ import { useStore } from "@/store/useForm.store.js";
 import { ProfileSchema } from "./ProfileForm.schema.js";
 import { account } from "@/Appwrite/appwrite.config.js";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function () {
   const loggedInUser = useStore((state) => state.loggedInUser);
@@ -40,6 +41,7 @@ export default function () {
         if (values.name != fullName) {
           // update name
           const promise1 = await account.updateName(fullName);
+          toast.success("Updated name");
         }
         if (oldPassword && newPassWord) {
           // update password
@@ -47,6 +49,7 @@ export default function () {
             newPassWord,
             oldPassword
           );
+          toast.success("Updated password");
           actions.resetForm();
         }
       } catch (error) {
@@ -59,6 +62,7 @@ export default function () {
     <>
       <>
         {/* Card Section */}
+        <Toaster position="top-right" reverseOrder />
         <div className="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
           {/* Card */}
           <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
