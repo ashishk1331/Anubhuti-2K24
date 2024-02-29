@@ -9,12 +9,14 @@ import InputBox from "@/components/ui/InputBox.jsx";
 // Helper
 import { RegisterFormSchema } from "./Register.schema.js";
 import { useStore } from "@/store/useForm.store";
-import { ID, account, databases } from "@/Appwrite/appwrite.config.js";
+import { ID, account, databases, storage } from "@/Appwrite/appwrite.config.js";
 import { useRouter } from "next/navigation";
 import toast, { ToastBar, Toaster } from "react-hot-toast";
+import { CheckCircle } from "@phosphor-icons/react";
 
 export default function (props) {
   const router = useRouter();
+  const [file, setFile] = useState(null);
   const loggedInUser = useStore((state) => state.loggedInUser);
   const registered = useStore((state) => state.registered);
   const registrations = useStore((state) => state.registrations);
@@ -77,7 +79,7 @@ export default function (props) {
     onSubmit: async function (values, actions) {
       try {
         setError("");
-        const data = {
+        var data = {
           userId: loggedInUser.$id,
           name: [firstName, secondName].join(" "),
           email,
@@ -88,6 +90,20 @@ export default function (props) {
           branch: values.branch.toString(),
           year: values.year,
         };
+        if (values.type === "other") {
+          if (file == null) {
+            console.error("Screenshot of transaction required");
+            return;
+          } else {
+            const temp = await storage.createFile(
+              process.env
+                .NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTTRANSACTIONS_BUCKETID,
+              ID.unique(),
+              file
+            );
+            data = { ...data, imageId: temp.$id };
+          }
+        }
         const promise = await databases.createDocument(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
@@ -103,6 +119,7 @@ export default function (props) {
         toast.success("Registration Successfull");
       } catch (error) {
         setError(error.message);
+        toast.error("Error Registering");
       }
     },
   });
@@ -384,6 +401,55 @@ export default function (props) {
                   </div>
                 </div>
               </div>
+              {values.type == "other" && (
+                <div className="mt-6 col-span-full">
+                  <label
+                    htmlFor="cover-photo"
+                    className="block text-sm font-medium leading-6 text-gray-900"
+                  >
+                    Upload screenshot of the transaction
+                  </label>
+                  <div className="flex justify-center px-6 py-10 mt-2 border border-dashed rounded-lg border-gray-900/25">
+                    <div className="text-center">
+                      <div className="flex justify-around mt-4 text-sm leading-6 text-gray-600">
+                        <label
+                          htmlFor="file-upload"
+                          className="relative font-semibold text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                        >
+                          <span>Upload a file</span>
+                          <input
+                            onChange={(e) => setFile(e.target.files[0])}
+                            id="file-upload"
+                            name="file"
+                            type="file"
+                            className="sr-only"
+                            required
+                          />
+                        </label>
+                      </div>
+                      <p className="text-xs leading-5 text-gray-600">
+                        PNG, JPG, GIF up to 10MB
+                      </p>
+                    </div>
+                  </div>
+                  {file && (
+                    <span className="flex items-center gap-2 p-2 px-3 ps-0">
+                      <CheckCircle
+                        weight="fill"
+                        size={18}
+                        className="fill-voilet"
+                      />
+                      {file.name}
+                    </span>
+                  )}
+                  {/* {!file && (
+                <span className="flex items-center gap-2 p-2 px-3 ps-0">
+                  <Info weight="fill" size={18} className="fill-red-500" />
+                  error occured.
+                </span>
+              )} */}
+                </div>
+              )}
             </div>
             {/* End Grid */}
             <div className="flex justify-end mt-5 gap-x-2">
