@@ -19,8 +19,8 @@ export default function Home() {
       <div className="w-full">
         <Header />
         <Events eventsData={eventsData} />
-        <Gallery />
         <Register />
+        <Gallery />
         <LandingFooter />
         <Logger />
       </div>
