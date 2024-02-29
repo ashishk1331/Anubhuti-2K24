@@ -87,6 +87,12 @@ export default function (props) {
                 >
                   Contribute
                 </a>
+                <a
+                  className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+                  href="/team"
+                >
+                  Team
+                </a>
                 <Adminstatus />
                 <RegistrationStatus />
                 <SessionStatus />
@@ -117,6 +123,12 @@ export default function (props) {
               href="/contribute"
             >
               Contribute
+            </a>
+            <a
+              className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+              href="/team"
+            >
+              Team
             </a>
             <Adminstatus />
             <RegistrationStatus />

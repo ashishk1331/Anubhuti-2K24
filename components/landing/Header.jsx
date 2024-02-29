@@ -124,6 +124,11 @@ function NavItems() {
         </a>
       </li>
       <li>
+        <a href="/team" className="transition-all hover:underline">
+          Team
+        </a>
+      </li>
+      <li>
         <SessionStatus />
       </li>
     </>
