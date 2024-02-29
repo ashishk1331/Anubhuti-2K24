@@ -31,7 +31,7 @@ export default function () {
     init();
   }, []);
   return (
-    <div className="flex flex-col justify-between w-full gap-1 p-4 mt-1 text-sm text-white sm:flex-row bg-gray-950">
+    <div className="flex flex-col justify-between w-full gap-1 p-4 mt-5 text-sm text-white lg:mt-1 sm:flex-row bg-gray-950">
       <span>Total Visitors: {vistors}</span>
       <a
         className="underline hover:text-yellow-300"
