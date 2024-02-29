@@ -1,8 +1,6 @@
 import { useStore } from "@/store/useForm.store";
-import RegistrationCard from "./RegistrationCard";
 import { useEffect, useState } from "react";
 import { getUserEventRegistrations } from "@/helper/appwrite-helpers";
-import { data } from "autoprefixer";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function () {
@@ -43,7 +41,6 @@ export default function () {
 }
 
 function Card({ data }) {
-  console;
   return (
     <>
       <Toaster position="top-right" reverseOrder />
