@@ -18,6 +18,7 @@ export default function ({ rounds }) {
 }
 
 function Display({ heading, value }) {
+  if (heading == "id") return;
   if (heading == "name")
     return (
       <span className="text-lg font-medium underline first-letter:capitalize">

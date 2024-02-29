@@ -8,27 +8,27 @@ import femaleavatar from "../public/team/femaleavatar.jpg";
 export const team = [
   {
     image: sameersir,
-    name: "Samir Srivastav",
+    name: "Prof. Samir Srivastav",
     designation: "Convenor",
   },
   {
     image: sujeetsir,
-    name: "Sujeet Agarwal",
+    name: "Prof. Sujeet Agarwal",
     designation: "Convenor",
   },
   {
     image: bipinsir,
-    name: "Bipin Prajapati",
+    name: "Prof. Bipin Prajapati",
     designation: "Co-Convenor",
   },
   {
     image: rajnishsir,
-    name: "Rajnish Kumar",
+    name: "Prof. Rajnish Kumar",
     designation: "Co-Convenor",
   },
   {
     image: maleavatar,
-    name: "Mayank Kesharwani(EL)",
+    name: "Prof. Mayank Kesharwani(EL)",
     designation: "Fest Secretary",
   },
   {

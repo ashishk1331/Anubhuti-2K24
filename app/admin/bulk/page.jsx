@@ -2,7 +2,7 @@
 import { uploadData } from "@/Appwrite/script";
 import { danceEvents } from "@/data/dance-events";
 import { dramaticsEvents } from "@/data/dramatic-events";
-import { litevents } from "@/data/lit-events";
+import { litevents } from "@/data/lit";
 import { musicevents } from "@/data/music-events";
 import { pfacevents } from "@/data/pfac-events";
 

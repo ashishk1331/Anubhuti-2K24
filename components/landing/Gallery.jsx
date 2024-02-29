@@ -26,22 +26,26 @@ export default function (props) {
   ];
 
   return (
-    <div id="gallery" className="w-full min-h-screen flex flex-col justify-around bg-[#101010] text-white p-4 sm:p-8">
-      <div className="flex flex-col items-center gap-4 text-center my-8 sm:my-16 xl:my-28">
+    <div
+      id="gallery"
+      className="w-full min-h-screen flex flex-col justify-around bg-[#101010] text-white p-4 sm:p-8"
+    >
+      <div className="flex flex-col items-center gap-4 my-8 text-center sm:my-16 xl:my-28">
         <p>Moments Captured</p>
-        <h1 className="text-6xl xl:text-8xl uppercase font-black text-voilet my-4">
+        <h1 className="my-4 text-6xl font-black uppercase xl:text-8xl text-voilet">
           Gallery
         </h1>
         <p>
           Capture the essence of our college fest in our gallery. Browse through
           <br />
-          snapshots of joy, creativity, and camaraderie that encapsulate the spirit of our event.
+          snapshots of joy, creativity, and camaraderie that encapsulate the
+          spirit of our event.
         </p>
       </div>
 
       <div className="grid sm:w-[90%] mx-auto md:grid-cols-2 lg:grid-cols-3">
         {images.map((url, index) => (
-          <Card url={url} key={index}/>
+          <Card url={url} key={index} />
         ))}
       </div>
     </div>
@@ -51,13 +55,13 @@ export default function (props) {
 function Card(props) {
   const { url } = props;
   return (
-    <div className="relative w-full h-96 aspect-square bg-gray-800 overflow-hidden">
+    <div className="relative w-full overflow-hidden bg-gray-800 h-96 aspect-square">
       <Image
         src={url}
         alt="gallery"
         layout="fill"
         objectFit="cover"
-        className="xl:grayscale hover:grayscale-0 transition-all duration-900 z-0"
+        className="z-0 transition-all xl:grayscale hover:grayscale-0 duration-900"
       />
     </div>
   );

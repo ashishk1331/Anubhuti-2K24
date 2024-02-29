@@ -21,6 +21,7 @@ export default function Home() {
         <Events eventsData={eventsData} />
         <Register />
         <Gallery />
+        <CoreTeam />
         <LandingFooter />
         <Logger />
       </div>

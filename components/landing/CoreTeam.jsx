@@ -1,19 +1,42 @@
-import React from "react";
+import { team } from "@/data/team";
 
 export const CoreTeam = () => {
   return (
-    <div className="bg-[#000f1e]" id="CoreTeam">
-      <div className="w-full h-24 bg-sky-500 bg-gradient-to-b from-[#2b124c] to-[#000f1e]" />
-      <div className="max-w-5xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14 ">
+    <div className="bg-[#101010]" id="CoreTeam">
+      <div className="max-w-5xl px-4 py-4 mx-auto sm:px-6 lg:px-8 lg:py-8 ">
         {/* Title */}
         <div className="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
-          <p className="mt-10 mb-10 text-[#efc36a] font-bold text-7xl ">
+          <p className="mt-5 mb-10 text-[#efc36a] font-bold text-7xl ">
             Our Team
           </p>
         </div>
         {/* End Title */}
         {/* Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-12"></div>
+        <div className="grid grid-cols-1 gap-8 p-2 mb-16 sm:grid-cols-2 lg:grid-cols-2 md:gap-12 md:p-0">
+          {team.slice(0, 4).map((member, index) => (
+            <div
+              className="grid justify-center mx-auto sm:flex sm:items-center gap-y-3 gap-x-4 "
+              key={index}
+            >
+              <img
+                className="mx-auto rounded-full size-20"
+                src={member.image.src}
+                alt={member.name}
+              />
+
+              <div className="sm:flex sm:flex-col sm:items-center sm:justify-center sm:h-full">
+                <div>
+                  <h3 className="font-medium text-gray-200 dark:text-gray-200">
+                    {member.name}
+                  </h3>
+                  <p className="mt-1 text-xs text-center text-gray-200 uppercase sm:text-start">
+                    {member.designation}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

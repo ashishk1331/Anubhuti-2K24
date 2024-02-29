@@ -4,7 +4,6 @@
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import Form from "@/components/events/EventForm.jsx";
-import { musicevents } from "@/data/music-events";
 import Rules from "@/components/events/Rules";
 import JudgingCriteria from "@/components/events/JudgingCriteria";
 import Rounds from "@/components/events/Rounds";
@@ -14,7 +13,6 @@ import Details from "@/components/events/Details";
 import { useEffect, useState } from "react";
 import { getEvent } from "@/helper/appwrite-helpers";
 import Loader from "@/components/ui/Loader";
-import { useStore } from "@/store/useForm.store";
 
 // Helper
 

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getEvents } from "@/helper/appwrite-helpers";
 import Loader from "@/components/ui/Loader";
 import Pagination from "@/components/admin/ui/Pagination";
+import { litevents } from "@/data/lit";
 
 // Helper
 
@@ -40,6 +41,9 @@ export default function (props) {
               <div className="grid gap-6 lg:grid-cols-2">
                 {events.documents.map((event) => (
                   <Card key={event.$id} {...event} />
+                ))}
+                {litevents.map((event, index) => (
+                  <PfacCard key={index} {...event} />
                 ))}
               </div>
             </>
@@ -123,7 +127,10 @@ function PfacCard(props) {
   const { eventName, id, image, organizingCouncil, addedOn } = props;
 
   return (
-    <div className="relative block group rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+    <a
+      href={`/events/lit/${id}`}
+      className="relative block group rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+    >
       <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
         <img
           className="absolute top-0 object-cover size-full start-0"
@@ -160,6 +167,6 @@ function PfacCard(props) {
           {/* <p className="mt-2 text-white/[.8]">{summary}</p> */}
         </div>
       </div>
-    </div>
+    </a>
   );
 }
