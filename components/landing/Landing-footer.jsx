@@ -9,7 +9,7 @@ export default function (props) {
       }}
     >
       <div className="z-0 w-full px-4 mx-auto overflow-hidden mix-blend-difference">
-        <h2 className="font-sans font-black text-[6rem] sm:text-[7rem] md:text-[8rem] lg:text-[11.6rem] xl:text-[16rem] ">
+        <h2 className="font-sans font-black text-[6rem] sm:text-[7rem] md:text-[8rem] lg:text-[11.6rem] xl:text-[14rem] ">
           ANUBHUTI
         </h2>
       </div>
