@@ -413,9 +413,7 @@ export default function (props) {
             </div>
           )}
         </div>
-        {/* End Card */}
       </div>
-      {/* End Card Section */}
     </>
   );
 }

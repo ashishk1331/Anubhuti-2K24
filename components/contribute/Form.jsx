@@ -34,6 +34,7 @@ export default function (props) {
       yearOfPassing: "",
       branch: "",
       email: "",
+      phoneNumber: "",
     },
     validationSchema: DonateSchema,
     onSubmit: async function (values, actions) {
@@ -51,10 +52,12 @@ export default function (props) {
             const data = {
               name: [values.firstName, values.lastName].join(" "),
               email: values.email,
+              pno: values.phoneNumber,
               branch: values.branch,
               year: values.yearOfPassing,
               imageId: response.$id,
             };
+            console.log(data);
             const promise2 = databases.createDocument(
               process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
               process.env
@@ -164,6 +167,16 @@ export default function (props) {
                   error={errors.email}
                   label="Email"
                   placeholder="mariaboone@gmail.com"
+                />
+                <InputBox
+                  type="text"
+                  name="phoneNumber"
+                  value={values.phoneNumber}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                  error={errors.phoneNumber}
+                  label="Phone Number"
+                  placeholder="xxxx-xxx-xxx"
                 />
               </div>
             </div>

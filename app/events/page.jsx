@@ -65,7 +65,14 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { eventName, eventPoster, organizingCouncil, description, $id } = props;
+  const {
+    eventName,
+    eventPoster,
+    $createdAt,
+    organizingCouncil,
+    description,
+    $id,
+  } = props;
 
   let refinedName = eventName;
   if (refinedName.indexOf("(") > -1) {
@@ -74,6 +81,11 @@ function Card(props) {
   if (refinedName.indexOf(":") > -1) {
     refinedName = refinedName.substr(0, refinedName.indexOf(":"));
   }
+  const date = new Date($createdAt);
+  const formattedDate = date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+  });
 
   return (
     <a
@@ -102,7 +114,9 @@ function Card(props) {
               <h4 className="font-semibold text-white">
                 {organizingCouncil || "KNIT"}
               </h4>
-              {/* <p className="text-xs text-white/[.8]">{addedOn || "N/A"}</p> */}
+              <p className="text-xs text-white/[.8]">
+                {formattedDate || "N/A"}
+              </p>
             </div>
           </div>
         </div>
@@ -113,7 +127,7 @@ function Card(props) {
           <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-yellow-500">
             {refinedName}
           </h3>
-          <p className="mt-2 text-white/[.8]">{description}</p>
+          {/* <p className="mt-2 text-white/[.8]">{description}</p> */}
         </div>
       </div>
     </a>
