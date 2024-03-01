@@ -65,9 +65,8 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { data, image, $id } = props;
-  const { eventName, summary, id, type, organizingCouncil, addedOn } =
-    JSON.parse(data);
+  const { eventName, eventPoster, organizingCouncil, description, $id } = props;
+
   let refinedName = eventName;
   if (refinedName.indexOf("(") > -1) {
     refinedName = refinedName.substr(0, refinedName.indexOf("("));
@@ -84,7 +83,7 @@ function Card(props) {
       <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
         <img
           className="absolute top-0 object-cover size-full start-0"
-          src={image}
+          src={eventPoster}
           alt="Image Description"
         />
       </div>
@@ -103,7 +102,7 @@ function Card(props) {
               <h4 className="font-semibold text-white">
                 {organizingCouncil || "KNIT"}
               </h4>
-              <p className="text-xs text-white/[.8]">{addedOn || "N/A"}</p>
+              {/* <p className="text-xs text-white/[.8]">{addedOn || "N/A"}</p> */}
             </div>
           </div>
         </div>
@@ -114,7 +113,7 @@ function Card(props) {
           <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-yellow-500">
             {refinedName}
           </h3>
-          <p className="mt-2 text-white/[.8]">{summary}</p>
+          <p className="mt-2 text-white/[.8]">{description}</p>
         </div>
       </div>
     </a>

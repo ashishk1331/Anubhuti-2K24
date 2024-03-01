@@ -15,8 +15,7 @@ import { getEventRegistrations } from "@/helper/appwrite-helpers.js";
 
 export default function ({ event }) {
   const { registered, registrations, loggedInUser } = useStore();
-  const { data, $id } = event;
-  const { eventName } = JSON.parse(data);
+  const { $id, eventName } = event;
   const [showRegistration, setShowRegistration] = useState(true);
   const {
     values,

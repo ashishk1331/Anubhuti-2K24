@@ -1,345 +1,222 @@
+// pages/index.js
+
 import { ID, databases, storage } from "@/Appwrite/appwrite.config";
-import { Query } from "appwrite";
 import { useState } from "react";
-import solo from "@/public/landing/crowd.jpg";
+import toast, { Toaster } from "react-hot-toast";
+
 export default function EventForm() {
-  const [formData, setFormData] = useState({
-    organizingCouncil: "Cultural Council",
-    addedOn: "26 Feb",
-    eventName: "Odoru Era: Duet - Time Travel",
-    image: null, // Image will be stored as a file
-    description:
-      "Step into the past and experience the magic of dance across the ages...",
-    teamSize: 2,
-    numberOfRounds: 2,
-    rules:
-      "All types of dance forms are allowed except classical.\nParticipants are allowed to use props as a part of their performance.",
-    rounds: [
-      {
-        name: "Round 1",
-        description:
-          "Contestants will have to perform a part of the prepared dance.",
-        timeLimit: "1.5-3 min",
-        judgingCriteria: [
-          "Choreography",
-          "Theme relevance",
-          "Technique",
-          "Coordination",
-          "Energy",
-        ],
-      },
-      {
-        name: "Round 2",
-        description:
-          "Participants will have to perform the full performance of the prepared dance.",
-        timeLimit: "2.5-5 min",
-        judgingCriteria: [
-          "Choreography",
-          "Technique",
-          "Energy",
-          "Creativity (props and costume included)",
-          "Theme relevance",
-          "Overall impact",
-        ],
-      },
-    ],
+  const [form, setForm] = useState({
+    eventName: "",
+    organizingCouncil: "",
+    description: "",
+    image1: null,
+    image2: null,
+    eventPoster: null,
   });
-
+  const [loading, setLoading] = useState(false);
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+    const { name, value, type } = e.target;
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      image: file,
-    });
-  };
-
-  const handleRoundInputChange = (index, field, value) => {
-    const newRounds = [...formData.rounds];
-    newRounds[index][field] = value;
-    setFormData({
-      ...formData,
-      rounds: newRounds,
-    });
-  };
-
-  const handleJudgingCriteriaChange = (index, criteriaIndex, value) => {
-    const newRounds = [...formData.rounds];
-    newRounds[index].judgingCriteria[criteriaIndex] = value;
-    setFormData({
-      ...formData,
-      rounds: newRounds,
-    });
-  };
-
-  const addRound = () => {
-    setFormData({
-      ...formData,
-      rounds: [
-        ...formData.rounds,
-        {
-          name: `Round ${formData.rounds.length + 1}`,
-          description: "",
-          timeLimit: "",
-          judgingCriteria: [
-            "Choreography",
-            "Theme relevance",
-            "Technique",
-            "Coordination",
-            "Energy",
-          ],
-        },
-      ],
-    });
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: type === "file" ? e.target.files[0] : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Implement your form submission logic here
-    console.log(formData);
-
+    setLoading(true);
     try {
-      const promise = await storage.createFile(
+      e.preventDefault();
+      const eventPoster = await storage.createFile(
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
         ID.unique(),
-        formData.image
+        form.eventPoster
       );
-      console.log(promise);
-      // const promise2 = await databases.createDocument(
-      //   process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
-      //   process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
-      //   ID.unique(),
-      //   {
-      //     imageId: "abd",
-      //     data: JSON.stringify(formData),
-      //   }
-      // );
-      // console.log(promise2.$id);
-      // const data = await databases.listDocuments(
-      //   process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
-      //   process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
-      //   [Query.equal("$id", promise2.$id)]
-      // );
-      // console.log(data);
+      console.log("Uploaded Image 1");
+      // return;
+      const image1 = await storage.createFile(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
+        ID.unique(),
+        form.image1
+      );
+      console.log("Uploaded Image 2");
+      const image2 = await storage.createFile(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
+        ID.unique(),
+        form.image2
+      );
+      console.log("Uploaded Image 3");
+      const response = await databases.createDocument(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
+        ID.unique(),
+        {
+          eventName: form.eventName,
+          description: form.description,
+          organizingCouncil: form.organizingCouncil,
+          eventPoster: eventPoster.$id,
+          image1: image1.$id,
+          image2: image2.$id,
+        }
+      );
+      console.log("Uploaded Data");
+      console.log(response);
+      setForm({
+        eventName: "",
+        organizingCouncil: "",
+        description: "",
+        image1: null,
+        image2: null,
+        eventPoster: null,
+      });
+      toast.Success("Success");
     } catch (error) {
-      console.log(error);
+      toast.error("Error adding event");
     }
+    setLoading(false);
   };
 
   return (
-    <div className="container max-w-md p-6 mx-auto my-10 bg-gray-200">
-      <form onSubmit={handleSubmit}>
-        <label
-          className="block mb-2 text-lg font-bold"
-          htmlFor="organizingCouncil"
-        >
-          Organizing Council:
-        </label>
-        <input
-          className="w-full p-2 mb-4 border rounded"
-          type="text"
-          id="organizingCouncil"
-          name="organizingCouncil"
-          value={formData.organizingCouncil}
-          onChange={handleInputChange}
-        />
+    <div className="container w-full mx-auto mt-8">
+      <Toaster position="top-right" reverseOrder />
+      <form
+        className="max-w-md p-8 mx-auto bg-white shadow-md"
+        onSubmit={handleSubmit}
+      >
+        <div className="mb-4">
+          <label
+            htmlFor="eventName"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Event Name
+          </label>
+          <input
+            type="text"
+            id="eventName"
+            name="eventName"
+            required
+            value={form.eventName}
+            onChange={handleInputChange}
+            className="w-full p-2 border"
+          />
+        </div>
 
-        <label className="block mb-2 text-lg font-bold" htmlFor="addedOn">
-          Added On:
-        </label>
-        <input
-          className="w-full p-2 mb-4 border rounded"
-          type="text"
-          id="addedOn"
-          name="addedOn"
-          value={formData.addedOn}
-          onChange={handleInputChange}
-        />
+        <div className="mb-4">
+          <label
+            htmlFor="organizingCouncil"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Organizing Council
+          </label>
+          <input
+            type="text"
+            id="organizingCouncil"
+            name="organizingCouncil"
+            value={form.organizingCouncil}
+            required
+            onChange={handleInputChange}
+            className="w-full p-2 border"
+          />
+        </div>
 
-        <label className="block mb-2 text-lg font-bold" htmlFor="eventName">
-          Event Name:
-        </label>
-        <input
-          className="w-full p-2 mb-4 border rounded"
-          type="text"
-          id="eventName"
-          name="eventName"
-          value={formData.eventName}
-          onChange={handleInputChange}
-        />
+        <div className="mb-4">
+          <label
+            htmlFor="description"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={form.description}
+            onChange={handleInputChange}
+            required
+            className="w-full p-2 border"
+            rows="5"
+          ></textarea>
+        </div>
+        <div className="mb-4">
+          <label
+            htmlFor="eventPoster"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Event Poster
+          </label>
+          <input
+            type="file"
+            id="eventPoster"
+            name="eventPoster"
+            required
+            onChange={handleInputChange}
+            className="w-full p-2 border"
+            accept=".jpg, .jpeg, .png"
+          />
+          {form.eventPoster && (
+            <img
+              src={URL.createObjectURL(form.eventPoster)}
+              alt="Additional Event Poster"
+              className="h-auto max-w-full mt-2"
+            />
+          )}
+        </div>
 
-        <label className="block mb-2 text-lg font-bold" htmlFor="image">
-          Image:
-        </label>
-        <input
-          className="w-full p-2 mb-4 border rounded"
-          type="file"
-          id="image"
-          name="image"
-          onChange={handleFileChange}
-        />
+        <div className="mb-4">
+          <label
+            htmlFor="image1"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Event Brochure 1
+          </label>
+          <input
+            type="file"
+            id="image1"
+            name="image1"
+            required
+            onChange={handleInputChange}
+            className="w-full p-2 border"
+            accept=".jpg, .jpeg, .png"
+          />
+          {form.image1 && (
+            <img
+              src={URL.createObjectURL(form.image1)}
+              alt="Event Poster 1"
+              className="h-auto max-w-full mt-2"
+            />
+          )}
+        </div>
 
-        <label className="block mb-2 text-lg font-bold" htmlFor="description">
-          Description:
-        </label>
-        <textarea
-          className="w-full p-2 mb-4 border rounded"
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleInputChange}
-          rows="4"
-          cols="50"
-        />
-
-        <label className="block mb-2 text-lg font-bold" htmlFor="teamSize">
-          Team Size:
-        </label>
-        <input
-          className="w-full p-2 mb-4 border rounded"
-          type="number"
-          id="teamSize"
-          name="teamSize"
-          value={formData.teamSize}
-          onChange={handleInputChange}
-        />
-
-        <label
-          className="block mb-2 text-lg font-bold"
-          htmlFor="numberOfRounds"
-        >
-          Number of Rounds:
-        </label>
-        <input
-          className="w-full p-2 mb-4 border rounded"
-          type="number"
-          id="numberOfRounds"
-          name="numberOfRounds"
-          value={formData.numberOfRounds}
-          onChange={handleInputChange}
-        />
-
-        <label className="block mb-2 text-lg font-bold" htmlFor="rules">
-          Rules:
-        </label>
-        <textarea
-          className="w-full p-2 mb-4 border rounded"
-          id="rules"
-          name="rules"
-          value={formData.rules}
-          onChange={handleInputChange}
-          rows="4"
-          cols="50"
-        />
-
-        <label className="block mb-2 text-lg font-bold" htmlFor="rounds">
-          Rounds:
-        </label>
-        <div>
-          {formData.rounds.map((round, index) => (
-            <div key={index} className="mb-4">
-              <label
-                className="block mb-2 text-lg font-bold"
-                htmlFor={`roundName${index}`}
-              >
-                Round {index + 1} Name:
-              </label>
-              <input
-                className="w-full p-2 mb-2 border rounded"
-                type="text"
-                id={`roundName${index}`}
-                name={`rounds[${index}][name]`}
-                value={round.name}
-                onChange={(e) =>
-                  handleRoundInputChange(index, "name", e.target.value)
-                }
-              />
-
-              <label
-                className="block mb-2 text-lg font-bold"
-                htmlFor={`roundDescription${index}`}
-              >
-                Round {index + 1} Description:
-              </label>
-              <textarea
-                className="w-full p-2 mb-2 border rounded"
-                id={`roundDescription${index}`}
-                name={`rounds[${index}][description]`}
-                value={round.description}
-                onChange={(e) =>
-                  handleRoundInputChange(index, "description", e.target.value)
-                }
-                rows="4"
-                cols="50"
-              />
-
-              <label
-                className="block mb-2 text-lg font-bold"
-                htmlFor={`timeLimit${index}`}
-              >
-                Round {index + 1} Time Limit:
-              </label>
-              <input
-                className="w-full p-2 mb-2 border rounded"
-                type="text"
-                id={`timeLimit${index}`}
-                name={`rounds[${index}][timeLimit]`}
-                value={round.timeLimit}
-                onChange={(e) =>
-                  handleRoundInputChange(index, "timeLimit", e.target.value)
-                }
-              />
-
-              <label
-                className="block mb-2 text-lg font-bold"
-                htmlFor={`judgingCriteria${index}`}
-              >
-                Round {index + 1} Judging Criteria:
-              </label>
-              {round.judgingCriteria.map((criteria, criteriaIndex) => (
-                <div key={criteriaIndex} className="mb-2">
-                  <textarea
-                    className="w-full p-2 border rounded"
-                    id={`judgingCriteria${index}`}
-                    name={`rounds[${index}][judgingCriteria][${criteriaIndex}]`}
-                    value={criteria}
-                    onChange={(e) =>
-                      handleJudgingCriteriaChange(
-                        index,
-                        criteriaIndex,
-                        e.target.value
-                      )
-                    }
-                    rows="2"
-                    cols="50"
-                  />
-                </div>
-              ))}
-            </div>
-          ))}
+        <div className="mb-4">
+          <label
+            htmlFor="image2"
+            className="block mb-2 text-sm font-bold text-gray-700"
+          >
+            Event Brochure 2
+          </label>
+          <input
+            type="file"
+            id="image2"
+            name="image2"
+            required
+            onChange={handleInputChange}
+            className="w-full p-2 border"
+            accept=".jpg, .jpeg, .png"
+          />
+          {form.image2 && (
+            <img
+              src={URL.createObjectURL(form.image2)}
+              alt="Event Poster 2"
+              className="h-auto max-w-full mt-2"
+            />
+          )}
         </div>
 
         <button
-          type="button"
-          onClick={addRound}
-          className="px-4 py-2 text-white bg-blue-500 rounded"
-        >
-          Add Round
-        </button>
-        <br />
-
-        <input
           type="submit"
-          value="Submit"
-          className="px-4 py-2 text-white bg-green-500 rounded cursor-pointer"
-        />
+          className="px-4 py-2 text-white bg-blue-500 rounded focus:outline-none focus:shadow-outline-blue hover:bg-blue-700"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
