@@ -142,15 +142,16 @@ export async function getEvents() {
     const response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
-      [Query.limit(50), Query.offset(0)]
+      [Query.limit(80), Query.offset(0)]
     );
     let data = [];
+    console.log(response);
     response.documents.map((item) => {
-      const result = storage.getFilePreview(
+      const eventPoster = storage.getFilePreview(
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
-        item.imageId
+        item.eventPoster
       );
-      data.push({ ...item, image: result.href });
+      data.push({ ...item, eventPoster: eventPoster.href });
     });
     return { total: response.total, documents: data };
   } catch (error) {
@@ -167,13 +168,25 @@ export async function getEvent(id) {
     );
     let data = [];
     response.documents.map((item) => {
-      const result = storage.getFilePreview(
+      const eventPoster = storage.getFilePreview(
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
-        item.imageId
+        item.eventPoster
       );
-      data.push({ ...item, image: result.href });
+      const image1 = storage.getFilePreview(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
+        item.image1
+      );
+      const image2 = storage.getFilePreview(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
+        item.image2
+      );
+      data.push({
+        ...item,
+        eventPoster: eventPoster.href,
+        image1: image1.href,
+        image2: image2.href,
+      });
     });
-
     return { total: response.total, documents: data };
   } catch (error) {
     console.log(error.message);

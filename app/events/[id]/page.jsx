@@ -46,21 +46,11 @@ export default function ({ params: { id } }) {
 }
 
 function Display({ event }) {
-  const { $id, image } = event;
-
-  var data = JSON.parse(event.data);
-  data = { ...data, image: image };
   return (
     <div className="max-w-2xl px-4 mx-auto">
-      <Avatar data={data} />
+      <Avatar event={event} />
       <div className="space-y-6 md:space-y-8">
-        <EventDescription data={data} />
-        {data.rounds && <Rounds rounds={data.rounds} />}
-        {data.rules && <Rules rules={data.rules} />}
-        {data.judgingCriteria && (
-          <JudgingCriteria criteria={data.judgingCriteria} />
-        )}
-        <Details data={data} />
+        <EventDescription event={event} />
       </div>
     </div>
   );
