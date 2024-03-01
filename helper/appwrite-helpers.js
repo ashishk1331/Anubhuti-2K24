@@ -145,7 +145,6 @@ export async function getEvents() {
       [Query.limit(80), Query.offset(0)]
     );
     let data = [];
-    console.log(response);
     response.documents.map((item) => {
       const eventPoster = storage.getFilePreview(
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
@@ -166,6 +165,7 @@ export async function getEvent(id) {
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
       [Query.equal("$id", id)]
     );
+
     let data = [];
     response.documents.map((item) => {
       const eventPoster = storage.getFilePreview(
@@ -187,9 +187,10 @@ export async function getEvent(id) {
         image2: image2.href,
       });
     });
-    return { total: response.total, documents: data };
+    if (response.total == 0) return { total: 0, documents: [], flag: false };
+    return { total: response.total, documents: data, flag: true };
   } catch (error) {
     console.log(error.message);
-    return { total: 0, documents: [] };
+    return { total: 0, documents: [], flag: false };
   }
 }

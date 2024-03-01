@@ -1,4 +1,9 @@
-export default function ({ data }) {
+export default function ({ event }) {
+  const date = new Date(event.$createdAt);
+  const formattedDate = date.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "short",
+  });
   return (
     <div className="flex items-center justify-between mb-12">
       <div className="flex w-full sm:items-center gap-x-5 sm:gap-x-3">
@@ -23,7 +28,7 @@ export default function ({ data }) {
               {/* End Tooltip */}
               <ul className="text-xs text-gray-500">
                 <li className="relative inline-block pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
-                  {event.addedOn || "N/A"}
+                  {formattedDate || "N/A"}
                 </li>
                 <li className="relative inline-block pe-6 last:pe-0 last-of-type:before:hidden before:absolute before:top-1/2 before:end-2 before:-translate-y-1/2 before:size-1 before:bg-gray-300 before:rounded-full dark:text-gray-400 dark:before:bg-gray-600">
                   2 min read
