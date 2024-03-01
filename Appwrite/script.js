@@ -5,6 +5,9 @@ export async function uploadData(events) {
   try {
     for (const event of events) {
       const { id, image, ...eventData } = event;
+      const { eventName, organizingCouncil, type } = eventData;
+      // console.log(eventName, type, organizingCouncil, eventData);
+      // return;
       try {
         const blobImage = await fetch(image.src).then((response) =>
           response.blob()
@@ -24,6 +27,9 @@ export async function uploadData(events) {
           {
             imageId: result.$id,
             data: JSON.stringify(eventData),
+            eventName: eventName,
+            type: type,
+            organizingCouncil: organizingCouncil,
           }
         );
         console.log("File uploaded:", data);

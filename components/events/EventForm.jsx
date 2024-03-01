@@ -32,6 +32,8 @@ export default function ({ event }) {
     },
     validationSchema: EventFormSchema,
     onSubmit: async function (values, actions) {
+      // console.log(registrations);
+      // return;
       const { allow } = values;
       if (allow == false) toast.error("check to register for event");
       else {
@@ -46,6 +48,10 @@ export default function ({ event }) {
               registrationId: registrations.$id,
               eventId: $id,
               eventName: eventName,
+              name: registrations.name,
+              type: registrations.type,
+              pno: registrations.pno,
+              email: registrations.email,
             }
           );
           setShowRegistration(false);
