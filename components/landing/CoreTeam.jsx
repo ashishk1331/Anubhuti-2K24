@@ -7,7 +7,7 @@ export const CoreTeam = () => {
         {/* Title */}
         <div className="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
           <p className="mt-5 mb-10 text-[#efc36a] font-bold text-7xl ">
-            Our Team
+            Our Conveners
           </p>
         </div>
         {/* End Title */}
