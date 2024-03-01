@@ -43,7 +43,7 @@ export default function (props) {
     branch: branches[0],
     year: "",
   });
-
+  const emailRegex = /^[a-zA-Z0-9._-]+@knit\.ac\.in$/;
   useEffect(() => {
     if (loggedInUser) {
       if (loggedInUser.name) {
@@ -59,7 +59,6 @@ export default function (props) {
           gender: registrations.gender,
           phoneNumber: registrations.pno,
           year: registrations.year,
-          type: registrations.type,
           branch: registrations.branch,
         });
       }
@@ -85,8 +84,8 @@ export default function (props) {
           email,
           pno: values.phoneNumber,
           gender: values.gender,
-          type: values.type,
-          payment: values.type === "knitian" ? true : false,
+          type: emailRegex.test(email) ? "knitian" : "other",
+          payment: emailRegex.test(email) ? true : false,
           branch: values.branch.toString(),
           year: values.year,
         };
@@ -126,10 +125,8 @@ export default function (props) {
 
   return (
     <>
-      {/* Card Section */}
       <Toaster position="top-right" reverseOrder />
       <div className="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
-        {/* Card */}
         <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
           <div className="mb-8">
             <h2 className="text-4xl font-bold text-gray-700 dark:text-gray-200">
@@ -140,7 +137,6 @@ export default function (props) {
             </p>
           </div>
           <form id="registrationForm" onSubmit={handleSubmit}>
-            {/* Grid */}
             <div className="grid gap-2 sm:grid-cols-12 sm:gap-6">
               <div className="sm:col-span-3">
                 <label
@@ -150,7 +146,6 @@ export default function (props) {
                   Full name
                 </label>
               </div>
-              {/* End Col */}
               <div className="sm:col-span-9">
                 <div className="sm:flex">
                   <input
@@ -172,7 +167,6 @@ export default function (props) {
                   />
                 </div>
               </div>
-              {/* End Col */}
               <div className="sm:col-span-3">
                 <label
                   htmlFor="af-account-email"
@@ -181,7 +175,6 @@ export default function (props) {
                   Email
                 </label>
               </div>
-              {/* End Col */}
               <div className="sm:col-span-9">
                 <input
                   id="af-account-email"
@@ -191,7 +184,6 @@ export default function (props) {
                   readOnly
                 />
               </div>
-              {/* End Col */}
               <div className="sm:col-span-3">
                 <div className="inline-block">
                   <label
@@ -202,7 +194,6 @@ export default function (props) {
                   </label>
                 </div>
               </div>
-              {/* End Col */}
               <div className="sm:col-span-9">
                 <div className="sm:flex">
                   <input
@@ -223,7 +214,6 @@ export default function (props) {
                   </p>
                 )}
               </div>
-              {/* End Col */}
               <div className="sm:col-span-3">
                 <label
                   htmlFor="af-account-gender-checkbox"
@@ -232,7 +222,6 @@ export default function (props) {
                   Gender
                 </label>
               </div>
-              {/* End Col */}
               <div className="sm:col-span-9">
                 <div className="sm:flex">
                   <label
@@ -291,60 +280,6 @@ export default function (props) {
                   </label>
                 </div>
               </div>
-              {/* End Col */}
-              {/* End Col */}
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="af-account-type-checkbox"
-                  className="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200"
-                >
-                  Type
-                </label>
-              </div>
-              {/* End Col */}
-              <div className="sm:col-span-9">
-                <div className="sm:flex">
-                  <label
-                    htmlFor="af-account-type-checkbox"
-                    className="relative flex w-full px-3 py-2 -mt-px text-sm border border-gray-200 shadow-sm -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                  >
-                    <input
-                      readOnly={registered}
-                      type="radio"
-                      name="type"
-                      className="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                      id="af-account-type-checkbox"
-                      defaultChecked=""
-                      value="knitian"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <span className="text-sm text-gray-500 ms-3 dark:text-gray-400">
-                      Knitian
-                    </span>
-                  </label>
-                  <label
-                    htmlFor="af-account-type-checkbox-other"
-                    className="relative flex w-full px-3 py-2 -mt-px text-sm border border-gray-200 shadow-sm -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                  >
-                    <input
-                      readOnly={registered}
-                      type="radio"
-                      name="type"
-                      className="shrink-0 mt-0.5 border-gray-300 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-500 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                      id="af-account-gender-checkbox-other"
-                      value="other"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <span className="text-sm text-gray-500 ms-3 dark:text-gray-400">
-                      Other
-                    </span>
-                  </label>
-                </div>
-              </div>
-              {/* End Col */}
-              {/* End Col */}
               <div className="sm:col-span-3">
                 <label
                   htmlFor="year"
@@ -401,11 +336,11 @@ export default function (props) {
                   </div>
                 </div>
               </div>
-              {values.type == "other" && (
+              {!emailRegex.test(email) && (
                 <div className="mt-6 col-span-full">
                   <label
                     htmlFor="cover-photo"
-                    className="block text-sm font-medium leading-6 text-gray-900"
+                    className="block text-sm leading-6 text-gray-800 text-gray-900"
                   >
                     Upload screenshot of the transaction
                   </label>
@@ -451,7 +386,6 @@ export default function (props) {
                 </div>
               )}
             </div>
-            {/* End Grid */}
             <div className="flex justify-end mt-5 gap-x-2">
               {!registered && (
                 <>

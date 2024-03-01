@@ -4,12 +4,8 @@
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import Form from "@/components/events/EventForm.jsx";
-import Rules from "@/components/events/Rules";
-import JudgingCriteria from "@/components/events/JudgingCriteria";
-import Rounds from "@/components/events/Rounds";
 import Avatar from "@/components/events/Avatar";
 import EventDescription from "@/components/events/EventDescription";
-import Details from "@/components/events/Details";
 import { useEffect, useState } from "react";
 import { getEvent } from "@/helper/appwrite-helpers";
 import Loader from "@/components/ui/Loader";

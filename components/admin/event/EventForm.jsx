@@ -69,8 +69,9 @@ export default function EventForm() {
         image2: null,
         eventPoster: null,
       });
-      toast.Success("Success");
+      toast.success("Success");
     } catch (error) {
+      console.log(error);
       toast.error("Error adding event");
     }
     setLoading(false);
@@ -213,6 +214,7 @@ export default function EventForm() {
 
         <button
           type="submit"
+          disabled={loading}
           className="px-4 py-2 text-white bg-blue-500 rounded focus:outline-none focus:shadow-outline-blue hover:bg-blue-700"
         >
           Submit
