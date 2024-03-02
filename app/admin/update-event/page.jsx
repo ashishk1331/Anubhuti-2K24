@@ -12,8 +12,9 @@ import {
   Money,
   Shapes,
   UsersThree,
+  Trash,
 } from "@phosphor-icons/react/dist/ssr";
-import { Trash } from "@phosphor-icons/react";
+
 export default function () {
   const [events, setEvents] = useState({ total: 0, documents: [] });
   async function init() {
