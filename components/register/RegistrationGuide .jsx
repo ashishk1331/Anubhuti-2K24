@@ -16,7 +16,7 @@ export default function () {
           Scan the QR code to submit fees
         </p>
         <p className="mt-1 text-gray-600 text-md dark:text-gray-400">
-          For Outsiders Fees is Rs.1000
+          For Outsiders Fees is Rs.849
         </p>
       </div>
       <div className="flex flex-col items-center justify-around w-full">
