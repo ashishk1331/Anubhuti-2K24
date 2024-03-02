@@ -49,11 +49,11 @@ function Card({ event }) {
       <div className="z-50 p-3 bg-white rounded-[1.5rem]">
         <div className="relative">
           <div className="absolute z-[-10] left-3 top-3 w-full max-w-[350px] rounded-[1.5rem] h-full bg-black"></div>
-          {/* <img
+          <img
             className="h-[150px] bg-cover rounded-2xl w-full"
             src={event.eventPoster}
             alt="event Poster"
-          /> */}
+          />
         </div>
         <div className="flex flex-col gap-4 mt-4">
           <div>
@@ -61,16 +61,14 @@ function Card({ event }) {
               {event.eventName}
             </h3>
           </div>
-
           <div className="flex flex-col gap-4">
-            <button className="flex justify-center w-full gap-1 p-3 font-semibold text-center text-white bg-blue-600 rounded-full">
+            <a
+              href={`/admin/update-event/${event.$id}`}
+              className="flex justify-center w-full gap-1 p-2 font-semibold text-center border rounded-full"
+            >
               Edit Event
               <ArrowSquareOut size={22} weight="fill" />
-            </button>
-            <button className="flex justify-center w-full gap-1 p-3 font-semibold text-center text-white bg-red-600 rounded-full">
-              Delete Event
-              <Trash size={22} weight="fill" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

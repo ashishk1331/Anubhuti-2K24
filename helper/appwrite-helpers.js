@@ -194,3 +194,18 @@ export async function getEvent(id) {
     return { total: 0, documents: [], flag: false };
   }
 }
+
+export async function getEventWithoutImage(id) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
+      [Query.equal("$id", id)]
+    );
+    if (response.total == 0) return { total: 0, documents: [], flag: false };
+    return { total: response.total, documents: response.documents, flag: true };
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [], flag: false };
+  }
+}
