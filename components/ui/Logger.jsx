@@ -31,15 +31,20 @@ export default function () {
     init();
   }, []);
   return (
-    <div className="flex flex-col justify-between w-full gap-1 p-4 mt-5 text-sm text-white lg:mt-1 sm:flex-row bg-gray-950">
-      <span>Total Visitors: {vistors}</span>
-      <a
-        className="underline hover:text-yellow-300"
-        target="blank"
-        href="https://logger-mocha-six.vercel.app/"
-      >
-        Metrics powered by Logger
-      </a>
+    <div className="flex flex-col justify-between w-full gap-1 sm:p-8 p-4 text-sm text-white sm:flex-row bg-[#101010]">
+      <span>Total Views: {vistors}</span>
+      <div className="flex flex-col">
+        <a href="https://go-north-ten.vercel.app/" target="blank">
+          Site by <span className="sm:hover:underline">Go North</span>
+        </a>
+        <a
+          className="text-xs hover:text-yellow-50"
+          target="blank"
+          href="https://logger-mocha-six.vercel.app/"
+        >
+          Metrics powered by Logger
+        </a>
+      </div>
     </div>
   );
 }
