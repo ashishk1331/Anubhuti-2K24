@@ -113,12 +113,6 @@ function NavItems() {
         </a>
       </li>
       <li>
-        <a href="/register" className="transition-all hover:underline">
-          Register
-        </a>
-      </li>
-
-      <li>
         <a href="/contribute" className="transition-all hover:underline">
           Contribute
         </a>
@@ -128,6 +122,18 @@ function NavItems() {
           Team
         </a>
       </li>
+      <li>
+        <a href="/contact" className="transition-all hover:underline">
+          Contact
+        </a>
+      </li>
+      <li>
+        <a href="/register" className="transition-all hover:underline">
+          Register
+        </a>
+      </li>
+
+
       <li>
         <SessionStatus />
       </li>

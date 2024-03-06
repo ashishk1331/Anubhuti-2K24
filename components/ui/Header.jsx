@@ -93,6 +93,12 @@ export default function (props) {
                 >
                   Team
                 </a>
+                <a
+                  className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+                  href="/contact"
+                >
+                  Contact
+                </a>
                 <Adminstatus />
                 <RegistrationStatus />
                 <SessionStatus />
@@ -129,6 +135,12 @@ export default function (props) {
               href="/team"
             >
               Team
+            </a>
+            <a
+              className="font-medium text-gray-500 hover:text-voilet sm:py-6"
+              href="/contact"
+            >
+              Contact
             </a>
             <Adminstatus />
             <RegistrationStatus />

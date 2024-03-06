@@ -153,6 +153,7 @@ export const teamData = {
     { name: "Anshul", department: "IT" },
     { name: "Mohit Singh", department: "CSE" },
     { name: "Sudhanshu ", department: "CSE" },
+    { name: "Aditya Agnihotri ", department: "CSE" },
   ],
   mediaMixingAndMastering: [
     { name: "Mayank Kesharwani", department: "EL", core: true },
