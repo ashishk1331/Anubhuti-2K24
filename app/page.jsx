@@ -23,7 +23,7 @@ export default function Home() {
         <Gallery />
         <CoreTeam />
         <LandingFooter />
-        <Logger />
+        {/* <Logger /> */}
       </div>
     </>
   );
