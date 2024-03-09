@@ -38,10 +38,61 @@ export default function (props) {
         <div>
           {events.documents.length > 0 ? (
             <>
-              <div className="grid gap-6 lg:grid-cols-2">
-                {events.documents.map((event) => (
-                  <Card key={event.$id} {...event} />
-                ))}
+              <div>
+                <h3 className="my-16 text-3xl font-semibold sm:text-5xl ">
+                  CULTURAL EVENTS
+                </h3>
+                <div className="grid gap-6 lg:grid-cols-2">
+                  {events.documents
+                    .filter(
+                      (item) => item.organizingCouncil === "CULTURAL COUNCIL"
+                    )
+                    .map((event) => (
+                      <Card key={event.$id} {...event} />
+                    ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="my-16 text-3xl font-semibold sm:text-5xl ">
+                  PHOTOGRAPHY AND FINEARTS EVENTS
+                </h3>
+                <div className="grid gap-6 lg:grid-cols-2">
+                  {events.documents
+                    .filter(
+                      (item) =>
+                        item.organizingCouncil ===
+                        "PHOTOGRAPHY AND FINE ARTS CLUB"
+                    )
+                    .map((event) => (
+                      <Card key={event.$id} {...event} />
+                    ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="my-10 text-3xl font-semibold sm:text-5xl ">
+                  ANUBHUTI EVENTS
+                </h3>
+                <div className="grid gap-6 lg:grid-cols-2">
+                  {events.documents
+                    .filter((item) => item.organizingCouncil === "ANUBHUTI")
+                    .map((event) => (
+                      <Card key={event.$id} {...event} />
+                    ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="my-16 text-3xl font-semibold sm:text-5xl ">
+                  LITERARY EVENTS
+                </h3>
+                <div className="grid gap-6 lg:grid-cols-2">
+                  {events.documents
+                    .filter(
+                      (item) => item.organizingCouncil === "LITERARY COUNCIL"
+                    )
+                    .map((event) => (
+                      <Card key={event.$id} {...event} />
+                    ))}
+                </div>
               </div>
             </>
           ) : (
