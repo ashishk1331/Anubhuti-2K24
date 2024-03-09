@@ -22,14 +22,14 @@ export async function getUsers() {
     return { total: 0, users: [] };
   }
 }
-export async function getRegistrations() {
+export async function getRegistrations(page, capacity) {
   try {
     const response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
-      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
+      [Query.limit(capacity), Query.offset(page * capacity - capacity)]
     );
-    console.log(response.documents);
-    return response.documents;
+    return { total: response.total, documents: response.documents };
   } catch (error) {
     console.log(error.message);
     return { total: 0, documents: [] };
@@ -202,10 +202,42 @@ export async function getEventWithoutImage(id) {
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
       [Query.equal("$id", id)]
     );
-    if (response.total == 0) return { total: 0, documents: [], flag: false };
+    if (response.total == 0) return { total: 0, documents: [], flag: true };
     return { total: response.total, documents: response.documents, flag: true };
   } catch (error) {
     console.log(error.message);
+    return { total: 0, documents: [], flag: false };
+  }
+}
+export async function getEventsWithoutImage(id) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
+      [Query.limit(80), Query.offset(0)]
+    );
+    return { total: response.total, documents: response.documents, flag: true };
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [], flag: false };
+  }
+}
+
+export async function getRegistrationsByEventId(id, page = 1, capacity = 20) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTREGISTRATIONS_COLLECTIONID,
+      [
+        Query.limit(capacity),
+        Query.offset(page * capacity - capacity),
+        Query.equal("eventId", id),
+      ]
+    );
+
+    return { total: response.total, documents: response.documents, flag: true };
+  } catch (error) {
+    console.log(error);
     return { total: 0, documents: [], flag: false };
   }
 }

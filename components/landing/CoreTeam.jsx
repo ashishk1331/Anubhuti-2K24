@@ -6,7 +6,7 @@ export const CoreTeam = () => {
       <div className="max-w-5xl px-4 py-4 mx-auto sm:px-6 lg:px-8 lg:py-8 ">
         {/* Title */}
         <div className="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
-          <p className="mt-5 mb-10 text-[#efc36a] font-bold text-7xl ">
+          <p className="mt-5 mb-10 text-[#efc36a] font-bold text-5xl sm:text-7xl ">
             Our Convenors
           </p>
         </div>

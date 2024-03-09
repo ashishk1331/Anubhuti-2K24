@@ -18,14 +18,14 @@ export default function () {
 
   async function init() {
     try {
-      setRegistrations(await getRegistrations());
+      setRegistrations(await getRegistrations(page, capacity));
     } catch (error) {
       console.log(error);
     }
   }
   useEffect(() => {
     init();
-  }, []);
+  }, [page, capacity]);
 
   return (
     <>
@@ -44,6 +44,7 @@ export default function () {
             capacity={capacity}
             setCapacity={setCapacity}
             total={registrations.total}
+            display={false}
           />
         </div>
       )}

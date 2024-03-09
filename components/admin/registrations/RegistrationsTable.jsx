@@ -25,22 +25,20 @@ export default function ({ registrations, page, capacity }) {
           </tr>
         </thead>
         <tbody>
-          {registrations.documents
-            .slice(page * capacity - capacity, page * capacity)
-            .map((item, index) => (
-              <tr
-                key={item.$id}
-                className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
-              >
-                <td className="p-2 border-b text-start">{item.name}</td>
-                <td className="p-2 border-b text-start">{item.email}</td>
-                <td className="p-2 border-b text-start">{item.type}</td>
-                <td className="p-2 border-b text-start">{item.college}</td>
-                <td className="p-2 border-b text-start">
-                  {formatTimestamp(item.$createdAt)}
-                </td>
-              </tr>
-            ))}
+          {registrations.documents.map((item, index) => (
+            <tr
+              key={item.$id}
+              className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+            >
+              <td className="p-2 border-b text-start">{item.name}</td>
+              <td className="p-2 border-b text-start">{item.email}</td>
+              <td className="p-2 border-b text-start">{item.type}</td>
+              <td className="p-2 border-b text-start">{item.college}</td>
+              <td className="p-2 border-b text-start">
+                {formatTimestamp(item.$createdAt)}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

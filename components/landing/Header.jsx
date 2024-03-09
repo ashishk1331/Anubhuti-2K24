@@ -35,7 +35,7 @@ export default function (props) {
             />
             <span>Anubhuti</span>
           </div>
-          <button className="p-2 rounded-md sm:hidden">
+          <button className="p-2 rounded-md md:hidden">
             {isOpen ? (
               <X
                 size={24}
@@ -50,7 +50,7 @@ export default function (props) {
               />
             )}
           </button>
-          <ul className="items-center hidden gap-12 sm:flex">
+          <ul className="items-center hidden gap-12 md:flex">
             <NavItems />
           </ul>
         </nav>
@@ -60,7 +60,7 @@ export default function (props) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
-              className="flex flex-col items-center gap-4 p-4 py-8 border-white sm:hidden backdrop-blur-md border-y-2 z-3"
+              className="flex flex-col items-center gap-4 p-4 py-8 border-white md:hidden backdrop-blur-md border-y-2 z-3"
             >
               <NavItems />
             </motion.ul>
@@ -132,7 +132,6 @@ function NavItems() {
           Register
         </a>
       </li>
-
 
       <li>
         <SessionStatus />

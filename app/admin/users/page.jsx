@@ -41,6 +41,7 @@ export default function () {
             capacity={capacity}
             setCapacity={setCapacity}
             total={users.total}
+            display={false}
           />
         </div>
       )}

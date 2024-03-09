@@ -1,4 +1,11 @@
-export default function ({ page, setPage, total, capacity, setCapacity }) {
+export default function ({
+  page,
+  display = true,
+  setPage,
+  total,
+  capacity,
+  setCapacity,
+}) {
   function pagehandler(i) {
     if (i >= 1 && i <= Math.ceil(total / capacity) && i != page) setPage(i);
   }
@@ -31,16 +38,18 @@ export default function ({ page, setPage, total, capacity, setCapacity }) {
           Next
         </span>
       </div>
-      <select
-        className="py-1 px-2 border-gray-300 mx-auto text-sm border rounded-md outline-none resize-none w-[155px] "
-        value={capacity}
-        onChange={(e) => setCapacity(Number(e.target.value))}
-      >
-        <option value={10}>10 entries/page</option>
-        <option value={20}>20 entries/page</option>
-        <option value={25}>25 entries/page</option>
-        <option value={30}>30 entries/page</option>
-      </select>
+      {display && (
+        <select
+          className="py-1 px-2 border-gray-300 mx-auto text-sm border rounded-md outline-none resize-none w-[155px] "
+          value={capacity}
+          onChange={(e) => setCapacity(Number(e.target.value))}
+        >
+          <option value={10}>10 entries/page</option>
+          <option value={20}>20 entries/page</option>
+          <option value={25}>25 entries/page</option>
+          <option value={30}>30 entries/page</option>
+        </select>
+      )}
     </div>
   );
 }
