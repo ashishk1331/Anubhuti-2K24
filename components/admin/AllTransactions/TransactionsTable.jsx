@@ -31,34 +31,30 @@ export default function ({ transactions, page, capacity }) {
           </tr>
         </thead>
         <tbody>
-          {transactions.documents
-            .slice(page * capacity - capacity, page * capacity)
-            .map((item, index) => (
-              <tr
-                key={item.$id}
-                className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
-              >
-                <td className="p-2 border-b text-start">{item.name}</td>
-                <td className="p-2 border-b text-start">{item.email}</td>
+          {transactions.documents.map((item, index) => (
+            <tr
+              key={item.$id}
+              className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+            >
+              <td className="p-2 border-b text-start">{item.name}</td>
+              <td className="p-2 border-b text-start">{item.email}</td>
 
-                <td className="p-2 border-b text-start">{item.amount}</td>
-                <td className="p-2 border-b text-start">
-                  {item.transactionId}
-                </td>
-                <td className="p-2 border-b text-start">
-                  {formatTimestamp(item.$createdAt)}
-                </td>
-                <td className="p-2 border-b text-start">
-                  {item.verified === false ? "Not Verified" : "Verified"}
-                </td>
-                <td
-                  onClick={() => downloadImage(item.imageId)}
-                  className="p-2 bg-blue-200 border-b cursor-pointer hover:bg-blue-500 text-start"
-                >
-                  Download Reciept
-                </td>
-              </tr>
-            ))}
+              <td className="p-2 border-b text-start">{item.amount}</td>
+              <td className="p-2 border-b text-start">{item.transactionId}</td>
+              <td className="p-2 border-b text-start">
+                {formatTimestamp(item.$createdAt)}
+              </td>
+              <td className="p-2 border-b text-start">
+                {item.verified === false ? "Not Verified" : "Verified"}
+              </td>
+              <td
+                onClick={() => downloadImage(item.imageId)}
+                className="p-2 bg-blue-200 border-b cursor-pointer hover:bg-blue-500 text-start"
+              >
+                Download Reciept
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

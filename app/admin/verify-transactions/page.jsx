@@ -48,6 +48,7 @@ export default function () {
             capacity={capacity}
             setCapacity={setCapacity}
             total={transactions.total}
+            display={false}
           />
         </div>
       ) : (

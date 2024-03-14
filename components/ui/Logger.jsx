@@ -31,7 +31,7 @@ export default function () {
     init();
   }, []);
   return (
-    <div className="flex flex-col justify-between w-full gap-1 sm:p-8 pt-10 p-4 text-xs sm:text-sm text-white sm:flex-row bg-[#101010]">
+    <div className="flex hidden flex-col justify-between w-full gap-1 sm:p-8 pt-10 p-4 text-xs sm:text-sm text-white sm:flex-row bg-[#101010]">
       <span>Total Views: {vistors}</span>
       <div className="flex flex-col">
         {/* <a href="https://go-north-ten.vercel.app/" target="blank">

@@ -10,11 +10,9 @@ export default function ({ transactions, page, capacity }) {
       <h2 className="text-2xl text-gray-500">Unverified Transactions</h2>
 
       <div className="flex flex-col gap-4 mt-8">
-        {transactions.documents
-          .slice(page * capacity - capacity, page * capacity)
-          .map((item, index) => (
-            <Card item={item} key={item.$id} />
-          ))}
+        {transactions.documents.map((item, index) => (
+          <Card item={item} key={item.$id} />
+        ))}
       </div>
     </div>
   );

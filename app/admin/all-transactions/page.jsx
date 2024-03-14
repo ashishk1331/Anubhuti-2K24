@@ -20,7 +20,6 @@ export default function () {
    *   documents:[]
    * }
    **/
-
   async function init() {
     try {
       setTransactions(await getAllTransactions(page, capacity));
