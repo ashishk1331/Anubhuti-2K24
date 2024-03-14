@@ -16,6 +16,7 @@ import { CheckCircle } from "@phosphor-icons/react";
 
 export default function (props) {
   const router = useRouter();
+  const emailRegex = /^[a-zA-Z0-9._-]+@knit\.ac\.in$/;
   const [file, setFile] = useState(null);
   const loggedInUser = useStore((state) => state.loggedInUser);
   const registered = useStore((state) => state.registered);
@@ -42,8 +43,11 @@ export default function (props) {
     type: "",
     branch: branches[0],
     year: "",
+    college: emailRegex.test(email)
+      ? "Kamla Nehru Institute of Technology"
+      : "",
   });
-  const emailRegex = /^[a-zA-Z0-9._-]+@knit\.ac\.in$/;
+
   useEffect(() => {
     if (loggedInUser) {
       if (loggedInUser.name) {
@@ -88,6 +92,9 @@ export default function (props) {
           payment: emailRegex.test(email) ? true : false,
           branch: values.branch.toString(),
           year: values.year,
+          college: emailRegex.test(email)
+            ? "Kamla Nehru Institute of Technology"
+            : values.college,
         };
         if (values.type === "other") {
           if (file == null) {
@@ -285,6 +292,35 @@ export default function (props) {
                   htmlFor="year"
                   className="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200"
                 >
+                  College
+                </label>
+              </div>
+              <div className="sm:col-span-9">
+                <div className="sm:flex">
+                  <input
+                    readOnly={registered || emailRegex.test(email)}
+                    required={!emailRegex.test(email)}
+                    id="af-collge"
+                    type="string"
+                    name="college"
+                    className="block w-full px-3 py-2 text-sm border border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                    placeholder="Kamla Nehru Institute of Technology"
+                    value={values.college}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+                {errors.college && (
+                  <p className="mt-2 text-xs text-red-500" id="email-error">
+                    {errors.college}
+                  </p>
+                )}
+              </div>
+              <div className="sm:col-span-3">
+                <label
+                  htmlFor="year"
+                  className="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200"
+                >
                   Year of Passing
                 </label>
               </div>
@@ -359,6 +395,7 @@ export default function (props) {
                             type="file"
                             className="sr-only"
                             required
+                            accept="image/png, image/jpeg, image/jpg"
                           />
                         </label>
                       </div>

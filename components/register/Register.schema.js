@@ -8,4 +8,5 @@ export const RegisterFormSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .length(10, "phone number should be atleast 10 digits long")
     .required("Required"),
+  college: Yup.string(),
 });
