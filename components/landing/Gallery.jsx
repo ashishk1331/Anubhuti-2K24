@@ -61,6 +61,7 @@ function Card(props) {
         alt="gallery"
         layout="fill"
         objectFit="cover"
+        placeholder="blur"
         className="z-0 transition-all xl:grayscale hover:grayscale-0 duration-900"
       />
     </div>
