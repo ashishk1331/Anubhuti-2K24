@@ -8,7 +8,6 @@ import Header from "@/components/ui/Header";
 export default function (props) {
   return (
     <>
-      <Header />
       <main className="flex flex-col gap-4">
         {/* Hero */}
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 m-8">

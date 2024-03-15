@@ -7,14 +7,17 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function AdminLayout({ children }) {
-  const loggedInUser = useStore((state) => state.loggedInUser);
   const router = useRouter();
+  const loggedInUser = useStore((state) => state.loggedInUser);
+  const setLoggedInUser = useStore((state) => state.setLoggedInUser);
   async function init() {
     try {
       const loggedIn = await account.get();
       if (!loggedIn) router.push("/login?redirect=admin");
       if (!loggedIn.labels.includes("admin")) router.push("/");
+      setLoggedInUser(loggedIn);
     } catch (err) {
+      setLoggedInUser(null);
       router.push("/login?redirect=admin");
     }
   }

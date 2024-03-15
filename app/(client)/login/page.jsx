@@ -28,7 +28,6 @@ export default function Home() {
   }, []);
   return (
     <>
-      <Header />
       <main className="w-full max-w-md p-6 mx-auto">
         <div className="border shadow-sm mt-7 bg-background border-light-gray rounded-xl">
           <div className="p-4 sm:p-7">

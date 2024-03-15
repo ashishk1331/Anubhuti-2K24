@@ -1,5 +1,7 @@
+"use client";
 import { account } from "@/Appwrite/appwrite.config";
 import { useStore } from "@/store/useForm.store";
+import { useEffect } from "react";
 import toast from "react-hot-toast";
 export default function () {
   const loggedInUser = useStore((state) => state.loggedInUser);
@@ -23,6 +25,18 @@ export default function () {
       return firstName;
     }
   }
+  async function init() {
+    try {
+      const loggedIn = await account.get();
+      setLoggedInUser(loggedIn);
+    } catch (err) {
+      console.log(err);
+      setLoggedInUser(null);
+    }
+  }
+  useEffect(() => {
+    init();
+  }, []);
   return (
     <div>
       {loggedInUser ? (

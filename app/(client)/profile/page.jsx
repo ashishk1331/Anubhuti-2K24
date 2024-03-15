@@ -27,7 +27,6 @@ export default function () {
 
   return (
     <main className="w-full min-h-screen p-4">
-      <Header />
       {loggedInUser ? (
         <Wrapper>
           <Profile />

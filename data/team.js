@@ -138,7 +138,6 @@ export const teamData = {
     },
     { name: "Karan Singh", department: "ME", secretary: "MEF" },
     { name: "Animesh Srivastava", department: "EL", core: true },
-
     { name: "Nishu Gupta", department: "IT" },
     { name: "Utkarsh", department: "EE" },
     { name: "Mohit Singh", department: "CSE" },
@@ -150,7 +149,7 @@ export const teamData = {
     { name: "Avi Srivastava", department: "CSE" },
     { name: "Shivansh Vasu", department: "IT" },
     { name: "Manish Srivastav", department: "IT" },
-    { name: "Anshul Agarwal", department: "IT" },
+    { name: "Anshul Agarwal", department: "CSE" },
     { name: "Mohit Singh", department: "CSE" },
     { name: "Sudhanshu ", department: "CSE" },
     { name: "Aditya Agnihotri ", department: "CSE" },

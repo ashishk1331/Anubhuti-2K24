@@ -28,7 +28,6 @@ export default function () {
   }, [loggedInUser]);
   return (
     <>
-      <Header />
       <RegistrationStatus registered={registered} />
 
       {loggedInUser ? (

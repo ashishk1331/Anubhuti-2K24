@@ -5,7 +5,6 @@ import { team, teamData } from "@/data/team";
 export default function () {
   return (
     <>
-      <Header />
       <div className="max-w-[85rem] mx-auto px-4 py-10 sm:px-6 lg:px-8   ">
         <div className="max-w-2xl mx-auto mb-10 text-center">
           <h2 className="text-2xl font-bold text-center md:text-4xl md:leading-tight dark:text-white">
