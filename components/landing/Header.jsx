@@ -25,15 +25,10 @@ export default function (props) {
         />
       </div>
 
-      <header className="absolute flex flex-col gap-1 inset-0 w-full z-[3]">
+      <header className="h-fit absolute flex flex-col gap-1 inset-0 w-full z-[3]">
         <nav className="flex items-center justify-between p-6 sm:p-8 sm:px-12">
           <div className="flex items-center gap-1 font-medium uppercase">
-            <img
-              className="w-10 h-10"
-              src="/anubhuti_logo.png"
-              alt="Anubhuti logo"
-            />
-            <span>Anubhuti</span>
+            Anubhuti
           </div>
           <button className="p-2 rounded-md md:hidden">
             {isOpen ? (
@@ -76,7 +71,7 @@ export default function (props) {
           <br />
           TI '24
         </h1>
-        <h1 className="hidden sm:justify-center sm:items-center sm:flex text-5xl sm:text-6xl md:text-[6rem] xl:text-[10rem] font-black text-center pt-20 text-voilet hover:text-white transition-all duration-[1500ms]">
+        <h1 className="hidden sm:justify-center sm:items-center sm:flex text-5xl sm:text-6xl md:text-[6rem] xl:text-[10rem] font-black text-center pt-20 text-voilet hover:text-white transition-colors">
           <img
             className="w-40 h-40 xl:w-56 xl:h-56"
             src="/anubhuti_logo.png"
@@ -87,13 +82,13 @@ export default function (props) {
       </div>
 
       <div className="flex flex-col items-center gap-4 absolute bottom-0 left-1/2 -translate-x-1/2 z-[3] mb-4">
-        <CaretDown size={24} className="text-white animate-bounce" />
         <a
           href="/register"
           className="p-2 px-6 mt-2 text-xl font-medium text-black rounded-full bg-voilet"
         >
           Register Now
         </a>
+        <CaretDown size={24} className="text-white animate-bounce" />
       </div>
     </div>
   );
