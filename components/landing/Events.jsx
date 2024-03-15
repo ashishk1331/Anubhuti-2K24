@@ -1,4 +1,5 @@
 import { events } from "@/data/landing-event";
+import Image from "next/image";
 
 export default function ({ eventsData }) {
   return (
@@ -47,10 +48,11 @@ function Card(props) {
   return (
     <div className="relative block bg-gray-900 cursor-pointer group dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
       <div className="flex-shrink-0 relative  overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
-        <img
+        <Image
           className="absolute top-0 object-cover transition-all duration-500 aspect-square size-full sm:grayscale group-hover:grayscale-0 start-0"
-          src={image.src}
+          src={image}
           alt="Image Description"
+          placeholder="blur"
         />
       </div>
       <div className="absolute inset-x-0 top-0 z-10">
