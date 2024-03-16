@@ -31,15 +31,17 @@ export default function () {
       <RegistrationStatus registered={registered} />
 
       {loggedInUser ? (
-        <Form />
+        <>
+          <Form />
+          <RegistrationGuide />
+          <hr className="mt-8 bg-gray-500"></hr>
+        </>
       ) : (
         <div className="flex flex-col items-center justify-center w-full h-[40vh] gap-4 sm:flex-row">
           <Loader />
           <span>Loading</span>
         </div>
       )}
-      <RegistrationGuide />
-      <hr className="mt-8 bg-gray-500"></hr>
       <Footer />
     </>
   );

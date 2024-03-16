@@ -10,6 +10,7 @@ import Pagination from "@/components/admin/ui/Pagination";
 import { litevents } from "@/data/lit";
 
 // Helper
+import Image from "next/image";
 
 export default function (props) {
   const [events, setEvents] = useState({ total: 0, documents: [] });
@@ -24,7 +25,7 @@ export default function (props) {
   return (
     <>
       <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <div className="max-w-2xl mx-auto mb-10 text-center lg:mb-14">
+        <div className="max-w-2xl mx-auto mb-12 text-center lg:mb-16">
           <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
             Events
           </h2>
@@ -36,12 +37,12 @@ export default function (props) {
 
         <div>
           {events.documents.length > 0 ? (
-            <>
+            <div className="flex flex-col gap-8 lg:gap-12">
               <div>
-                <h3 className="my-16 text-3xl font-semibold sm:text-5xl ">
+                <h3 className="text-xl font-bold sm:text-3xl text-voilet ml-2 my-8">
                   CULTURAL EVENTS
                 </h3>
-                <div className="grid gap-6 lg:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {events.documents
                     .filter(
                       (item) => item.organizingCouncil === "CULTURAL COUNCIL"
@@ -52,10 +53,10 @@ export default function (props) {
                 </div>
               </div>
               <div>
-                <h3 className="my-16 text-3xl font-semibold sm:text-5xl ">
+                <h3 className="text-xl font-bold sm:text-3xl text-voilet ml-2 my-8">
                   PHOTOGRAPHY AND FINEARTS EVENTS
                 </h3>
-                <div className="grid gap-6 lg:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {events.documents
                     .filter(
                       (item) =>
@@ -68,10 +69,10 @@ export default function (props) {
                 </div>
               </div>
               <div>
-                <h3 className="my-10 text-3xl font-semibold sm:text-5xl ">
+                <h3 className="text-xl font-bold sm:text-3xl text-voilet ml-2 my-8">
                   ANUBHUTI EVENTS
                 </h3>
-                <div className="grid gap-6 lg:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {events.documents
                     .filter((item) => item.organizingCouncil === "ANUBHUTI")
                     .map((event) => (
@@ -80,10 +81,10 @@ export default function (props) {
                 </div>
               </div>
               <div>
-                <h3 className="my-16 text-3xl font-semibold sm:text-5xl ">
+                <h3 className="text-xl font-bold sm:text-3xl text-voilet ml-2 my-8">
                   LITERARY EVENTS
                 </h3>
-                <div className="grid gap-6 lg:grid-cols-2">
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {events.documents
                     .filter(
                       (item) => item.organizingCouncil === "LITERARY COUNCIL"
@@ -93,7 +94,7 @@ export default function (props) {
                     ))}
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             <div className="flex flex-col w-full items-center justify-center h-[40vh] gap-4 sm:flex-row">
               <Loader />
@@ -139,92 +140,23 @@ function Card(props) {
 
   return (
     <a
-      className="relative block group rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      className="relative block group rounded-xl"
       href={`/events/${$id}`}
     >
       <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
-        <img
+        <Image
           className="absolute top-0 object-cover size-full start-0"
           src={eventPoster}
-          alt="Image Description"
+          width={512}
+          height={512}
+          alt={refinedName}
         />
       </div>
-      {/* Avatar Starts */}
-      <div className="absolute inset-x-0 top-0 z-10">
-        <div className="flex flex-col h-full p-4 sm:p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <img
-                className="size-[46px] border-2 border-white rounded-full"
-                src="/anubhuti_logo.png"
-                alt="Image Description"
-              />
-            </div>
-            <div className="ms-2.5 sm:ms-4">
-              <h4 className="font-semibold text-white">
-                {organizingCouncil || "KNIT"}
-              </h4>
-              <p className="text-xs text-white/[.8]">
-                {formattedDate || "N/A"}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Avatar Ends */}
       <div className="absolute inset-x-0 bottom-0 z-10">
         <div className="flex flex-col h-full p-4 sm:p-6">
-          <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-yellow-500">
+          <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-voilet transition-all">
             {refinedName}
           </h3>
-          {/* <p className="mt-2 text-white/[.8]">{description}</p> */}
-        </div>
-      </div>
-    </a>
-  );
-}
-function PfacCard(props) {
-  const { eventName, id, image, organizingCouncil, addedOn } = props;
-
-  return (
-    <a
-      href={`/events/lit/${id}`}
-      className="relative block group rounded-xl dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-    >
-      <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full h-[350px] before:absolute before:inset-x-0 before:size-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
-        <img
-          className="absolute top-0 object-cover size-full start-0"
-          src={image.src}
-          alt="Image Description"
-        />
-      </div>
-      {/* Avatar Starts */}
-      <div className="absolute inset-x-0 top-0 z-10">
-        <div className="flex flex-col h-full p-4 sm:p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <img
-                className="size-[46px] border-2 border-white rounded-full"
-                src="/anubhuti_logo.png"
-                alt="Image Description"
-              />
-            </div>
-            <div className="ms-2.5 sm:ms-4">
-              <h4 className="font-semibold text-white ">
-                {organizingCouncil || "KNIT"}
-              </h4>
-              <p className="text-xs text-white/[.8]">{addedOn || "N/A"}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Avatar Ends */}
-      <div className="absolute inset-x-0 bottom-0 z-10">
-        <div className="flex flex-col h-full p-4 sm:p-6">
-          <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-yellow-500">
-            {eventName}
-          </h3>
-          {/* <p className="mt-2 text-white/[.8]">{summary}</p> */}
         </div>
       </div>
     </a>
