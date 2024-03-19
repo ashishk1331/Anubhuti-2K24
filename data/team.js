@@ -2,8 +2,8 @@ import rajnishsir from "../public/team/rajnishsir.jpg";
 import bipinsir from "../public/team/bipinsir.jpeg";
 import sujeetsir from "../public/team/sujeetSir.jpg";
 import sameersir from "../public/team/sameersir.jpg";
-import maleavatar from "../public/team/maleavatar.png";
-import femaleavatar from "../public/team/femaleavatar.jpg";
+import maleavatar from "../public/team/male.jpg";
+import femaleavatar from "../public/team/female.jpg";
 
 export const team = [
   {
@@ -62,7 +62,7 @@ export const team = [
     designation: "Core Team",
   },
   {
-    image: maleavatar,
+    image: femaleavatar,
     name: "Akansha Walia",
     designation: "Core Team",
   },
@@ -141,7 +141,6 @@ export const teamData = {
     { name: "Nishu Gupta", department: "IT" },
     { name: "Utkarsh", department: "EE" },
     { name: "Mohit Singh", department: "CSE" },
-    { name: "Sudhanshu ", department: "CSE" },
   ],
   technicalHeads: [
     { name: "Aakansha Walia", department: "CSE", core: true },
@@ -167,7 +166,7 @@ export const teamData = {
     { name: "Sharad Giri", department: "ME" },
     { name: "Anjali Khatri", department: "EE" },
     { name: "Pranjal Mishra", department: "CE" },
-    { name: "Advit Mishra", department: "EL" },
+    { name: "Advit Mittal", department: "EL" },
     { name: "Ayush Kasaudhan", department: "EL" },
     { name: "Shivansh Vasu", department: "IT" },
   ],

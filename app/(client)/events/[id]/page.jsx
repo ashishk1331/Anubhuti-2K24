@@ -25,7 +25,6 @@ export default function ({ params: { id } }) {
   }, []);
   return (
     <>
-      <Header />
       {error ? (
         <div className="p-10 min-h-[60vh] text-base text-gray-600 flex justify-center items-center">
           Failed to fetch data

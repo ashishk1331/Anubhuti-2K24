@@ -7,12 +7,14 @@ export default function () {
     <>
       <div className="max-w-[85rem] mx-auto px-4 py-10 sm:px-6 lg:px-8   ">
         <div className="max-w-2xl mx-auto mb-10 text-center">
-          <h2 className="text-2xl font-bold text-center md:text-4xl md:leading-tight dark:text-white">
+          <h2 className="text-2xl font-bold text-center md:text-4xl md:leading-tight mb-24">
             Our Team
           </h2>
         </div>
         <div>
-          <h1 className="mb-4 text-2xl font-bold text-gray-700">Core Team</h1>
+          <h1 className="mb-4 text-2xl font-bold text-gray-700 text-voilet">
+            Core Team
+          </h1>
           <div className="grid grid-cols-1 gap-8 p-2 mt-8 lg:grid-cols-3 md:gap-6 md:p-0">
             {team.slice(4, team.length - 1).map((member, index) => (
               <div
@@ -20,7 +22,7 @@ export default function () {
                 key={index}
               >
                 <img
-                  className="rounded-full size-12"
+                  className="rounded-full size-16 object-cover"
                   src={member.image.src}
                   alt={member.name}
                 />
@@ -40,98 +42,52 @@ export default function () {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-8 p-2 mt-10 lg:grid-cols-3 md:gap-12 md:p-0">
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Fest Secretory
-            </h1>
-            {teamData.chairpersonFestSecretary.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Fest Co-ordinator
-            </h1>
-            {teamData.festCoordinator.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Finance & Operation
-            </h1>
-            {teamData.financeAndOperation.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Competition Head
-            </h1>
-            {teamData.competitionHead.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Informals Head
-            </h1>
-            {teamData.informalsHeads.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Technical Heads
-            </h1>
-            {teamData.technicalHeads.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Media Mixing and Mastering
-            </h1>
-            {teamData.mediaMixingAndMastering.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Sponsorship Head
-            </h1>
-            {teamData.sponsorshipHeads.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Outreach and Hospitality
-            </h1>
-            {teamData.outreachAndHospitality.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Security Heads
-            </h1>
-            {teamData.securityHeads.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
-          <div className="">
-            <h1 className="mb-4 text-2xl font-bold text-gray-700">
-              Creative Heads
-            </h1>
-            {teamData.creativeHeads.map((member, index) => (
-              <Display key={index} member={member} />
-            ))}
-          </div>
+          {[
+            {
+              title: "Fest Secretory",
+              data: teamData.chairpersonFestSecretary,
+            },
+            {
+              title: "Fest Co-ordinator",
+              data: teamData.festCoordinator,
+            },
+            {
+              title: "Finance & Operation",
+              data: teamData.financeAndOperation,
+            },
+            { title: "Competition Head", data: teamData.competitionHead },
+            { title: "Informals Head", data: teamData.informalsHeads },
+            { title: "Technical Heads", data: teamData.technicalHeads },
+            {
+              title: "Media Mixing and Mastering",
+              data: teamData.mediaMixingAndMastering,
+            },
+            { title: "Sponsorship Head", data: teamData.sponsorshipHeads },
+            {
+              title: "Outreach and Hospitality",
+              data: teamData.outreachAndHospitality,
+            },
+            { title: "Security Heads", data: teamData.securityHeads },
+            { title: "Creative Heads", data: teamData.creativeHeads },
+          ].map((each, index) => (
+            <Collection key={index} {...each} />
+          ))}
         </div>
       </div>
       <Footer />
     </>
+  );
+}
+
+function Collection(props) {
+  let { title, data } = props;
+  return (
+    <div>
+      <h1 className="mb-4 text-2xl font-bold text-voilet">{title}</h1>
+      {data.map((member, index) => (
+        <Display key={index} member={member} />
+      ))}
+    </div>
   );
 }
 
