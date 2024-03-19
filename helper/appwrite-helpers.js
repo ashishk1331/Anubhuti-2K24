@@ -27,7 +27,24 @@ export async function getRegistrations(page, capacity) {
     const response = await databases.listDocuments(
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
       process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
-      [Query.limit(capacity), Query.offset(page * capacity - capacity)]
+      [
+        Query.limit(capacity),
+        Query.offset(page * capacity - capacity),
+        Query.orderDesc("$createdAt"),
+      ]
+    );
+    return { total: response.total, documents: response.documents };
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [] };
+  }
+}
+export async function getAllRegistrations() {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
+      [Query.limit(10000), Query.orderDesc("$createdAt")]
     );
     return { total: response.total, documents: response.documents };
   } catch (error) {

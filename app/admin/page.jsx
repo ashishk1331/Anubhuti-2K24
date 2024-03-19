@@ -13,6 +13,7 @@ export default function () {
         <a href="/admin/all-transactions">All Transactions</a>
         <a href="/admin/verify-transactions">Verify Transactions</a>
         <a href="/admin/data">Registration data</a>
+        <a href="/admin/download">Download data</a>
       </div>
     </div>
   );

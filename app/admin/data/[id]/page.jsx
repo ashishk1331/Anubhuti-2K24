@@ -6,6 +6,7 @@ import {
   getEventWithoutImage,
   getRegistrationsByEventId,
 } from "@/helper/appwrite-helpers";
+import exportToExcel from "@/helper/excelHelper";
 import { useEffect, useState } from "react";
 export default function ({ params: { id } }) {
   const [registrations, setRegistrations] = useState({
@@ -29,7 +30,10 @@ export default function ({ params: { id } }) {
   useEffect(() => {
     init();
   }, [page, capacity]);
-
+  function downloadData() {
+    console.log(registrations);
+    exportToExcel(registrations.documents, event.documents[0].eventName);
+  }
   if (registrations.flag === false) return <div>Eror fetching data</div>;
   if (events.total == 0 && registrations.flag === true)
     return (
@@ -42,7 +46,12 @@ export default function ({ params: { id } }) {
     <div className="p-8">
       {event.total > 0 && (
         <div className="my-6 text-2xl ">
-          {event.documents[0].eventName} Registrations
+          <span>{event.documents[0].eventName} Registrations</span>
+          <div className="p-2 my-4 ">
+            <button onClick={downloadData} className="p-2 border rounded-md">
+              Download
+            </button>
+          </div>
         </div>
       )}
 
