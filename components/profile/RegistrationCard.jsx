@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
+import { RegisterFormSchema } from "../register/Register.schema";
 
 export default function ({ registration }) {
   const branches = [
@@ -20,17 +21,25 @@ export default function ({ registration }) {
     handleSubmit,
     isSubmitting,
   } = useFormik({
+    validationSchema: RegisterFormSchema,
     initialValues: {
       phoneNumber: registration.pno,
       gender: registration.gender,
       type: registration.type,
       branch: registration.branch,
       year: registration.year,
+      college: registration.college,
     },
     // validationSchema: RegisterFormSchema,
     onSubmit: async function (values, actions) {
       toast.error("Contact admin to update data");
-      // console.log(values);
+      const data = {
+        college: values.college,
+        branch: values.branch,
+        year: values.year,
+        phoneNumber: values.phoneNumber,
+      };
+      console.log(values, data);
     },
   });
   return (
@@ -93,7 +102,6 @@ export default function ({ registration }) {
           <div className="sm:col-span-9">
             <div className="sm:flex">
               <input
-                readOnly={true}
                 id="af-account-phone"
                 type="text"
                 name="phoneNumber"
@@ -155,7 +163,6 @@ export default function ({ registration }) {
           <div className="sm:col-span-9">
             <div className="sm:flex">
               <input
-                readOnly={true}
                 id="af-account-year"
                 type="number"
                 name="year"
@@ -169,6 +176,34 @@ export default function ({ registration }) {
             {errors.year && (
               <p className="mt-2 text-xs text-red-500" id="email-error">
                 {errors.year}
+              </p>
+            )}
+          </div>
+          <div className="sm:col-span-3">
+            <label
+              htmlFor="year"
+              className="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200"
+            >
+              College
+            </label>
+          </div>
+          <div className="sm:col-span-9">
+            <div className="sm:flex">
+              <input
+                required={true}
+                id="af-collge"
+                type="string"
+                name="college"
+                className="block w-full px-3 py-2 text-sm border border-gray-200 rounded-lg shadow-sm pe-11 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
+                placeholder="Kamla Nehru Institute of Technology"
+                value={values.college}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+            </div>
+            {errors.college && (
+              <p className="mt-2 text-xs text-red-500" id="email-error">
+                {errors.college}
               </p>
             )}
           </div>
