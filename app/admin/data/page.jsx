@@ -5,6 +5,8 @@ import {
   getEventWithoutImage,
   getEventsWithoutImage,
 } from "@/helper/appwrite-helpers";
+
+import Table from "@/components/admin/ui/Table.jsx";
 import { useEffect, useState } from "react";
 
 export default function () {
@@ -16,27 +18,30 @@ export default function () {
   useEffect(() => {
     init();
   }, []);
+
   if (events.flag === false) return <div>Eror fetching data</div>;
-  return (
-    <div className="p-8">
-      {events.total >= 0 && events.flag == true ? (
-        <div>
-          <div className="my-6 text-3xl">Get Event Registrations</div>
-          <ul>
-            {events.documents.map((data, index) => {
-              return <Card key={data.$id} data={data} />;
-            })}
-          </ul>
-        </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center w-full min-h-screen gap-4 sm:flex-row">
-          <Loader />
-          <span>Fetching records...</span>
-        </div>
-      )}
+
+  const columns = [
+    {
+      header: "name",
+      key: "eventName",
+    },
+    {
+      header: "created by",
+      key: "organizingCouncil",
+    },
+  ];
+
+  return events.total >= 0 && events.flag == true ? (
+    <Table title="Event Registrations" events={events.documents} columns={columns} />
+  ) : (
+    <div className="flex flex-col items-center justify-center w-full min-h-screen gap-4 sm:flex-row">
+      <Loader />
+      <span>Fetching records...</span>
     </div>
   );
 }
+
 function Card({ data }) {
   return (
     <li>

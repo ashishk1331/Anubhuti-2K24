@@ -4,6 +4,9 @@ import Pagination from "@/components/admin/ui/Pagination";
 import UsersTable from "@/components/admin/users/UsersTable";
 import { getUsers } from "@/helper/appwrite-helpers";
 import { useEffect, useState } from "react";
+
+import Table from "@/components/admin/ui/Table.jsx";
+
 export default function () {
   const [users, setUsers] = useState();
   const [page, setPage] = useState(1);
@@ -27,24 +30,35 @@ export default function () {
     init();
   }, []);
 
-  return (
-    <>
-      {users && (
-        <div className="p-4 sm:w-[80%] mx-auto">
-          {/* Display Users  */}
-          <UsersTable users={users} page={page} capacity={capacity} />
+  const columns = [
+    {
+      header: "name",
+      key: "name",
+    },
+    {
+      header: "email",
+      key: "email",
+    },
+  ];
 
-          {/* Pagination Logic */}
-          <Pagination
-            page={page}
-            setPage={setPage}
-            capacity={capacity}
-            setCapacity={setCapacity}
-            total={users.total}
-            display={false}
-          />
-        </div>
-      )}
-    </>
+  console.log(users);
+
+  return (
+    users && (
+      <div className="mb-12">
+        {/* Display Users  */}
+        <Table title="Users" events={users.users} columns={columns} />
+
+        {/* Pagination Logic */}
+        <Pagination
+          page={page}
+          setPage={setPage}
+          capacity={capacity}
+          setCapacity={setCapacity}
+          total={users.total}
+          display={false}
+        />
+      </div>
+    )
   );
 }

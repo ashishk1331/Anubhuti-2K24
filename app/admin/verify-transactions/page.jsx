@@ -1,6 +1,5 @@
 "use client";
 import { account } from "@/Appwrite/appwrite.config";
-import RegistrationsTable from "@/components/admin/registrations/RegistrationsTable";
 import TransactionsTable from "@/components/admin/transactions/TransactionsTable";
 import Pagination from "@/components/admin/ui/Pagination";
 import Loader from "@/components/ui/Loader";
