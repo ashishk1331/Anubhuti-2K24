@@ -108,7 +108,7 @@ export default function (props) {
               file
             );
             data = { ...data, imageId: temp.$id };
-            console.log("Image Data", data);
+            // console.log("Image Data", data);
           }
         }
         const promise = await databases.createDocument(
@@ -123,6 +123,7 @@ export default function (props) {
           resetButtonRef.current.click();
         }
         actions.resetForm();
+        console.log("Successfull");
         toast.success("Registration Successfull");
       } catch (error) {
         setError(error.message);

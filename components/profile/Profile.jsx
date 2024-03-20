@@ -54,6 +54,7 @@ export default function () {
         }
       } catch (error) {
         setError(error.message);
+        toast.error("Failed to update details");
       }
     },
   });

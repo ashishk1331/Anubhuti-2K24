@@ -7,7 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function ({ registration }) {
   const emailRegex = /^[a-zA-Z0-9._-]+@knit\.ac\.in$/;
-  console.log(registration);
+  // console.log(registration);
 
   const [file, setFile] = useState(null);
   const branches = [
@@ -52,7 +52,7 @@ export default function ({ registration }) {
             process.env
               .NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTTRANSACTIONS_BUCKETID,
             ID.unique(),
-            file,
+            file
           );
           data = { ...data, imageId: temp.$id };
           console.log("Image Data", data);
@@ -62,7 +62,7 @@ export default function ({ registration }) {
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
           registration.$id,
-          data,
+          data
         );
 
         toast.success("Event updated successfully");
@@ -289,6 +289,7 @@ export default function ({ registration }) {
                           type="file"
                           className="sr-only"
                           required
+                          accept="image/png, image/jpeg, image/jpg"
                         />
                       </label>
                     </div>
