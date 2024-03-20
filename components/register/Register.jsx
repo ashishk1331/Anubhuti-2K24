@@ -96,7 +96,7 @@ export default function (props) {
             ? "Kamla Nehru Institute of Technology"
             : values.college,
         };
-        if (values.type === "other") {
+        if (emailRegex.test(email) == false) {
           if (file == null) {
             console.error("Screenshot of transaction required");
             return;
@@ -108,6 +108,7 @@ export default function (props) {
               file
             );
             data = { ...data, imageId: temp.$id };
+            console.log("Image Data", data);
           }
         }
         const promise = await databases.createDocument(
