@@ -239,7 +239,7 @@ export default function ({ registration }) {
           </div>
 
           {emailRegex.test(registration.email) == false &&
-            registration.transactionId === null && <div></div>}
+            registration.transactionId === null && <div>Form</div>}
         </div>
         {/* End Grid */}
         <div className="flex justify-end mt-5 gap-x-2">
