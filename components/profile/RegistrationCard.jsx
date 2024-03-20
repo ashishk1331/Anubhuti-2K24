@@ -1,10 +1,15 @@
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
 import { RegisterFormSchema } from "../register/Register.schema";
+import { useState } from "react";
+import { Info, Image, CheckCircle } from "@phosphor-icons/react";
+import { ID, databases, storage } from "@/Appwrite/appwrite.config.js";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function ({ registration }) {
   const emailRegex = /^[a-zA-Z0-9._-]+@knit\.ac\.in$/;
   console.log(registration);
+
+  const [file, setFile] = useState(null);
   const branches = [
     "Computer Science and Engineering",
     "Information Technology",
@@ -34,18 +39,42 @@ export default function ({ registration }) {
     },
     // validationSchema: RegisterFormSchema,
     onSubmit: async function (values, actions) {
-      toast.error("Contact admin to update data");
-      const data = {
+      let data = {
         college: values.college,
         branch: values.branch,
         year: values.year,
-        phoneNumber: values.phoneNumber,
+        pno: values.phoneNumber,
       };
-      console.log(values, data);
+
+      try {
+        if (file != null) {
+          const temp = await storage.createFile(
+            process.env
+              .NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTTRANSACTIONS_BUCKETID,
+            ID.unique(),
+            file,
+          );
+          data = { ...data, imageId: temp.$id };
+          console.log("Image Data", data);
+        }
+
+        const response = await databases.updateDocument(
+          process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+          process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
+          registration.$id,
+          data,
+        );
+
+        toast.success("Event updated successfully");
+      } catch (err) {
+        console.log(err);
+        toast.error("Error updating event");
+      }
     },
   });
   return (
     <div className="overflow-hidden bg-white rounded-lg ">
+      <Toaster position="top-right" reverseOrder />
       <form id="registrationForm" onSubmit={handleSubmit}>
         {/* Grid */}
         <div className="grid gap-2 sm:grid-cols-12 sm:gap-6">
@@ -120,12 +149,7 @@ export default function ({ registration }) {
               </p>
             )}
           </div>
-          {/* End Col */}
 
-          {/* End Col */}
-
-          {/* End Col */}
-          {/* End Col */}
           <div className="sm:col-span-3">
             <label
               htmlFor="af-account-type-checkbox"
@@ -134,7 +158,7 @@ export default function ({ registration }) {
               Type
             </label>
           </div>
-          {/* End Col */}
+
           <div className="sm:col-span-9">
             <div className="sm:flex">
               <div>
@@ -152,8 +176,7 @@ export default function ({ registration }) {
               </div>
             </div>
           </div>
-          {/* End Col */}
-          {/* End Col */}
+
           <div className="sm:col-span-3">
             <label
               htmlFor="year"
@@ -239,7 +262,59 @@ export default function ({ registration }) {
           </div>
 
           {emailRegex.test(registration.email) == false &&
-            registration.transactionId === null && <div>Form</div>}
+            registration.imageId === null && (
+              <div className="col-span-full">
+                <label
+                  htmlFor="cover-photo"
+                  className="inline-block text-sm text-gray-800 mt-2.5"
+                >
+                  Upload screenshot of the transaction
+                </label>
+                <div className="flex justify-center px-6 py-10 mt-2 border border-dashed rounded-lg border-gray-900/25">
+                  <div className="text-center">
+                    <Image
+                      className="w-12 h-12 mx-auto text-gray-300"
+                      aria-hidden="true"
+                    />
+                    <div className="flex justify-around mt-4 text-sm leading-6 text-gray-600">
+                      <label
+                        htmlFor="file-upload"
+                        className="relative font-semibold text-indigo-600 bg-white rounded-md cursor-pointer focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                      >
+                        <span>Upload a file</span>
+                        <input
+                          onChange={(e) => setFile(e.target.files[0])}
+                          id="file-upload"
+                          name="file"
+                          type="file"
+                          className="sr-only"
+                          required
+                        />
+                      </label>
+                    </div>
+                    <p className="text-xs leading-5 text-gray-600">
+                      PNG, JPG, GIF up to 10MB
+                    </p>
+                  </div>
+                </div>
+                {file && (
+                  <span className="flex items-center gap-2 p-2 px-3 ps-0">
+                    <CheckCircle
+                      weight="fill"
+                      size={18}
+                      className="fill-voilet"
+                    />
+                    {file.name}
+                  </span>
+                )}
+                {/* {!file && (
+                <span className="flex items-center gap-2 p-2 px-3 ps-0">
+                  <Info weight="fill" size={18} className="fill-red-500" />
+                  error occured.
+                </span>
+              )} */}
+              </div>
+            )}
         </div>
         {/* End Grid */}
         <div className="flex justify-end mt-5 gap-x-2">
