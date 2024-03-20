@@ -78,7 +78,7 @@ function Update({ event }) {
         const eventPoster = await storage.createFile(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
           ID.unique(),
-          form.eventPoster
+          form.eventPoster,
         );
         data = { ...data, eventPoster: eventPoster.$id };
         console.log("Updated eventPoster");
@@ -88,7 +88,7 @@ function Update({ event }) {
         const image1 = await storage.createFile(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
           ID.unique(),
-          form.image1
+          form.image1,
         );
         data = { ...data, image1: image1.$id };
         console.log("Updated image1");
@@ -98,7 +98,7 @@ function Update({ event }) {
         const image2 = await storage.createFile(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
           ID.unique(),
-          form.image2
+          form.image2,
         );
         data = { ...data, image2: image2.$id };
         console.log("Updated image2");
@@ -108,7 +108,7 @@ function Update({ event }) {
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
         event.$id,
-        data
+        data,
       );
       console.log("Updated Data");
       setForm({
@@ -133,7 +133,7 @@ function Update({ event }) {
       const data = await databases.deleteDocument(
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
         process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTS_COLLECTIONID,
-        event.$id
+        event.$id,
       );
       console.log("Deleted Data");
       console.log("Deleting Images");
@@ -141,7 +141,7 @@ function Update({ event }) {
         console.log("Deleting ");
         const image = await storage.deleteFile(
           process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTPOSTERS_BUCKETID,
-          i
+          i,
         );
         console.log("Deleted");
       }
@@ -289,21 +289,25 @@ function Update({ event }) {
           )}
         </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="px-4 py-2 text-white bg-blue-500 rounded focus:outline-none focus:shadow-outline-blue hover:bg-blue-700"
-        >
-          Update
-        </button>
+        <div className="flex items-center gap-4">
+          <button
+            type="submit"
+            disabled={loading}
+            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-voilet text-white hover:bg-voilet-700 disabled:opacity-50 disabled:pointer-events-none"
+          >
+            Update
+          </button>
+
+          <button
+            type="button"
+            onClick={deleteEvent}
+            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none"
+          >
+            <Trash size={20} />
+            Delete Event
+          </button>
+        </div>
       </form>
-      <button
-        onClick={deleteEvent}
-        className="flex justify-center w-full gap-1 p-2 mt-6 font-semibold text-center text-white bg-red-600 rounded-full"
-      >
-        Delete Event
-        <Trash size={22} weight="fill" />
-      </button>
     </div>
   );
 }

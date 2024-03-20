@@ -1,25 +1,95 @@
-import { ArrowUpLeft } from "@phosphor-icons/react/dist/ssr";
+import {
+  ThumbsUp,
+  CaretRight,
+  BookOpen,
+  ArchiveBox,
+} from "@phosphor-icons/react/dist/ssr";
 
 export default function () {
   return (
     <>
-      <h1 className="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">
-        Dashboard
-      </h1>
-      <p className="mt-2 text-lg text-gray-800 dark:text-gray-400">
-        This is a dashboard for admins. It is a protected route that only users
-        with the admin label can access.
-      </p>
-      <div className="mt-5 flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
-        <a
-          className="w-full sm:w-auto py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-          href="https://github.com/htmlstreamofficial/preline/tree/main/examples/html"
-          target="_blank"
-        >
-          <ArrowUpLeft size={20} />
-          Revert back to Main Page
-        </a>
+      {/* Icon Blocks */}
+      <div className="max-w-[85rem] px-8 mx-auto">
+        {/* Grid */}
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="lg:w-3/4">
+            <h2 className="text-3xl text-gray-800 font-bold lg:text-4xl dark:text-white">
+              Admin Dashboard
+            </h2>
+            <p className="mt-3 text-gray-800 dark:text-gray-400">
+              The admin dashboard is a powerful tool that allows you to manage
+              your events and view reports. It's easy to use and intuitive, so
+              you can focus on what you do best.
+            </p>
+            <p className="mt-5">
+              <a
+                className="inline-flex items-center gap-x-1 font-medium text-blue-600 dark:text-blue-500"
+                href="#"
+              >
+                Contact Anurag or Ashish to learn more
+                <CaretRight weight="bold" />
+              </a>
+            </p>
+          </div>
+          {/* End Col */}
+          <div className="space-y-6 lg:space-y-10">
+            {/* Icon Block */}
+            <div className="flex">
+              {/* Icon */}
+              <span className="flex-shrink-0 inline-flex justify-center items-center size-[46px] rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm mx-auto dark:bg-slate-900 dark:border-gray-700 dark:text-gray-200">
+                <BookOpen size={24} />
+              </span>
+              <div className="ms-5 sm:ms-8">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200">
+                  Add or edit events
+                </h3>
+                <p className="mt-1 text-gray-600 dark:text-gray-400">
+                  The admin panel allows you to add or remove events, as well as
+                  a host of other features. It's easy to use and intuitive.
+                </p>
+              </div>
+            </div>
+            {/* End Icon Block */}
+            {/* Icon Block */}
+            <div className="flex">
+              {/* Icon */}
+              <span className="flex-shrink-0 inline-flex justify-center items-center size-[46px] rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm mx-auto dark:bg-slate-900 dark:border-gray-700 dark:text-gray-200">
+                <ArchiveBox size={24} />
+              </span>
+              <div className="ms-5 sm:ms-8">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200">
+                  Download reports
+                </h3>
+                <p className="mt-1 text-gray-600 dark:text-gray-400">
+                  Download reports and see how your events are doing at any
+                  given time. You can also export the data to a XLSX file.
+                </p>
+              </div>
+            </div>
+            {/* End Icon Block */}
+            {/* Icon Block */}
+            <div className="flex">
+              {/* Icon */}
+              <span className="flex-shrink-0 inline-flex justify-center items-center size-[46px] rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm mx-auto dark:bg-slate-900 dark:border-gray-700 dark:text-gray-200">
+                <ThumbsUp size={24} />
+              </span>
+              <div className="ms-5 sm:ms-8">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200">
+                  Intuitive UI
+                </h3>
+                <p className="mt-1 text-gray-600 dark:text-gray-400">
+                  The admin panel is designed to be intuitive and easy to use.
+                  You don't need to be a developer to use it. It's that simple!
+                </p>
+              </div>
+            </div>
+            {/* End Icon Block */}
+          </div>
+          {/* End Col */}
+        </div>
+        {/* End Grid */}
       </div>
+      {/* End Icon Blocks */}
     </>
   );
 }
