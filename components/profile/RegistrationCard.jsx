@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import { RegisterFormSchema } from "../register/Register.schema";
 
 export default function ({ registration }) {
+  const emailRegex = /^[a-zA-Z0-9._-]+@knit\.ac\.in$/;
+  console.log(registration);
   const branches = [
     "Computer Science and Engineering",
     "Information Technology",
@@ -235,6 +237,9 @@ export default function ({ registration }) {
               </div>
             </div>
           </div>
+
+          {emailRegex.test(registration.email) == false &&
+            registration.transactionId === null && <div></div>}
         </div>
         {/* End Grid */}
         <div className="flex justify-end mt-5 gap-x-2">
