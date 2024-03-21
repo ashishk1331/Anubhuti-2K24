@@ -44,7 +44,7 @@ export default function () {
         <div className="grid grid-cols-1 gap-8 p-2 mt-10 lg:grid-cols-3 md:gap-12 md:p-0">
           {[
             {
-              title: "Fest Secretory",
+              title: "Fest Secretary",
               data: teamData.chairpersonFestSecretary,
             },
             {

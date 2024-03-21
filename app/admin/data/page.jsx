@@ -25,6 +25,11 @@ export default function () {
     {
       header: "name",
       key: "eventName",
+      component: (event) => (
+        <a href={"/admin/data/" + event.$id} className="underline text-voilet">
+          {event.eventName}
+        </a>
+      ),
     },
     {
       header: "created by",
@@ -33,7 +38,11 @@ export default function () {
   ];
 
   return events.total >= 0 && events.flag == true ? (
-    <Table title="Event Registrations" events={events.documents} columns={columns} />
+    <Table
+      title="Event Registrations"
+      events={events.documents}
+      columns={columns}
+    />
   ) : (
     <div className="flex flex-col items-center justify-center w-full min-h-screen gap-4 sm:flex-row">
       <Loader />
