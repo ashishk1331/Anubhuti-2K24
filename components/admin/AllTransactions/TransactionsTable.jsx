@@ -23,9 +23,9 @@ export default function ({ transactions, page, capacity }) {
             <th className="p-2 border-b text-start">Name</th>
             <th className="p-2 border-b text-start">Email</th>
 
+            <th className="p-2 border-b text-start">PNo.</th>
             <th className="p-2 border-b text-start">Amount</th>
             <th className="p-2 border-b text-start">TransactionId</th>
-            <th className="p-2 border-b text-start">Timestamp</th>
             <th className="p-2 border-b text-start">Verified</th>
             <th className="p-2 border-b text-start">Reciept</th>
           </tr>
@@ -39,11 +39,9 @@ export default function ({ transactions, page, capacity }) {
               <td className="p-2 border-b text-start">{item.name}</td>
               <td className="p-2 border-b text-start">{item.email}</td>
 
+              <td className="p-2 border-b text-start">{item.pno}</td>
               <td className="p-2 border-b text-start">{item.amount}</td>
               <td className="p-2 border-b text-start">{item.transactionId}</td>
-              <td className="p-2 border-b text-start">
-                {formatTimestamp(item.$createdAt)}
-              </td>
               <td className="p-2 border-b text-start">
                 {item.verified === false ? "Not Verified" : "Verified"}
               </td>

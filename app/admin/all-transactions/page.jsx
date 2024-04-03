@@ -34,7 +34,7 @@ export default function () {
   return (
     <>
       {transactions && (
-        <div className="p-4 mx-auto sm:w-[80%]">
+        <div className="w-full p-4 mx-auto">
           {/* Display Registrations  */}
           <TransactionsTable
             transactions={transactions}
