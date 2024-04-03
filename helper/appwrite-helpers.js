@@ -258,3 +258,17 @@ export async function getRegistrationsByEventId(id, page = 1, capacity = 20) {
     return { total: 0, documents: [], flag: false };
   }
 }
+export async function getAllRegistrationsByEventId(id) {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTREGISTRATIONS_COLLECTIONID,
+      [Query.limit(1000), Query.equal("eventId", id)]
+    );
+
+    return { total: response.total, documents: response.documents, flag: true };
+  } catch (error) {
+    console.log(error);
+    return { total: 0, documents: [], flag: false };
+  }
+}

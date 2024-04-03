@@ -5,6 +5,7 @@ import Pagination from "@/components/admin/ui/Pagination";
 import Loader from "@/components/ui/Loader";
 import { events } from "@/data/landing-event";
 import {
+  getAllRegistrationsByEventId,
   getEventWithoutImage,
   getRegistrationsByEventId,
 } from "@/helper/appwrite-helpers";
@@ -34,9 +35,11 @@ export default function ({ params: { id } }) {
   useEffect(() => {
     init();
   }, [page, capacity]);
-  function downloadData() {
-    console.log(registrations);
-    exportToExcel(registrations.documents, event.documents[0].eventName);
+  async function downloadData() {
+    const data = await getAllRegistrationsByEventId(id);
+    console.log(data);
+    if (data.flag === true)
+      exportToExcel(data.documents, event.documents[0].eventName);
   }
   if (registrations.flag === false) return <div>Eror fetching data</div>;
   if (events.total == 0 && registrations.flag === true)
@@ -46,8 +49,6 @@ export default function ({ params: { id } }) {
         <span>Fetching records...</span>
       </div>
     );
-
-  console.log(registrations.documents);
 
   const columns = [
     {
@@ -71,7 +72,7 @@ export default function ({ params: { id } }) {
   return (
     <div className="px-8">
       {event.total > 0 && (
-        <div className="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center mb-6">
+        <div className="grid gap-3 px-6 py-4 mb-6 md:flex md:justify-between md:items-center">
           <div>
             <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
               {event.documents[0].eventName} Registrations
@@ -86,7 +87,7 @@ export default function ({ params: { id } }) {
                 id="hs-as-table-table-export-dropdown"
                 type="button"
                 onClick={downloadData}
-                className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
               >
                 <DownloadSimple />
                 Download
