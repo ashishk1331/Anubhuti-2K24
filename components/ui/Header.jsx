@@ -70,13 +70,6 @@ export default function (props) {
               <div className="flex flex-col mt-5 gap-y-4 gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
                 <a
                   className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-                  href="/"
-                  aria-current="page"
-                >
-                  Landing
-                </a>
-                <a
-                  className="font-medium text-gray-500 hover:text-voilet sm:py-6"
                   href="/events"
                 >
                   Events
@@ -111,13 +104,6 @@ export default function (props) {
           className="hidden overflow-hidden transition-all duration-300 hs-collapse basis-full grow sm:block"
         >
           <div className="flex flex-col mt-5 gap-y-4 gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
-            <a
-              className="font-medium text-gray-500 hover:text-voilet sm:py-6"
-              href="/"
-              aria-current="page"
-            >
-              Landing
-            </a>
             <a
               className="font-medium text-gray-500 hover:text-voilet sm:py-6"
               href="/events"

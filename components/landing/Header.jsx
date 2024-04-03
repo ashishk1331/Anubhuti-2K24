@@ -18,10 +18,9 @@ export default function (props) {
       <div className="absolute inset-0 w-full h-full overflow-hidden z-[2]">
         <Image
           src={background}
-          layout="fill"
-          objectFit="cover"
           alt="Header background"
           placeholder="blur"
+          className="w-full h-full object-cover"
         />
       </div>
 
@@ -127,10 +126,7 @@ function NavItems() {
           Register
         </a>
       </li>
-
-      <li>
-        <SessionStatus />
-      </li>
+      <SessionStatus />
     </>
   );
 }

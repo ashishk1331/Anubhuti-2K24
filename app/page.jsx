@@ -1,16 +1,16 @@
 import { Toaster } from "react-hot-toast";
 import { HeroSection } from "@/components/landing/HeroSection.jsx";
-import Events from "@/components/landing/Events.jsx";
-import { eventsData } from "@/components/landing/EventsData.jsx";
-import Gallery from "@/components/landing/Gallery.jsx";
-import { CoreTeam } from "@/components/landing/CoreTeam.jsx";
-import LandingFooter from "@/components/landing/Landing-footer";
 
 // Components
+import { eventsData } from "@/components/landing/EventsData.jsx";
+import { CoreTeam } from "@/components/landing/CoreTeam.jsx";
+import LandingFooter from "@/components/landing/Landing-footer";
+import Events from "@/components/landing/Events.jsx";
+import Gallery from "@/components/landing/Gallery.jsx";
 import Register from "@/components/landing/Register";
-import Header from "@/components/landing/Header";
-import About from "@/components/landing/About";
-import Logger from "@/components/ui/Logger";
+import Header from "@/components/landing/Header.jsx";
+import About from "@/components/landing/About.jsx";
+import Logger from "@/components/ui/Logger.jsx";
 
 export default function Home() {
   return (

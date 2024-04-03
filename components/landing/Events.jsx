@@ -51,7 +51,8 @@ function Card(props) {
         <Image
           className="absolute top-0 object-cover transition-all duration-500 aspect-square size-full sm:grayscale group-hover:grayscale-0 start-0"
           src={image}
-          alt="Image Description"
+          alt={name}
+          width={500}
           placeholder="blur"
         />
       </div>
@@ -60,7 +61,7 @@ function Card(props) {
           {/* Avatar */}
           <div className="flex items-center">
             <div className="ms-2.5 sm:ms-4">
-              <h3 className="text-lg font-semibold text-white sm:text-3xl group-hover:text-yellow-500">
+              <h3 className="text-lg font-semibold text-white sm:text-3xl">
                 {name}
               </h3>
             </div>
