@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/landing/HeroSection.jsx";
 // Components
 import { eventsData } from "@/components/landing/EventsData.jsx";
 import { CoreTeam } from "@/components/landing/CoreTeam.jsx";
-import LandingFooter from "@/components/landing/Landing-footer";
+import LandingFooter from "@/components/landing/Footer";
 import Events from "@/components/landing/Events.jsx";
 import Gallery from "@/components/landing/Gallery.jsx";
 import Register from "@/components/landing/Register";
