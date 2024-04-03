@@ -45,7 +45,7 @@ export default function (props) {
 
       <div className="grid sm:w-[90%] mx-auto md:grid-cols-2 lg:grid-cols-3">
         {images.map((url, index) => (
-          <Card url={url} key={index} />
+          <Card url={url} key={index} index={index} />
         ))}
       </div>
     </div>
@@ -53,16 +53,15 @@ export default function (props) {
 }
 
 function Card(props) {
-  const { url } = props;
+  const { url, index } = props;
   return (
     <div className="relative w-full overflow-hidden bg-gray-800 h-96 aspect-square">
       <Image
         src={url}
-        alt="gallery"
-        layout="fill"
-        objectFit="cover"
+        alt={"gallery " + index}
         placeholder="blur"
-        className="z-0 transition-all xl:grayscale hover:grayscale-0 duration-900"
+        className="z-0 transition-all xl:grayscale xl:hover:grayscale-0 duration-500 h-full object-cover"
+        width={500}
       />
     </div>
   );

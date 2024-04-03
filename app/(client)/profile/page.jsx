@@ -7,6 +7,7 @@ import Profile from "@/components/profile/Profile";
 import Wrapper from "@/components/login/Wrapper";
 import Loader from "@/components/ui/Loader";
 import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer.jsx";
 import RegistrationsData from "@/components/profile/RegistrationsData";
 import EventRegistrations from "@/components/profile/EventRegistrations";
 
@@ -39,6 +40,7 @@ export default function () {
           <span>Fetching records...</span>
         </div>
       )}
+      <Footer />
     </main>
   );
 }
