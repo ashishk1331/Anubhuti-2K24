@@ -52,6 +52,29 @@ export async function getAllRegistrations() {
     return { total: 0, documents: [] };
   }
 }
+export async function getAllRegistrationsWithImage() {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_REGISTRATIONS_COLLECTIONID,
+      [Query.limit(10000), Query.orderDesc("$createdAt")]
+    );
+    let data = [];
+    response.documents.map((item) => {
+      if (item.imageId != null) {
+        const result = storage.getFilePreview(
+          process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_EVENTTRANSACTIONS_BUCKETID,
+          item.imageId
+        );
+        data.push({ ...item, href: result.href });
+      } else data.push({ ...item, href: null });
+    });
+    return { total: response.total, documents: data, flag: true };
+  } catch (error) {
+    console.log(error.message);
+    return { total: 0, documents: [], flag: false };
+  }
+}
 export async function getEventRegistrations(userId, registrationId, eventId) {
   try {
     const response = await databases.listDocuments(
@@ -269,6 +292,28 @@ export async function getAllRegistrationsByEventId(id) {
     return { total: response.total, documents: response.documents, flag: true };
   } catch (error) {
     console.log(error);
+    return { total: 0, documents: [], flag: false };
+  }
+}
+
+export async function getAllTransactionsWithImage() {
+  try {
+    const response = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_DATABASEID,
+      process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_COLLECTIONID,
+      [Query.limit(10000)]
+    );
+    let data = [];
+    response.documents.map((item) => {
+      const result = storage.getFilePreview(
+        process.env.NEXT_PUBLIC_APPWRITE_ANUBHUTI_TRANSACTIONS_BUCKETID,
+        item.imageId
+      );
+      data.push({ ...item, href: result.href });
+    });
+    return { total: response.total, documents: data, flag: true };
+  } catch (error) {
+    console.log(error.message);
     return { total: 0, documents: [], flag: false };
   }
 }
