@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Query } from "appwrite";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import Banner from "@/components/ui/Banner";
 
 export default function RootLayout({ children }) {
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
@@ -39,6 +40,9 @@ export default function RootLayout({ children }) {
   }, []);
   return (
     <>
+      <Banner>
+        <p className="me-2 inline-block text-white">Registrations have been closed.</p>
+      </Banner>
       <Header />
       <main>{children}</main>
       <Footer />
