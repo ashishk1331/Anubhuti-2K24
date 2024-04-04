@@ -30,8 +30,15 @@ export default function () {
 
       {loggedInUser ? (
         <>
-          <Form />
-          <RegistrationGuide />
+          <div className="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
+            <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900 text-center">
+              <p className="me-2 inline-block">
+                Registrations have been closed.
+              </p>
+            </div>
+          </div>
+          {/*<Form />
+            <RegistrationGuide />*/}
           <hr className="mt-8 bg-gray-500"></hr>
         </>
       ) : (

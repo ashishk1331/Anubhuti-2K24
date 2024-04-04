@@ -31,7 +31,14 @@ export default function ({ params: { id } }) {
         <>
           <div className="max-w-3xl px-4 pt-2 pb-12 mx-auto lg:pt-5 sm:px-6 lg:px-8 marker:text-voilet"></div>
           <Display event={event.documents[0]} />
-          <Form event={event.documents[0]} />
+          {/*<Form event={event.documents[0]} />*/}
+          <div className="w-full max-w-2xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
+            <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900 text-center">
+              <p className="me-2 inline-block">
+                Registrations have been closed.
+              </p>
+            </div>
+          </div>
         </>
       ) : (
         <div className="flex flex-col mx-auto items-center justify-center w-full h-[40vh] gap-4 sm:flex-row">

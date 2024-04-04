@@ -51,7 +51,7 @@ export default function ({ event }) {
               type: registrations.type,
               pno: registrations.pno,
               email: registrations.email,
-            }
+            },
           );
           setShowRegistration(false);
           toast.success("Registration successfull...");
@@ -67,7 +67,7 @@ export default function ({ event }) {
       const data = await getEventRegistrations(
         loggedInUser.$id,
         registrations.$id,
-        $id
+        $id,
       );
       if (data.total > 0) setShowRegistration(false);
     }
@@ -79,10 +79,7 @@ export default function ({ event }) {
   return (
     <>
       <Toaster position="top-right" reverseOrder />
-      <div
-        id="donateForm"
-        className="w-full max-w-2xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14"
-      >
+      <div className="w-full max-w-2xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
         <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
           <div className="mb-8 text-center">
             <h2 className="text-2xl font-bold text-gray-800 md:text-3xl dark:text-gray-200">
