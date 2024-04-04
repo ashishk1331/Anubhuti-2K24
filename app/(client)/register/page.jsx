@@ -7,6 +7,7 @@ import { account } from "@/Appwrite/appwrite.config";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import RegistrationGuide from "@/components/register/RegistrationGuide ";
+import { status } from "@/data/config";
 
 export default function () {
   const router = useRouter();
@@ -27,19 +28,17 @@ export default function () {
   return (
     <>
       <RegistrationStatus registered={registered} />
-
       {loggedInUser ? (
         <>
-          <div className="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
-            <div className="p-4 bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900 text-center">
-              <p className="me-2 inline-block">
-                Registrations have been closed.
-              </p>
-            </div>
-          </div>
-          {/*<Form />
-            <RegistrationGuide />*/}
-          <hr className="mt-8 bg-gray-500"></hr>
+          {status ? (
+            <>
+              <Form />
+              <RegistrationGuide />
+              <hr className="mt-8 bg-gray-500"></hr>
+            </>
+          ) : (
+            <RegistrationClosed />
+          )}
         </>
       ) : (
         <div className="flex flex-col items-center justify-center w-full h-[40vh] gap-4 sm:flex-row">
@@ -51,6 +50,15 @@ export default function () {
   );
 }
 
+function RegistrationClosed() {
+  return (
+    <div className="max-w-4xl px-4 py-10 mx-auto sm:px-6 lg:px-8 lg:py-14">
+      <div className="p-4 text-center bg-white shadow rounded-xl sm:p-7 dark:bg-slate-900">
+        <p className="inline-block me-2">Registrations have been closed.</p>
+      </div>
+    </div>
+  );
+}
 function RegistrationStatus({ registered }) {
   return (
     <>

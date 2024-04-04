@@ -6,6 +6,7 @@ import { Query } from "appwrite";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import Banner from "@/components/ui/Banner";
+import { status } from "@/data/config";
 
 export default function RootLayout({ children }) {
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
@@ -40,9 +41,14 @@ export default function RootLayout({ children }) {
   }, []);
   return (
     <>
-      <Banner>
-        <p className="me-2 inline-block text-white">Registrations have been closed.</p>
-      </Banner>
+      {!status && (
+        <Banner>
+          <p className="inline-block text-white me-2">
+            Registrations have been closed.
+          </p>
+        </Banner>
+      )}
+
       <Header />
       <main>{children}</main>
       <Footer />
