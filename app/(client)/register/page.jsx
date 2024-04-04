@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "@/components/ui/Header";
 import Form from "@/components/register/Register.jsx";
 import { useStore } from "@/store/useForm.store";
 import Loader from "@/components/ui/Loader";
@@ -8,7 +7,6 @@ import { account } from "@/Appwrite/appwrite.config";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import RegistrationGuide from "@/components/register/RegistrationGuide ";
-import Footer from "@/components/ui/Footer";
 
 export default function () {
   const router = useRouter();
@@ -42,7 +40,6 @@ export default function () {
           <span>Loading</span>
         </div>
       )}
-      <Footer />
     </>
   );
 }

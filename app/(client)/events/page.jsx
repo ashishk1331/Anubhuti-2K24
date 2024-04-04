@@ -1,8 +1,6 @@
 "use client";
 
 // Components
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
 import { useEffect, useState } from "react";
 import { getEvents } from "@/helper/appwrite-helpers";
 import Loader from "@/components/ui/Loader";
@@ -110,7 +108,6 @@ export default function (props) {
           total={events.total}
         /> */}
       </div>
-      <Footer />
     </>
   );
 }

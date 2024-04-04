@@ -1,8 +1,6 @@
 "use client";
 
 // Components
-import Header from "@/components/ui/Header";
-import Footer from "@/components/ui/Footer";
 import Form from "@/components/events/EventForm.jsx";
 import Avatar from "@/components/events/Avatar";
 import EventDescription from "@/components/events/EventDescription";
@@ -23,30 +21,24 @@ export default function ({ params: { id } }) {
   useEffect(() => {
     init();
   }, []);
-  return (
+  return error ? (
+    <div className="p-10 min-h-[60vh] text-base text-gray-600 flex justify-center items-center">
+      Failed to fetch data
+    </div>
+  ) : (
     <>
-      {error ? (
-        <div className="p-10 min-h-[60vh] text-base text-gray-600 flex justify-center items-center">
-          Failed to fetch data
-        </div>
-      ) : (
+      {event.total > 0 ? (
         <>
-          {event.total > 0 ? (
-            <>
-              <div className="max-w-3xl px-4 pt-2 pb-12 mx-auto lg:pt-5 sm:px-6 lg:px-8 marker:text-voilet"></div>
-              <Display event={event.documents[0]} />
-              <Form event={event.documents[0]} />
-            </>
-          ) : (
-            <div className="flex flex-col mx-auto items-center justify-center w-full h-[40vh] gap-4 sm:flex-row">
-              <Loader />
-              <span>fetching event...</span>
-            </div>
-          )}
+          <div className="max-w-3xl px-4 pt-2 pb-12 mx-auto lg:pt-5 sm:px-6 lg:px-8 marker:text-voilet"></div>
+          <Display event={event.documents[0]} />
+          <Form event={event.documents[0]} />
         </>
+      ) : (
+        <div className="flex flex-col mx-auto items-center justify-center w-full h-[40vh] gap-4 sm:flex-row">
+          <Loader />
+          <span>fetching event...</span>
+        </div>
       )}
-
-      <Footer />
     </>
   );
 }

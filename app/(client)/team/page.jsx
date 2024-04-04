@@ -1,15 +1,16 @@
-import Footer from "@/components/ui/Footer";
-import Header from "@/components/ui/Header";
 import { team, teamData } from "@/data/team";
 
 export default function () {
   return (
-    <>
-      <div className="max-w-[85rem] mx-auto px-4 py-10 sm:px-6 lg:px-8   ">
-        <div className="max-w-2xl mx-auto mb-10 text-center">
-          <h2 className="text-2xl font-bold text-center md:text-4xl md:leading-tight mb-24">
+    <div className="flex flex-col items-center">
+      <div className="max-w-[85rem] mx-auto px-4 py-10 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto mb-24 text-center">
+          <h2 className="text-2xl font-bold text-center md:text-4xl md:leading-tight mb-4">
             Our Team
           </h2>
+          <p className="mt-1 text-gray-600 dark:text-gray-400">
+            Meet the people behind the scenes who make this event possible.
+          </p>
         </div>
         <div>
           <h1 className="mb-4 text-2xl font-bold text-gray-700 text-voilet">
@@ -74,8 +75,7 @@ export default function () {
           ))}
         </div>
       </div>
-      <Footer />
-    </>
+      </div>
   );
 }
 

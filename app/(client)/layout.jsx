@@ -4,6 +4,7 @@ import { ID, account, databases } from "@/Appwrite/appwrite.config";
 import { useEffect } from "react";
 import { Query } from "appwrite";
 import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
 
 export default function RootLayout({ children }) {
   const setLoggedInUser = useStore((state) => state.setLoggedInUser);
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
     <>
       <Header />
       <main>{children}</main>
+      <Footer />
     </>
   );
 }

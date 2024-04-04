@@ -7,7 +7,6 @@ import { AnimatePresence } from "framer-motion";
 import Login from "@/components/login/LogIn.jsx";
 import SignUp from "@/components/login/SignUp.jsx";
 import ForgetPassword from "@/components/login/ForgetPassword.jsx";
-import Header from "@/components/ui/Header";
 
 // Helper
 import { useStore } from "@/store/useForm.store.js";
@@ -27,19 +26,17 @@ export default function Home() {
     init();
   }, []);
   return (
-    <>
-      <main className="w-full max-w-md p-6 mx-auto">
-        <div className="border shadow-sm mt-7 bg-background border-light-gray rounded-xl">
-          <div className="p-4 sm:p-7">
-            <AnimatePresence>
-              <React.Suspense fallback={<div>Loading...</div>}>
-                {correctForm(formNumber)}
-              </React.Suspense>
-            </AnimatePresence>
-          </div>
+    <main className="w-full max-w-md p-6 mx-auto mb-24">
+      <div className="border shadow-sm mt-7 bg-background border-light-gray rounded-xl">
+        <div className="p-4 sm:p-7">
+          <AnimatePresence>
+            <React.Suspense fallback={<div>Loading...</div>}>
+              {correctForm(formNumber)}
+            </React.Suspense>
+          </AnimatePresence>
         </div>
-      </main>
-    </>
+      </div>
+    </main>
   );
 }
 
