@@ -1,2 +1,2 @@
-export const status = true;
+export const status = false;
 // true if accepting registrations
